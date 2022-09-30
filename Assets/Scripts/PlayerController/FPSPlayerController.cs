@@ -78,13 +78,7 @@ public class FPSPlayerController : MonoBehaviour
            }
             //l_FOV = m_RunMovementFOV;
         }
-        Debug.Log(l_Speed);
-        /*if (l_Speed > 11)
-        {
-            l_FOV = m_RunMovementFOV;
-        }*/
-
-        //Debug.Log(l_Speed);
+       
         
         
         m_Camera.fieldOfView = l_FOV;
