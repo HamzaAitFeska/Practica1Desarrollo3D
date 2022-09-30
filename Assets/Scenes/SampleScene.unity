@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 80155096}
   - component: {fileID: 80155095}
   m_Layer: 0
-  m_Name: s
+  m_Name: Forest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -462,7 +462,7 @@ MonoBehaviour:
   m_UsePitchInverted: 1
   m_characterController: {fileID: 751528581}
   m_PlayerSpeed: 10
-  m_FastSpeedMultiplier: 5
+  m_FastSpeedMultiplier: 2
   m_LeftKeyCode: 97
   m_RightKeyCode: 100
   m_UpKeyCode: 119
