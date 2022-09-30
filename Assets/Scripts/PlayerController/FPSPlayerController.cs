@@ -44,13 +44,14 @@ public class FPSPlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         //Movement
         Vector3 l_RightDirection = transform.right;
         Vector3 l_ForwardDirection = transform.forward;
         Vector3 l_Direction = Vector3.zero;
         float l_Speed = m_PlayerSpeed;
         float l_FOV = m_NormalMovementFOV;
-
+        Vector3 zero = new Vector3 (0, 0, 0);
         if (Input.GetKey(m_UpKeyCode))
             l_Direction = l_ForwardDirection;
         if (Input.GetKey(m_DownKeyCode))
@@ -66,14 +67,32 @@ public class FPSPlayerController : MonoBehaviour
         if (Input.GetKey(m_RunKeyCode))
         {
             l_Speed = m_PlayerSpeed * m_FastSpeedMultiplier;
-            l_FOV = m_RunMovementFOV;
+           if(l_Speed == m_PlayerSpeed)
+           {
+                l_FOV = m_NormalMovementFOV;
+           }
+
+           if(l_Speed == 50 && l_Direction != zero)
+           {
+                l_FOV = m_RunMovementFOV;
+           }
+            //l_FOV = m_RunMovementFOV;
         }
+        Debug.Log(l_Speed);
+        /*if (l_Speed > 11)
+        {
+            l_FOV = m_RunMovementFOV;
+        }*/
+
+        //Debug.Log(l_Speed);
+        
+        
         m_Camera.fieldOfView = l_FOV;
 
         l_Direction.Normalize();
 
         Vector3 l_Movement = l_Direction * l_Speed * Time.deltaTime;
-
+        
         //Rotation
         float l_MouseX = Input.GetAxis("Mouse X");
         float l_MouseY = Input.GetAxis("Mouse Y");
