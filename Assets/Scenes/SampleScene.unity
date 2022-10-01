@@ -954,6 +954,7 @@ GameObject:
   - component: {fileID: 751528580}
   - component: {fileID: 751528581}
   - component: {fileID: 751528582}
+  - component: {fileID: 751528583}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1044,6 +1045,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthamount: {fileID: 501713324}
   damagePlayer: 257
+--- !u!114 &751528583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751528578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5577dd9c2c275540825f53ab25c4424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textAmmo: {fileID: 1789818225}
 --- !u!1 &758703138
 GameObject:
   m_ObjectHideFlags: 0

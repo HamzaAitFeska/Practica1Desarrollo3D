@@ -45,7 +45,6 @@ public class FPSPlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         //Movement
         Vector3 l_RightDirection = transform.right;
         Vector3 l_ForwardDirection = transform.forward;
@@ -115,15 +114,5 @@ public class FPSPlayerController : MonoBehaviour
             m_AirTime += Time.deltaTime;
             m_OnGround = false;
         }
-            
-
-
-
-
-
-
-
-
-
     }
 }
