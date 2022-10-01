@@ -67,12 +67,13 @@ public class FPSPlayerController : MonoBehaviour
         if (Input.GetKey(m_RunKeyCode))
         {
             l_Speed = m_PlayerSpeed * m_FastSpeedMultiplier;
-           if(l_Speed == m_PlayerSpeed)
-           {
+            if (l_Speed == m_PlayerSpeed)
+            {
                 l_FOV = m_NormalMovementFOV;
-           }
+                
+            }
 
-           if(l_Speed == 50 && l_Direction != zero)
+           if(l_Speed == m_PlayerSpeed * m_FastSpeedMultiplier && l_Direction != zero)
            {
                 l_FOV = m_RunMovementFOV;
            }
