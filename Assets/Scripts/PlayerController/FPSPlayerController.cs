@@ -8,7 +8,7 @@ public class FPSPlayerController : MonoBehaviour
     float m_Pitch;
     public float m_PitchRotationalSpeed;
     public float m_YawRotationalSpeed;
-
+    public float m_AirTime;
     public float m_MinPitch;
     public float m_MaxPitch;
 
@@ -27,6 +27,7 @@ public class FPSPlayerController : MonoBehaviour
     public KeyCode m_RunKeyCode = KeyCode.LeftShift;
 
     public Camera m_Camera;
+    public Camera m_CameraWeapon;
     public float m_NormalMovementFOV=60.0f;
     public float m_RunMovementFOV=75.0f;
 
@@ -51,7 +52,8 @@ public class FPSPlayerController : MonoBehaviour
         Vector3 l_Direction = Vector3.zero;
         float l_Speed = m_PlayerSpeed;
         float l_FOV = m_NormalMovementFOV;
-        Vector3 zero = new Vector3 (0, 0, 0);
+        float FOV_Speed = 0.3f;
+        
         if (Input.GetKey(m_UpKeyCode))
             l_Direction = l_ForwardDirection;
         if (Input.GetKey(m_DownKeyCode))
@@ -61,28 +63,22 @@ public class FPSPlayerController : MonoBehaviour
         if (Input.GetKey(m_LeftKeyCode))
             l_Direction -= l_RightDirection;
         //Jump if SpaceBar is pressed down and player is on ground
-        if (Input.GetKeyDown(m_JumpKeyCode) && m_OnGround)
+        if (Input.GetKeyDown(m_JumpKeyCode) && m_AirTime < 0.1f)
             m_VerticalSpeed = m_JumpSpeed; 
         //Run if shift is pressed
-        if (Input.GetKey(m_RunKeyCode))
+        if (Input.GetKey(m_RunKeyCode) && l_Direction != Vector3.zero)
         {
             l_Speed = m_PlayerSpeed * m_FastSpeedMultiplier;
-            if (l_Speed == m_PlayerSpeed)
-            {
-                l_FOV = m_NormalMovementFOV;
-                
-            }
-
-           if(l_Speed == m_PlayerSpeed * m_FastSpeedMultiplier && l_Direction != zero)
-           {
-                l_FOV = m_RunMovementFOV;
-           }
+            l_FOV = m_RunMovementFOV;
             //l_FOV = m_RunMovementFOV;
         }
-       
+
         
-        
-        m_Camera.fieldOfView = l_FOV;
+        m_Camera.fieldOfView = Mathf.Lerp(m_Camera.fieldOfView, l_FOV, FOV_Speed);
+        m_CameraWeapon.fieldOfView = Mathf.Lerp(m_CameraWeapon.fieldOfView, l_FOV, FOV_Speed);
+
+
+        //m_Camera.fieldOfView = l_FOV;
 
         l_Direction.Normalize();
 
@@ -112,7 +108,22 @@ public class FPSPlayerController : MonoBehaviour
         {
             m_VerticalSpeed = 0.0f;
             m_OnGround = true;
+            m_AirTime = 0;
         }
-        else m_OnGround = false;
+        else 
+        {
+            m_AirTime += Time.deltaTime;
+            m_OnGround = false;
+        }
+            
+
+
+
+
+
+
+
+
+
     }
 }
