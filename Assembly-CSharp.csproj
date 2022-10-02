@@ -59,6 +59,8 @@
     <Compile Include="Assets\Scripts\PlayerController\FPSPlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerController\PlayerLife.cs" />
     <Compile Include="Assets\Scripts\PlayerController\PlayerAmmo.cs" />
+    <Compile Include="Assets\Scripts\Gun\Gun.cs" />
+    <Compile Include="Assets\Scripts\Gun\Bullet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

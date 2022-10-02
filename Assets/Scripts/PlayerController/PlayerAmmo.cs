@@ -9,19 +9,21 @@ public class PlayerAmmo : MonoBehaviour
     private int maxAmmo = 100;
     private int currentAmmo;
     public TMP_Text textAmmo;
+    public static PlayerAmmo instance;
     void Start()
     {
         currentAmmo = maxAmmo;
         textAmmo.text = currentAmmo.ToString();
+        instance = this;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        textAmmo.text = currentAmmo.ToString();
     }
 
-    private void LoseAmmo()
+    public void LoseAmmo()
     {
         currentAmmo--;
     }
