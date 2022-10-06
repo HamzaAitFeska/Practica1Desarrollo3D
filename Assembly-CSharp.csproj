@@ -8,8 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{5FEF4438-5C62-40D7-7BDA-241EB35ED1E8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -59,13 +58,13 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Gun\Gun.cs" />
     <Compile Include="Assets\Scripts\Gun\Bullet.cs" />
-    <Compile Include="Assets\Scripts\PlayerController\GameController.cs" />
-    <Compile Include="Assets\Scripts\PlayerController\Lvl1Controller.cs" />
     <Compile Include="Assets\Scripts\PlayerController\PlayerAmmo.cs" />
     <Compile Include="Assets\Scripts\PlayerController\PlayerLife.cs" />
     <Compile Include="Assets\Scripts\PlayerController\FPSPlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerController\DestroyOnTime.cs" />
     <Compile Include="Assets\Scripts\PlayerController\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\PlayerController\Lvl1Controller.cs" />
+    <Compile Include="Assets\Scripts\PlayerController\GameController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
