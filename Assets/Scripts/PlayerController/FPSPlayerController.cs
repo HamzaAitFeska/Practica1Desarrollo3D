@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class FPSPlayerController : MonoBehaviour
@@ -32,6 +33,7 @@ public class FPSPlayerController : MonoBehaviour
     public float m_NormalMovementFOV=60.0f;
     public float m_RunMovementFOV=75.0f;
     public GameObject PrefabBulletHole;
+    public bool m_Shooting;
 
     public Animation m_Animation;
     public AnimationClip m_IdleClip;
@@ -51,7 +53,7 @@ public class FPSPlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         //m_AimLocked = Cursor.lockState = CursorLockMode.Locked;
         SetIdleWeaponAnimation();
-
+        m_Shooting = false;
     }
 
 #if UNITY_EDITOR
@@ -156,9 +158,15 @@ public class FPSPlayerController : MonoBehaviour
             Shoot();
         }
     }
+
+    public IEnumerator EndShoot()
+    {
+        yield return new WaitForSeconds(m_ShotClip.length);
+        m_Shooting = false;
+    }
     bool CanShhot()
     {
-        return true;
+        return !m_Shooting;
     }
     public float m_MaxShootDistance = 50.0f;
     public LayerMask m_ShootingLayerMask;
@@ -171,6 +179,8 @@ public class FPSPlayerController : MonoBehaviour
             CreatShootHitParticle(l_RaycastHit.collider, l_RaycastHit.point, l_RaycastHit.normal);
         }
         SetShootWeaponAnimation();
+        m_Shooting = true;
+        StartCoroutine(EndShoot());
     }
 
     void CreatShootHitParticle(Collider collider,Vector3 position,Vector3 Normal)
