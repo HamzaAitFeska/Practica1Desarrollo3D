@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class FPSPlayerController : MonoBehaviour
 {
     float m_Yaw;
@@ -30,6 +28,7 @@ public class FPSPlayerController : MonoBehaviour
     public Camera m_CameraWeapon;
     public float m_NormalMovementFOV=60.0f;
     public float m_RunMovementFOV=75.0f;
+    public GameObject PrefabBulletHole;
 
     float m_VerticalSpeed = 0.0f;
     public bool m_OnGround = true; //REMOVE PUBLIC AFTER FIXED
@@ -114,5 +113,32 @@ public class FPSPlayerController : MonoBehaviour
             m_AirTime += Time.deltaTime;
             m_OnGround = false;
         }
+
+        if(Input.GetMouseButtonDown(0) & CanShhot())
+        {
+            Shoot();
+        }
+    }
+    bool CanShhot()
+    {
+        return true;
+    }
+    public float m_MaxShootDistance = 50.0f;
+    public LayerMask m_ShootingLayerMask;
+    void Shoot()
+    {
+        Ray l_Ray = m_Camera.ViewportPointToRay(new Vector3(0.5f, 0.5f));
+        RaycastHit l_RaycastHit;
+        if(Physics.Raycast(l_Ray, out l_RaycastHit, m_MaxShootDistance, m_ShootingLayerMask))
+        {
+            CreatShootHitParticle(l_RaycastHit.collider, l_RaycastHit.point, l_RaycastHit.normal);
+        }
+    }
+
+    void CreatShootHitParticle(Collider collider,Vector3 position,Vector3 Normal)
+    {
+        //Debug.DrawRay(position, Normal * 5.0f, Color.red, 2.0f);
+        GameObject.Instantiate(PrefabBulletHole, position, Quaternion.LookRotation(Normal));
+
     }
 }
