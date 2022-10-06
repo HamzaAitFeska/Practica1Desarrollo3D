@@ -62,6 +62,7 @@
     <Compile Include="Assets\Scripts\PlayerController\PlayerLife.cs" />
     <Compile Include="Assets\Scripts\PlayerController\FPSPlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerController\DestroyOnTime.cs" />
+    <Compile Include="Assets\Scripts\PlayerController\MainMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
