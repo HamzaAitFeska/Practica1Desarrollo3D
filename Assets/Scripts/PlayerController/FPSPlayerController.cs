@@ -23,6 +23,9 @@ public class FPSPlayerController : MonoBehaviour
     public KeyCode m_DownKeyCode;
     public KeyCode m_JumpKeyCode = KeyCode.Space;
     public KeyCode m_RunKeyCode = KeyCode.LeftShift;
+    public KeyCode m_DebugLockAngleKeyCode = KeyCode.I;
+    public KeyCode m_DebugLockKeyCode = KeyCode.O;
+
 
     public Camera m_Camera;
     public Camera m_CameraWeapon;
@@ -34,16 +37,38 @@ public class FPSPlayerController : MonoBehaviour
     public bool m_OnGround = true; //REMOVE PUBLIC AFTER FIXED
 
     public float m_JumpSpeed = 10.0f;
-
+    bool m_AngleLocked = false;
+    bool m_AimLocked = true;
     void Start()
     {
         m_Yaw = transform.rotation.y;
         m_Pitch = m_PitchCotroller.localRotation.x;
+        Cursor.lockState = CursorLockMode.Locked;
+        //m_AimLocked = Cursor.lockState = CursorLockMode.Locked;
+
     }
 
+#if UNITY_EDITOR
+    void UpadteInputDebug()
+    {
+        if (Input.GetKeyDown(m_DebugLockAngleKeyCode))
+            m_AngleLocked = !m_AngleLocked;
+        if (Input.GetKeyDown(m_DebugLockKeyCode))
+        {
+            if (Cursor.lockState == CursorLockMode.Locked)
+                Cursor.lockState = CursorLockMode.None;
+            else
+                Cursor.lockState = CursorLockMode.Locked;
+            m_AimLocked = Cursor.lockState == CursorLockMode.Locked;
+        }
+    }
+#endif
     // Update is called once per frame
     void Update()
     {
+#if UNITY_EDITOR
+        UpadteInputDebug();
+#endif
         //Movement
         Vector3 l_RightDirection = transform.right;
         Vector3 l_ForwardDirection = transform.forward;
@@ -85,7 +110,13 @@ public class FPSPlayerController : MonoBehaviour
         //Rotation
         float l_MouseX = Input.GetAxis("Mouse X");
         float l_MouseY = Input.GetAxis("Mouse Y");
-
+#if UNITY_EDITOR
+        if (m_AngleLocked)
+        {
+            l_MouseX = 0.0f;
+            l_MouseY = 0.0f;
+        }
+#endif
         m_Yaw = m_Yaw + l_MouseX * m_YawRotationalSpeed * Time.deltaTime*(m_useYawInverted ? -1.0f : 1.0f);
         m_Pitch = m_Pitch + l_MouseY * m_PitchRotationalSpeed * Time.deltaTime * (m_UsePitchInverted ? -1.0f : 1.0f);
         m_Pitch = Mathf.Clamp(m_Pitch, m_MinPitch, m_MaxPitch);
