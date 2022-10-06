@@ -33,6 +33,11 @@ public class FPSPlayerController : MonoBehaviour
     public float m_RunMovementFOV=75.0f;
     public GameObject PrefabBulletHole;
 
+    public Animation m_Animation;
+    public AnimationClip m_IdleClip;
+    public AnimationClip m_ShotClip;
+    public AnimationClip m_ReloadClip;
+
     float m_VerticalSpeed = 0.0f;
     public bool m_OnGround = true; //REMOVE PUBLIC AFTER FIXED
 
@@ -45,6 +50,7 @@ public class FPSPlayerController : MonoBehaviour
         m_Pitch = m_PitchCotroller.localRotation.x;
         Cursor.lockState = CursorLockMode.Locked;
         //m_AimLocked = Cursor.lockState = CursorLockMode.Locked;
+        SetIdleWeaponAnimation();
 
     }
 
@@ -164,6 +170,7 @@ public class FPSPlayerController : MonoBehaviour
         {
             CreatShootHitParticle(l_RaycastHit.collider, l_RaycastHit.point, l_RaycastHit.normal);
         }
+        SetShootWeaponAnimation();
     }
 
     void CreatShootHitParticle(Collider collider,Vector3 position,Vector3 Normal)
@@ -171,5 +178,16 @@ public class FPSPlayerController : MonoBehaviour
         //Debug.DrawRay(position, Normal * 5.0f, Color.red, 2.0f);
         GameObject.Instantiate(PrefabBulletHole, position, Quaternion.LookRotation(Normal));
 
+    }
+
+    void SetIdleWeaponAnimation()
+    {
+        m_Animation.CrossFade(m_IdleClip.name);
+    }
+
+    void SetShootWeaponAnimation()
+    {
+        m_Animation.CrossFade(m_ShotClip.name,0.1f);
+        m_Animation.CrossFadeQueued(m_IdleClip.name, 0.1f);
     }
 }
