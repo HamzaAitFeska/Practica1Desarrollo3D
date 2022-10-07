@@ -40,6 +40,7 @@ public class FPSPlayerController : MonoBehaviour
     public AnimationClip m_IdleClip;
     public AnimationClip m_ShotClip;
     public AnimationClip m_ReloadClip;
+    public AnimationClip m_RunClip;
 
     float m_VerticalSpeed = 0.0f;
     public bool m_OnGround = true; //REMOVE PUBLIC AFTER FIXED
@@ -102,12 +103,13 @@ public class FPSPlayerController : MonoBehaviour
         {
             l_Speed = m_PlayerSpeed * m_FastSpeedMultiplier;
             l_FOV = m_RunMovementFOV;
+            SetRunWeaponAnimation();
             //l_FOV = m_RunMovementFOV;
         }
 
         
         m_Camera.fieldOfView = Mathf.Lerp(m_Camera.fieldOfView, l_FOV, FOV_Speed);
-        m_CameraWeapon.fieldOfView = Mathf.Lerp(m_CameraWeapon.fieldOfView, l_FOV, FOV_Speed);
+        //m_CameraWeapon.fieldOfView = Mathf.Lerp(m_CameraWeapon.fieldOfView, l_FOV, FOV_Speed);
 
 
         //m_Camera.fieldOfView = l_FOV;
@@ -199,6 +201,11 @@ public class FPSPlayerController : MonoBehaviour
     void SetShootWeaponAnimation()
     {
         m_Animation.CrossFade(m_ShotClip.name,0.1f);
+        m_Animation.CrossFadeQueued(m_IdleClip.name, 0.1f);
+    }
+    void SetRunWeaponAnimation()
+    {
+        m_Animation.CrossFade(m_RunClip.name, 0.1f);
         m_Animation.CrossFadeQueued(m_IdleClip.name, 0.1f);
     }
 }

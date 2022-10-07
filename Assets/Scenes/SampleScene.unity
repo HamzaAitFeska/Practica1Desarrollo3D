@@ -970,10 +970,12 @@ MonoBehaviour:
   m_NormalMovementFOV: 60
   m_RunMovementFOV: 75
   PrefabBulletHole: {fileID: 4942842925857294279, guid: c145d4b33c7a75d4e92d3f2967e51dfd, type: 3}
+  m_Shooting: 0
   m_Animation: {fileID: 751528584}
   m_IdleClip: {fileID: 7400000, guid: e8bd8ea905ab1bf48a6fcae676ab5e1c, type: 2}
   m_ShotClip: {fileID: 7400000, guid: 65a4c039dc75ce74faf37e82a033310e, type: 2}
   m_ReloadClip: {fileID: 7400000, guid: e34ec0f6ca381f9428827f0c90217b23, type: 2}
+  m_RunClip: {fileID: 7400000, guid: c82b0a2b6100ab5449c6f110b3ec5f56, type: 2}
   m_OnGround: 1
   m_JumpSpeed: 10
   m_MaxShootDistance: 50
@@ -1039,6 +1041,7 @@ Animation:
   - {fileID: 7400000, guid: e8bd8ea905ab1bf48a6fcae676ab5e1c, type: 2}
   - {fileID: 7400000, guid: 65a4c039dc75ce74faf37e82a033310e, type: 2}
   - {fileID: 7400000, guid: e34ec0f6ca381f9428827f0c90217b23, type: 2}
+  - {fileID: 7400000, guid: c82b0a2b6100ab5449c6f110b3ec5f56, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -1720,15 +1723,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc395d83212f12345a324b567e58a725, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 64.65914
+      value: -9.755
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc395d83212f12345a324b567e58a725, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -24.426617
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc395d83212f12345a324b567e58a725, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -18.11563
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8459236965844117759, guid: fc395d83212f12345a324b567e58a725, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1840,7 +1843,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2008822866}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2054,4 +2057,4 @@ Transform:
   - {fileID: 825807677}
   m_Father: {fileID: 159980222}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 9.12, y: 99.344, z: 0.46}
