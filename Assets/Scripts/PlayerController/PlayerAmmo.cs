@@ -21,6 +21,11 @@ public class PlayerAmmo : MonoBehaviour
     void Update()
     {
         textAmmo.text = currentAmmo.ToString();
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+
+            ResetAmmo();
+        }
     }
 
     public void LoseAmmo()
@@ -30,5 +35,10 @@ public class PlayerAmmo : MonoBehaviour
     private void ResetAmmo()
     {
         currentAmmo = maxAmmo;
+    }
+
+    void SetReloadAnimation()
+    {
+
     }
 }
