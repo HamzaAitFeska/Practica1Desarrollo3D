@@ -11,7 +11,7 @@ public class FPSPlayerController : MonoBehaviour
     public float m_AirTime;
     public float m_MinPitch;
     public float m_MaxPitch;
-
+    
     public Transform m_PitchCotroller;
     public bool m_useYawInverted;
     public bool m_UsePitchInverted;
@@ -109,10 +109,10 @@ public class FPSPlayerController : MonoBehaviour
         }
         if (Input.GetKeyUp(m_RunKeyCode))
         {
-            //SetIdleWeaponAnimation();
-            m_Animation.CrossFade(m_IdleClip.name, 0.1f);
-            m_Animation.CrossFadeQueued(m_RunClip.name, 0.1f);
+            SetIdleWeaponWithRunAnimation();          
         }
+
+        
 
         
         m_Camera.fieldOfView = Mathf.Lerp(m_Camera.fieldOfView, l_FOV, FOV_Speed);
@@ -215,10 +215,16 @@ public class FPSPlayerController : MonoBehaviour
     {
         m_Animation.CrossFade(m_RunClip.name, 0.1f);
         m_Animation.CrossFadeQueued(m_IdleClip.name, 0.1f);
-        //m_Animation.CrossFadeQueued(m_ShotClip.name, 0.1f);
+        
+    }
+
+    void SetIdleWeaponWithRunAnimation()
+    {
+        m_Animation.CrossFade(m_IdleClip.name, 0.1f);
+        m_Animation.CrossFadeQueued(m_RunClip.name, 0.1f);
     }
 
 
 
-    
+
 }

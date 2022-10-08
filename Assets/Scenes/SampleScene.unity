@@ -1236,7 +1236,7 @@ MonoBehaviour:
   m_ShotClip: {fileID: 7400000, guid: 65a4c039dc75ce74faf37e82a033310e, type: 2}
   m_ReloadClip: {fileID: 7400000, guid: e34ec0f6ca381f9428827f0c90217b23, type: 2}
   m_RunClip: {fileID: 7400000, guid: c82b0a2b6100ab5449c6f110b3ec5f56, type: 2}
-  m_RotationClip: {fileID: 7400000, guid: c7cf3b3cea4520c41bff9125a12fd80a, type: 2}
+  m_RotationClip: {fileID: 7400000, guid: 89952f164418a4040af5c01a2a0505b5, type: 2}
   m_OnGround: 1
   m_JumpSpeed: 10
   m_MaxShootDistance: 50
@@ -1304,6 +1304,7 @@ Animation:
   - {fileID: 7400000, guid: 65a4c039dc75ce74faf37e82a033310e, type: 2}
   - {fileID: 7400000, guid: e34ec0f6ca381f9428827f0c90217b23, type: 2}
   - {fileID: 7400000, guid: c82b0a2b6100ab5449c6f110b3ec5f56, type: 2}
+  - {fileID: 7400000, guid: 89952f164418a4040af5c01a2a0505b5, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -2388,27 +2389,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc395d83212f12345a324b567e58a725, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc395d83212f12345a324b567e58a725, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc395d83212f12345a324b567e58a725, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc395d83212f12345a324b567e58a725, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 14.196599
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc395d83212f12345a324b567e58a725, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -5.3345523
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc395d83212f12345a324b567e58a725, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -3.9506402
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8459236965844117759, guid: fc395d83212f12345a324b567e58a725, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2734,4 +2735,4 @@ Transform:
   - {fileID: 825807677}
   m_Father: {fileID: 159980222}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 9.12, y: 99.344, z: 0.46}
+  m_LocalEulerAnglesHint: {x: -5.734, y: 95.864, z: 0}
