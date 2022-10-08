@@ -41,7 +41,7 @@ public class FPSPlayerController : MonoBehaviour
     public AnimationClip m_ShotClip;
     public AnimationClip m_ReloadClip;
     public AnimationClip m_RunClip;
-    public AnimationClip m_RotationClip;
+    
 
     float m_VerticalSpeed = 0.0f;
     public bool m_OnGround = true; //REMOVE PUBLIC AFTER FIXED

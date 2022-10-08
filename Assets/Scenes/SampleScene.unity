@@ -647,7 +647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -1236,7 +1236,6 @@ MonoBehaviour:
   m_ShotClip: {fileID: 7400000, guid: 65a4c039dc75ce74faf37e82a033310e, type: 2}
   m_ReloadClip: {fileID: 7400000, guid: e34ec0f6ca381f9428827f0c90217b23, type: 2}
   m_RunClip: {fileID: 7400000, guid: c82b0a2b6100ab5449c6f110b3ec5f56, type: 2}
-  m_RotationClip: {fileID: 7400000, guid: 89952f164418a4040af5c01a2a0505b5, type: 2}
   m_OnGround: 1
   m_JumpSpeed: 10
   m_MaxShootDistance: 50
@@ -1304,7 +1303,6 @@ Animation:
   - {fileID: 7400000, guid: 65a4c039dc75ce74faf37e82a033310e, type: 2}
   - {fileID: 7400000, guid: e34ec0f6ca381f9428827f0c90217b23, type: 2}
   - {fileID: 7400000, guid: c82b0a2b6100ab5449c6f110b3ec5f56, type: 2}
-  - {fileID: 7400000, guid: 89952f164418a4040af5c01a2a0505b5, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
