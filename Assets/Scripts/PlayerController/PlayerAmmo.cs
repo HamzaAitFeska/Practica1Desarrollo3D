@@ -27,9 +27,8 @@ public class PlayerAmmo : MonoBehaviour
     {
         textAmmo.text = currentAmmo.ToString();
         textmagSize.text = currentmagSize.ToString();
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-
             ResetAmmo();
         }
     }
