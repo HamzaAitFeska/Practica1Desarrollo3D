@@ -32,6 +32,6 @@ public class PlayerShield : MonoBehaviour
 
     private void DamageShield()
     {
-        currentShield -= 0.75;
+        currentShield -= 7.5;
     }
 }

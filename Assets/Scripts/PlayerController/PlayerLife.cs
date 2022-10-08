@@ -31,11 +31,11 @@ public class PlayerLife : MonoBehaviour
     {
         if(PlayerShield.instance.currentShield > 0)
         {
-           currentLife = ((int)(currentLife - 0.25));
+           currentLife = ((int)(currentLife - 2.5));
         }
         else
         {
-            currentLife--;
+            currentLife-=10;
         }
     }
 }

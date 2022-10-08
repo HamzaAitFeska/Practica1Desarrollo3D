@@ -6,14 +6,19 @@ using TMPro;
 public class PlayerAmmo : MonoBehaviour
 {
     // Start is called before the first frame update
-    private int maxAmmo = 100;
+    private int maxAmmo = 30;
+    private int maxMagSize = 100;
+    private int currentmagSize;
     private int currentAmmo;
     public TMP_Text textAmmo;
+    public TMP_Text textmagSize;
     public static PlayerAmmo instance;
     void Start()
     {
         currentAmmo = maxAmmo;
+        currentmagSize = maxMagSize;
         textAmmo.text = currentAmmo.ToString();
+        textmagSize.text = currentmagSize.ToString();
         instance = this;
     }
 
@@ -21,6 +26,7 @@ public class PlayerAmmo : MonoBehaviour
     void Update()
     {
         textAmmo.text = currentAmmo.ToString();
+        textmagSize.text = currentmagSize.ToString();
         if (Input.GetKeyDown(KeyCode.L))
         {
 
@@ -34,7 +40,10 @@ public class PlayerAmmo : MonoBehaviour
     }
     private void ResetAmmo()
     {
-        currentAmmo = maxAmmo;
+        float diferenciaAmmo;
+        diferenciaAmmo = maxAmmo - currentAmmo;
+        currentAmmo += (int)diferenciaAmmo;
+        currentmagSize -= (int)diferenciaAmmo;
     }
 
     void SetReloadAnimation()
