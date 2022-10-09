@@ -10,7 +10,7 @@ public class PlayerShield : MonoBehaviour
     private readonly double maxShield = 50;
     [NonSerialized]public double currentShield;
     public TMP_Text Shieldamount;
-    private double percent;
+    
 
     private void Start()
     {
