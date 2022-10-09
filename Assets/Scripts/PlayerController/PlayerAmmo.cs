@@ -32,6 +32,7 @@ public class PlayerAmmo : MonoBehaviour
         {
             ResetAmmo();
         }
+
     }
 
     public void LoseAmmo()

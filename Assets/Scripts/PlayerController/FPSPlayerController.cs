@@ -191,7 +191,15 @@ public class FPSPlayerController : MonoBehaviour
         SetShootWeaponAnimation();
         m_Shooting = true;
         StartCoroutine(EndShoot());
-        PlayerAmmo.instance.LoseAmmo();
+        if(PlayerAmmo.instance.currentAmmo > 0)
+        {
+            PlayerAmmo.instance.LoseAmmo();
+        }
+        if(PlayerAmmo.instance.currentAmmo <= 0)
+        {
+            PlayerAmmo.instance.currentAmmo = 0;
+        }
+        
     }
 
     void CreatShootHitParticle(Collider collider,Vector3 position,Vector3 Normal)

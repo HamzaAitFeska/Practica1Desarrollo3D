@@ -16,8 +16,20 @@ public class AmmoItem : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        PlayerAmmo.instance.currentmagSize += Ammodextra;
-        //Destroy(collision.gameObject);
-        Destroy(gameObject);
+        if(PlayerAmmo.instance.currentmagSize < 100)
+        {
+            if ((PlayerAmmo.instance.currentmagSize += Ammodextra) > 100)
+            {
+                PlayerAmmo.instance.currentmagSize = 100;
+            }
+            else
+            {
+                PlayerAmmo.instance.currentmagSize += Ammodextra;
+            }
+            //PlayerAmmo.instance.currentmagSize += Ammodextra;
+            //Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
+       
     }
 }

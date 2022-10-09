@@ -16,8 +16,19 @@ public class ShieldItem : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        PlayerShield.instance.currentShield += Shieldextra;
-        //Destroy(collision.gameObject);
-        Destroy(gameObject);
+        if (PlayerShield.instance.currentShield < 50)
+        {
+            if ((PlayerShield.instance.currentShield += Shieldextra) > 50)
+            {
+                PlayerShield.instance.currentShield = 50;
+            }
+            else
+            {
+                PlayerShield.instance.currentShield += Shieldextra;
+            }
+
+            Destroy(gameObject);
+        }
+       
     }
 }
