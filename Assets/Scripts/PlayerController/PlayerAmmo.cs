@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class PlayerAmmo : MonoBehaviour
 {
     // Start is called before the first frame update
     private int maxAmmo = 30;
     private int maxMagSize = 100;
-    private int currentmagSize;
-    private int currentAmmo;
+    [NonSerialized]public int currentmagSize;
+    [NonSerialized]public int currentAmmo;
     public TMP_Text textAmmo;
     public TMP_Text textmagSize;
     public static PlayerAmmo instance;

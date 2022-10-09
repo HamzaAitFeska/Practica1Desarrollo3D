@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class PlayerLife : MonoBehaviour
 {
     // Start is called before the first frame update
+    public static PlayerLife instance;
     private readonly int maxLife = 100;
-    private int currentLife;
+    [NonSerialized]public int currentLife;
     public TMP_Text healthamount;
     public KeyCode damagePlayer;
     void Start()
     {
+        instance = this;
         currentLife = maxLife;
         healthamount.text = currentLife.ToString();
     }
