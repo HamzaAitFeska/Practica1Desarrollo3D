@@ -11,7 +11,10 @@ public class AmmoItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(PlayerAmmo.instance.currentAmmo < 30)
+        {
+            gameObject.GetComponent<Collider>().enabled = false;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
