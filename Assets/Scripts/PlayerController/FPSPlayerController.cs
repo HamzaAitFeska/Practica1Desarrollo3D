@@ -11,6 +11,8 @@ public class FPSPlayerController : MonoBehaviour
     public float m_AirTime;
     public float m_MinPitch;
     public float m_MaxPitch;
+
+    public static FPSPlayerController instance;
     
     public Transform m_PitchCotroller;
     public bool m_useYawInverted;
@@ -57,6 +59,7 @@ public class FPSPlayerController : MonoBehaviour
         //m_AimLocked = Cursor.lockState = CursorLockMode.Locked;
         SetIdleWeaponAnimation();
         m_Shooting = false;
+        instance = this;
     }
 
 #if UNITY_EDITOR
