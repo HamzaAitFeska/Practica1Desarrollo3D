@@ -70,6 +70,7 @@
     <Compile Include="Assets\Resources\Models\PolygonPi\FenceLayout\FenceLayout.cs" />
     <Compile Include="Assets\Scripts\PlayerController\FPSPlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerController\Lvl1Controller.cs" />
+    <Compile Include="Assets\Scripts\PlayerController\CheckPoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\TextMesh Pro\Shaders\TMPro.cginc" />

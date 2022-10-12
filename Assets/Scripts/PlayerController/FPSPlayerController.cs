@@ -11,6 +11,7 @@ public class FPSPlayerController : MonoBehaviour
     public float m_AirTime;
     public float m_MinPitch;
     public float m_MaxPitch;
+    
 
     public static FPSPlayerController instance;
     

@@ -12,6 +12,8 @@ public class PlayerLife : MonoBehaviour
     [NonSerialized]public int currentLife;
     public TMP_Text healthamount;
     public KeyCode damagePlayer;
+    public Vector3 Checkpoint;
+    public GameObject Player;
     void Start()
     {
         instance = this;
@@ -27,6 +29,11 @@ public class PlayerLife : MonoBehaviour
            DamagePlayer();
         }
 
+        if(currentLife <= 0)
+        {
+            Death();
+        }
+
         healthamount.text = currentLife.ToString();
     }
 
@@ -40,5 +47,18 @@ public class PlayerLife : MonoBehaviour
         {
             currentLife-=10;
         }
+    }
+
+    private void Death()
+    {
+        StartCoroutine(Respawn());
+    }
+
+    private IEnumerator Respawn()
+    {
+        Destroy(gameObject, 1f);
+        yield return new WaitForSeconds(1f);
+        Instantiate(Player, Checkpoint, Quaternion.identity);
+
     }
 }
