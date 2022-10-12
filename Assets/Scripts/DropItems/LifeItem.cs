@@ -16,8 +16,7 @@ public class LifeItem : MonoBehaviour
         
     }
 
-    
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
         if (PlayerLife.instance.currentLife < 100)
         {
@@ -29,8 +28,9 @@ public class LifeItem : MonoBehaviour
             {
                 PlayerLife.instance.currentLife += Lifeextra;
             }
-
+            
             Destroy(gameObject);
         }
+       
     }
 }
