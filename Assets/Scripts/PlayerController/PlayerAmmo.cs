@@ -7,13 +7,14 @@ using System;
 public class PlayerAmmo : MonoBehaviour
 {
     // Start is called before the first frame update
-    private int maxAmmo = 30;
-    private int maxMagSize = 100;
+    private readonly int maxAmmo = 30;
+    private readonly int maxMagSize = 100;
     [NonSerialized]public int currentmagSize;
     [NonSerialized]public int currentAmmo;
     public TMP_Text textAmmo;
     public TMP_Text textmagSize;
     public static PlayerAmmo instance;
+    
     void Start()
     {
         currentAmmo = maxAmmo;
@@ -21,6 +22,7 @@ public class PlayerAmmo : MonoBehaviour
         textAmmo.text = currentAmmo.ToString();
         textmagSize.text = currentmagSize.ToString();
         instance = this;
+        
     }
 
     // Update is called once per frame
@@ -30,8 +32,9 @@ public class PlayerAmmo : MonoBehaviour
         textmagSize.text = currentmagSize.ToString();
         if (Input.GetKeyDown(KeyCode.R))
         {
-            ResetAmmo();
+            FPSPlayerController.instance.m_IsReloading = true;
             SetReloadAnimation();
+            StartCoroutine(ReloadSquence());
         }
 
     }
@@ -39,6 +42,7 @@ public class PlayerAmmo : MonoBehaviour
     public void LoseAmmo()
     {
         currentAmmo--;
+        
     }
     private void ResetAmmo()
     {
@@ -46,11 +50,18 @@ public class PlayerAmmo : MonoBehaviour
         diferenciaAmmo = maxAmmo - currentAmmo;
         currentAmmo += (int)diferenciaAmmo;
         currentmagSize -= (int)diferenciaAmmo;
+        FPSPlayerController.instance.m_IsReloading = false;
     }
 
     void SetReloadAnimation()
     {
         FPSPlayerController.instance.m_Animation.CrossFade(FPSPlayerController.instance.m_ReloadClip.name,0.1f);
         FPSPlayerController.instance.m_Animation.CrossFadeQueued(FPSPlayerController.instance.m_IdleClip.name, 0.1f);
+    }
+
+    private IEnumerator ReloadSquence()
+    {
+        yield return new WaitForSeconds(2.333f);
+        ResetAmmo();
     }
 }

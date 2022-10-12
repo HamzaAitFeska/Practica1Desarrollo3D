@@ -37,6 +37,7 @@ public class FPSPlayerController : MonoBehaviour
     public float m_RunMovementFOV=75.0f;
     public GameObject PrefabBulletHole;
     public bool m_Shooting;
+    public bool m_IsReloading;
 
     public Animation m_Animation;
     public AnimationClip m_IdleClip;
@@ -59,6 +60,7 @@ public class FPSPlayerController : MonoBehaviour
         //m_AimLocked = Cursor.lockState = CursorLockMode.Locked;
         SetIdleWeaponAnimation();
         m_Shooting = false;
+        m_IsReloading = false;
         instance = this;
     }
 
@@ -166,7 +168,7 @@ public class FPSPlayerController : MonoBehaviour
             m_OnGround = false;
         }
 
-        if(Input.GetMouseButtonDown(0) & CanShhot())
+        if(Input.GetMouseButtonDown(0) & CanShhot() & !m_IsReloading)
         {
             Shoot();
         }
@@ -232,9 +234,5 @@ public class FPSPlayerController : MonoBehaviour
         m_Animation.CrossFade(m_IdleClip.name, 0.1f);
         m_Animation.CrossFadeQueued(m_RunClip.name, 0.1f);
     }
-    void SetWeaponReloadAnimation() //implementar recarga en este script?
-    {
-        m_Animation.CrossFade(m_IdleClip.name, 0.1f);
-        m_Animation.CrossFadeQueued(m_ReloadClip.name, 0.1f);
-    }
+    
 }
