@@ -11,15 +11,13 @@ public class AmmoItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(PlayerAmmo.instance.currentAmmo < 30)
-        {
-            gameObject.GetComponent<Collider>().enabled = false;
-        }
+        
     }
 
-    private void OnCollisionEnter(Collision collision)
+    
+    private void OnTriggerEnter(Collider other)
     {
-        if(PlayerAmmo.instance.currentmagSize < 100)
+        if (PlayerAmmo.instance.currentmagSize < 100)
         {
             if ((PlayerAmmo.instance.currentmagSize += Ammodextra) > 100)
             {
@@ -33,6 +31,5 @@ public class AmmoItem : MonoBehaviour
             //Destroy(collision.gameObject);
             Destroy(gameObject);
         }
-       
     }
 }

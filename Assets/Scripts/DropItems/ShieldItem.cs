@@ -12,13 +12,11 @@ public class ShieldItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(PlayerShield.instance.currentShield == 50)
-        {
-            gameObject.GetComponent<Collider>().enabled = true;
-        }
+        
     }
 
-    private void OnCollisionEnter(Collision collision)
+    
+    private void OnTriggerEnter(Collider other)
     {
         if (PlayerShield.instance.currentShield < 50)
         {
@@ -34,7 +32,5 @@ public class ShieldItem : MonoBehaviour
 
             Destroy(gameObject);
         }
-        
-
     }
 }

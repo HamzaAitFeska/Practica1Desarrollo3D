@@ -67,11 +67,7 @@
     <Compile Include="Assets\Scripts\PlayerController\PlayerAmmo.cs" />
     <Compile Include="Assets\Scripts\PlayerController\GameController.cs" />
     <Compile Include="Assets\Scripts\PlayerController\PlayerLife.cs" />
-<<<<<<< Updated upstream
-    <Compile Include="Assets\PolygonPi\FenceLayout\FenceLayout.cs" />
-=======
     <Compile Include="Assets\Resources\Models\PolygonPi\FenceLayout\FenceLayout.cs" />
->>>>>>> Stashed changes
     <Compile Include="Assets\Scripts\PlayerController\FPSPlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerController\Lvl1Controller.cs" />
   </ItemGroup>
