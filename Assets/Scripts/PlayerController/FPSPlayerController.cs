@@ -226,21 +226,15 @@ public class FPSPlayerController : MonoBehaviour
     {
         m_Animation.CrossFade(m_RunClip.name, 0.1f);
         m_Animation.CrossFadeQueued(m_IdleClip.name, 0.1f);
-        
     }
-
     void SetIdleWeaponWithRunAnimation()
     {
         m_Animation.CrossFade(m_IdleClip.name, 0.1f);
         m_Animation.CrossFadeQueued(m_RunClip.name, 0.1f);
     }
-    void SetWeaponReloadAnimation()
+    void SetWeaponReloadAnimation() //implementar recarga en este script?
     {
         m_Animation.CrossFade(m_IdleClip.name, 0.1f);
         m_Animation.CrossFadeQueued(m_ReloadClip.name, 0.1f);
     }
-
-
-
-
 }
