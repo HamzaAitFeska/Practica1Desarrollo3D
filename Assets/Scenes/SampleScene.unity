@@ -3201,7 +3201,7 @@ Transform:
   - {fileID: 1508390678}
   m_Father: {fileID: 159980222}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.16332802, y: 0, z: 0}
 --- !u!81 &236217673
 AudioListener:
   m_ObjectHideFlags: 0
@@ -8277,13 +8277,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.6425715, y: -0.19324218, z: 0.17217648, w: 0.7211898}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalRotation: {x: 0.8291576, y: -0.13276613, z: 0.22217208, w: 0.49549007}
+  m_LocalPosition: {x: 9.6, y: 10.4, z: -16.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 83.401, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 118.276, y: -30, z: 0}
 --- !u!1 &714479911
 GameObject:
   m_ObjectHideFlags: 0
@@ -8743,7 +8743,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 751528578}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 24.9, y: 0.04, z: 50}
+  m_LocalPosition: {x: 21.2, y: 0.04, z: 50.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 996211053}
@@ -8766,14 +8766,14 @@ MonoBehaviour:
   m_PitchRotationalSpeed: 360
   m_YawRotationalSpeed: 180
   m_AirTime: 0
-  m_MinPitch: -75
-  m_MaxPitch: 45
+  m_MinPitch: -90
+  m_MaxPitch: 90
   m_PitchCotroller: {fileID: 159980222}
   m_useYawInverted: 0
   m_UsePitchInverted: 1
   m_characterController: {fileID: 751528581}
   m_PlayerSpeed: 10
-  m_FastSpeedMultiplier: 2
+  m_FastSpeedMultiplier: 1.5
   m_LeftKeyCode: 97
   m_RightKeyCode: 100
   m_UpKeyCode: 119
