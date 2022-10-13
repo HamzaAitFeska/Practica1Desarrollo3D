@@ -30,7 +30,7 @@ public class PlayerAmmo : MonoBehaviour
     {
         textAmmo.text = currentAmmo.ToString();
         textmagSize.text = currentmagSize.ToString();
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && currentAmmo != maxAmmo)
         {
             FPSPlayerController.instance.m_IsReloading = true;
             SetReloadAnimation();
