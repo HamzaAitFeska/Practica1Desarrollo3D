@@ -106,7 +106,7 @@ public class FPSPlayerController : MonoBehaviour
         if (Input.GetKeyDown(m_JumpKeyCode) && m_AirTime < 0.1f)
             m_VerticalSpeed = m_JumpSpeed; 
         //Run if shift is pressed
-        if (Input.GetKey(m_RunKeyCode) && l_Direction != Vector3.zero)
+        if (Input.GetKey(m_RunKeyCode) && l_Direction != Vector3.zero & !m_IsReloading)
         {
             l_Speed = m_PlayerSpeed * m_FastSpeedMultiplier;
             l_FOV = m_RunMovementFOV;
