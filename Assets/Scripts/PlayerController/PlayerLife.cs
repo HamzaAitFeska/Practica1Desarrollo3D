@@ -14,11 +14,13 @@ public class PlayerLife : MonoBehaviour
     public KeyCode damagePlayer;
     public Vector3 Checkpoint;
     public GameObject Player;
+    public bool m_IsCreated;
     void Start()
     {
         instance = this;
         currentLife = maxLife;
         healthamount.text = currentLife.ToString();
+        m_IsCreated = false;
     }
 
     // Update is called once per frame
@@ -31,6 +33,7 @@ public class PlayerLife : MonoBehaviour
 
         if(currentLife <= 0)
         {
+            currentLife = 0;
             Death();
         }
 
@@ -52,13 +55,19 @@ public class PlayerLife : MonoBehaviour
     private void Death()
     {
         StartCoroutine(Respawn());
+        
     }
 
     private IEnumerator Respawn()
     {
-        Destroy(gameObject, 1f);
+        //Destroy(gameObject, 1f);
         yield return new WaitForSeconds(1f);
-        Instantiate(Player, Checkpoint, Quaternion.identity);
+        if (!m_IsCreated)
+        {
+           Instantiate(Player, Checkpoint, Quaternion.identity);
+            m_IsCreated = true;
+        }
+        Destroy(gameObject, 1f);
 
     }
 }
