@@ -67,10 +67,13 @@
     <Compile Include="Assets\Scripts\PlayerController\PlayerAmmo.cs" />
     <Compile Include="Assets\Scripts\PlayerController\GameController.cs" />
     <Compile Include="Assets\Scripts\PlayerController\PlayerLife.cs" />
+    <Compile Include="Assets\Scripts\PlayerController\CheckPoint.cs" />
     <Compile Include="Assets\Resources\Models\PolygonPi\FenceLayout\FenceLayout.cs" />
     <Compile Include="Assets\Scripts\PlayerController\FPSPlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerController\Lvl1Controller.cs" />
-    <Compile Include="Assets\Scripts\PlayerController\CheckPoint.cs" />
+    <Compile Include="Assets\Scripts\PlayerController\GameControllerData.cs" />
+    <Compile Include="Assets\Scripts\DropItems\Item.cs" />
+    <Compile Include="Assets\Scripts\DronEnemy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\TextMesh Pro\Shaders\TMPro.cginc" />

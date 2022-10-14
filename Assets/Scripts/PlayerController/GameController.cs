@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+
 public class GameController : MonoBehaviour
 {
     static GameController m_GameController = null;
@@ -14,6 +15,7 @@ public class GameController : MonoBehaviour
         if(m_GameController = null)
         {
             m_GameController = new GameObject("gamecontroller").AddComponent<GameController>();
+            //GameControllerData gameControllerData = Resources.Load(GameControllerData("GameControllerDtat"));
         }
         return m_GameController;
     }

@@ -45,7 +45,8 @@ public class FPSPlayerController : MonoBehaviour
     public AnimationClip m_ShotClip;
     public AnimationClip m_ReloadClip;
     public AnimationClip m_RunClip;
-    
+
+    public bool m_PlayerIsMoving = false;
 
     float m_VerticalSpeed = 0.0f;
     public bool m_OnGround = true; //REMOVE PUBLIC AFTER FIXED
@@ -116,6 +117,15 @@ public class FPSPlayerController : MonoBehaviour
         if (Input.GetKeyUp(m_RunKeyCode))
         {
             SetIdleWeaponWithRunAnimation();          
+        }
+
+        if(l_Direction != Vector3.zero)
+        {
+            m_PlayerIsMoving = true;
+        }
+        else
+        {
+            m_PlayerIsMoving = false;
         }
 
         
@@ -204,6 +214,10 @@ public class FPSPlayerController : MonoBehaviour
         if(PlayerAmmo.instance.currentAmmo <= 0)
         {
             PlayerAmmo.instance.currentAmmo = 0;
+        }
+        if (l_RaycastHit.collider.tag == "DronCollider")
+        {
+            l_RaycastHit.collider.GetComponent<HitCollider>().Hit();
         }
         
     }

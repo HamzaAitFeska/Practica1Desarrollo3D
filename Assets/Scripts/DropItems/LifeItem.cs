@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class LifeItem : MonoBehaviour
+public class LifeItem : Item
 {
     // Start is called before the first frame update
     private readonly int Lifeextra = 50;
+    public override void Pick(FPSPlayerController Player)
+    {
+        
+    }
     void Start()
     {
         
@@ -31,7 +35,7 @@ public class LifeItem : MonoBehaviour
                 PlayerLife.instance.currentLife += Lifeextra;
             }
 
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
