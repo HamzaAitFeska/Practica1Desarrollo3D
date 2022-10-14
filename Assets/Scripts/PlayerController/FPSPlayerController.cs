@@ -179,10 +179,12 @@ public class FPSPlayerController : MonoBehaviour
             m_OnGround = false;
         }
 
-        if(Input.GetMouseButtonDown(0) & CanShhot() & !m_IsReloading)
+        if(Input.GetMouseButtonDown(0) & CanShhot() & !m_IsReloading & PlayerAmmo.instance.currentAmmo > 0)
         {
             Shoot();
         }
+
+        
     }
 
     public IEnumerator EndShoot()
