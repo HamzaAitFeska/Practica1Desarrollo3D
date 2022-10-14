@@ -2,15 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public class HitCollider : MonoBehaviour
-{
-    public float m_Life;
-    public DronEnemy m_DrownEnemy;
-    public void Hit()
-    {
-        m_DrownEnemy.Hit(m_Life);
-    }
-}
 
 public class DronEnemy : MonoBehaviour
 {
@@ -37,7 +28,11 @@ public class DronEnemy : MonoBehaviour
     public float m_EyesPosition = 1.0f;
     public float m_PlayerEyesPosition = 1.0f;
     public float RangeToShootPlayer = 5f;
-    
+    public GameObject BulletPrefab;
+    public bool IsAlerted;
+    public float Dron_Life_MAX = 10;
+    public float Dron_Current_Life;
+
     private void Awake()
     {
         m_NavMasAgent = GetComponent<NavMeshAgent>();
@@ -46,7 +41,8 @@ public class DronEnemy : MonoBehaviour
     private void Start()
     {
         SetIdleState();
-       
+        IsAlerted = false;
+        Dron_Current_Life = Dron_Life_MAX;       
     }
     private void Update()
     {
@@ -103,10 +99,11 @@ public class DronEnemy : MonoBehaviour
     {
         if (PatrolTargetPosArrived())
         {
+            IsAlerted = false;
             MoveNextPatrolPoint();
         }
 
-        if (HearsPlayer())
+        if (HearsPlayer() && !IsAlerted)
         {
             SetAlertState();
         }
@@ -139,16 +136,25 @@ public class DronEnemy : MonoBehaviour
     {
         
         transform.Rotate(0, .5f, 0);
-        if (SeePlayer())
+        if (SeePlayer() && !PlayerInRangeToShoot())
         {
             SetChaseState();
         }
-        
-        if(!HearsPlayer())
+
+        if(SeePlayer() && PlayerInRangeToShoot())
+        {
+            SetAttackState();
+        }
+
+        if (!SeePlayer() && IsAlerted)
         {
             SetPatrolState();
         }
-        
+
+        if (!SeePlayer())
+        {
+            StartCoroutine(WaitForBeingAlerted());
+        }
 
     }
     void SetHitState()
@@ -168,7 +174,7 @@ public class DronEnemy : MonoBehaviour
 
     void UpdateAttackState()
     {
-
+        ShotDron();
     }
     void SetDieState()
     {
@@ -188,7 +194,7 @@ public class DronEnemy : MonoBehaviour
     {
         Vector3 l_PlayerPosition = FPSPlayerController.instance.transform.position;
         MoveTowardsToPlayer();
-        if(Vector3.Distance(l_PlayerPosition,transform.position) <= RangeToShootPlayer)
+        if(PlayerInRangeToShoot())
         {
             SetAttackState();
         }
@@ -198,7 +204,7 @@ public class DronEnemy : MonoBehaviour
     bool HearsPlayer()
     {
         Vector3 l_PlayerPosition = FPSPlayerController.instance.transform.position;
-        return Vector3.Distance(l_PlayerPosition, transform.position) <= PlayerinRange && FPSPlayerController.instance.m_PlayerIsMoving;
+        return Vector3.Distance(l_PlayerPosition, transform.position) <= PlayerinRange; //&& FPSPlayerController.instance.m_PlayerIsMoving;
     }       
     
     bool SeePlayer()
@@ -230,4 +236,24 @@ public class DronEnemy : MonoBehaviour
         Vector3 l_PlayerPosition = FPSPlayerController.instance.transform.position;
         m_NavMasAgent.destination = Vector3.MoveTowards(transform.position, l_PlayerPosition, 1.0f);
     }
+
+    void ShotDron()
+    {
+        Vector3 l_PlayerPosition = FPSPlayerController.instance.transform.position;
+        //Instantiate(BulletPrefab, Vector3.MoveTowards(transform.position, l_PlayerPosition, 1.0f), Quaternion.identity);
+    }
+
+    bool PlayerInRangeToShoot()
+    {
+        Vector3 l_PlayerPosition = FPSPlayerController.instance.transform.position;
+        return Vector3.Distance(l_PlayerPosition, transform.position) <= RangeToShootPlayer;
+    }
+
+    private IEnumerator WaitForBeingAlerted()
+    {
+        yield return new WaitForSeconds(6.7f);
+        IsAlerted = true;
+    }
+
+    
 }

@@ -53,7 +53,7 @@
     <UnityVersion>2020.3.12f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\DropItems\ShieldItem.cs" />
@@ -63,17 +63,18 @@
     <Compile Include="Assets\Scripts\PlayerController\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Gun\Bullet.cs" />
     <Compile Include="Assets\Scripts\PlayerController\PlayerShield.cs" />
+    <Compile Include="Assets\Scripts\DropItems\Item.cs" />
     <Compile Include="Assets\Scripts\DropItems\AmmoItem.cs" />
     <Compile Include="Assets\Scripts\PlayerController\PlayerAmmo.cs" />
     <Compile Include="Assets\Scripts\PlayerController\GameController.cs" />
     <Compile Include="Assets\Scripts\PlayerController\PlayerLife.cs" />
+    <Compile Include="Assets\Scripts\DronEnemy.cs" />
     <Compile Include="Assets\Scripts\PlayerController\CheckPoint.cs" />
     <Compile Include="Assets\Resources\Models\PolygonPi\FenceLayout\FenceLayout.cs" />
     <Compile Include="Assets\Scripts\PlayerController\FPSPlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerController\Lvl1Controller.cs" />
     <Compile Include="Assets\Scripts\PlayerController\GameControllerData.cs" />
-    <Compile Include="Assets\Scripts\DropItems\Item.cs" />
-    <Compile Include="Assets\Scripts\DronEnemy.cs" />
+    <Compile Include="Assets\Scripts\HitCollider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -217,7 +217,7 @@ public class FPSPlayerController : MonoBehaviour
         {
             PlayerAmmo.instance.currentAmmo = 0;
         }
-        if (l_RaycastHit.collider.tag == "DronCollider")
+        if (l_RaycastHit.collider.CompareTag("DronCollider"))
         {
             l_RaycastHit.collider.GetComponent<HitCollider>().Hit();
         }
