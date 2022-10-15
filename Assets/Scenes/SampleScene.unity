@@ -8734,9 +8734,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthamount: {fileID: 501713324}
-  damagePlayer: 257
+  damagePlayer: 273
   Checkpoint: {x: 0, y: 0, z: 0}
-  Player: {fileID: 0}
+  Player: {fileID: 6624471516188273474, guid: 8d8175b5709daa84fb0185463c36d1ba, type: 3}
   m_IsCreated: 0
 --- !u!114 &751528583
 MonoBehaviour:

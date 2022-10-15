@@ -1,14 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class LifeItem : Item
+public class LifeItem : MonoBehaviour
 {
     // Start is called before the first frame update
-    private readonly int Lifeextra = 50;
-    public override void Pick(FPSPlayerController Player)
-    {
-        
-    }
+    private readonly int Lifeextra = 100;
+    
     void Start()
     {
         
@@ -26,7 +23,8 @@ public class LifeItem : Item
     {
         if (PlayerLife.instance.currentLife < 100)
         {
-            if ((PlayerLife.instance.currentLife += Lifeextra) > 100)
+            PlayerLife.instance.currentLife += Lifeextra;
+            if ((PlayerLife.instance.currentLife += Lifeextra) >= 100)
             {
                 PlayerLife.instance.currentLife = 100;
             }
@@ -37,5 +35,6 @@ public class LifeItem : Item
 
             gameObject.SetActive(false);
         }
+        
     }
 }
