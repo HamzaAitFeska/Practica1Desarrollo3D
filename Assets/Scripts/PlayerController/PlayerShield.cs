@@ -21,17 +21,17 @@ public class PlayerShield : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if(currentShield <= 0)
         {
-            DamageShield();
+            currentShield = 0;
         }
         
         //percent = (currentShield / maxShield) * 100;
         Shieldamount.text = currentShield.ToString();
     }
 
-    private void DamageShield()
+    public void DamageShield()
     {
-        currentShield -= 7.5;
+        currentShield -= 0.75;
     }
 }

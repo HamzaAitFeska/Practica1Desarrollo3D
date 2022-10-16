@@ -30,9 +30,13 @@ public class DronEnemy : MonoBehaviour
     public float RangeToShootPlayer = 5f;
     public GameObject BulletPrefab;
     public bool IsAlerted;
-    public float Dron_Life_MAX = 10;
+    public float Dron_Life_MAX = 5;
     public float Dron_Current_Life;
-
+    public float m_MaxShootDistance = 10.0f;
+    public LayerMask m_ShootingLayerMask;
+    public bool m_Shooting;
+    public float TimeBetweenShots = 5f;
+    public bool DronIsHit;
     private void Awake()
     {
         m_NavMasAgent = GetComponent<NavMeshAgent>();
@@ -42,7 +46,9 @@ public class DronEnemy : MonoBehaviour
     {
         SetIdleState();
         IsAlerted = false;
-        Dron_Current_Life = Dron_Life_MAX;       
+        Dron_Current_Life = Dron_Life_MAX;
+        m_Shooting = false;
+        DronIsHit = false;
     }
     private void Update()
     {
@@ -76,7 +82,7 @@ public class DronEnemy : MonoBehaviour
         Vector3 l_PlayerEyesPosition = l_PlayerPosition + Vector3.up * m_PlayerEyesPosition;
         Debug.DrawLine(l_EyesPosition, l_PlayerEyesPosition, SeePlayer() ? Color.red : Color.blue);
         Debug.Log(m_State);
-        
+        Debug.Log(Dron_Current_Life);
 
     }
 
@@ -156,15 +162,24 @@ public class DronEnemy : MonoBehaviour
             StartCoroutine(WaitForBeingAlerted());
         }
 
+        if (DronIsHit)
+        {
+            SetHitState();
+        }
+
     }
     void SetHitState()
     {
         m_State = TSTATE.HIT;
+        m_NavMasAgent.destination = transform.position;
     }
 
     void UpdateHitState()
     {
-
+        if(Dron_Current_Life <= 0)
+        {
+            SetDieState();
+        }
     }
     void SetAttackState()
     {
@@ -174,16 +189,25 @@ public class DronEnemy : MonoBehaviour
 
     void UpdateAttackState()
     {
-        ShotDron();
+        if (CanShhot())
+        {
+           ShotDron();
+        }
+
+        if (DronIsHit)
+        {
+            SetHitState();
+        }
     }
     void SetDieState()
     {
         m_State = TSTATE.DIE;
+        m_NavMasAgent.destination = transform.position;
     }
 
     void UpdateDieState()
     {
-
+        Destroy(gameObject,1f);
     }
     void SetChaseState()
     {
@@ -197,6 +221,11 @@ public class DronEnemy : MonoBehaviour
         if(PlayerInRangeToShoot())
         {
             SetAttackState();
+        }
+
+        if (DronIsHit)
+        {
+            SetHitState();
         }
        
     }
@@ -229,6 +258,9 @@ public class DronEnemy : MonoBehaviour
     public void Hit(float Life)
     {
         Debug.Log(Life);
+        Dron_Current_Life -= Life;
+        DronIsHit = true;
+        StartCoroutine(EndHit());
     }
 
     void MoveTowardsToPlayer()
@@ -240,7 +272,19 @@ public class DronEnemy : MonoBehaviour
     void ShotDron()
     {
         Vector3 l_PlayerPosition = FPSPlayerController.instance.transform.position;
+        Vector3 l_EyesPosition = transform.position + Vector3.up * m_EyesPosition;
+        Vector3 l_PlayerEyesPosition = l_PlayerPosition + Vector3.up * m_PlayerEyesPosition;
+        Vector3 l_Direction = l_PlayerEyesPosition - l_EyesPosition;
         //Instantiate(BulletPrefab, Vector3.MoveTowards(transform.position, l_PlayerPosition, 1.0f), Quaternion.identity);
+        Ray l_Ray = new Ray(l_EyesPosition, l_Direction);
+        RaycastHit l_RaycastHit;
+        if (Physics.Raycast(l_Ray, out l_RaycastHit, m_MaxShootDistance, m_ShootingLayerMask))
+        {
+            CreatShootHitParticle(l_RaycastHit.collider, l_RaycastHit.point, l_RaycastHit.normal);
+            PlayerLife.instance.DamagePlayer();
+        }
+        m_Shooting = true;
+        StartCoroutine(EndShoot());
     }
 
     bool PlayerInRangeToShoot()
@@ -255,5 +299,26 @@ public class DronEnemy : MonoBehaviour
         IsAlerted = true;
     }
 
-    
+    void CreatShootHitParticle(Collider collider, Vector3 position, Vector3 Normal)
+    {
+        Debug.DrawRay(position, Normal * 5.0f, Color.red, 2.0f);
+        //GameObject.Instantiate(PrefabBulletHole, position, Quaternion.LookRotation(Normal));
+
+    }
+
+    public IEnumerator EndShoot()
+    {
+        yield return new WaitForSeconds(TimeBetweenShots);
+        m_Shooting = false;
+    }
+    bool CanShhot()
+    {
+        return !m_Shooting;
+    }
+
+    public IEnumerator EndHit()
+    {
+        yield return new WaitForSeconds(2f);
+        DronIsHit = false;
+    }
 }

@@ -9,7 +9,7 @@ public class PlayerLife : MonoBehaviour
     // Start is called before the first frame update
     public static PlayerLife instance;
     private readonly int maxLife = 100;
-    [NonSerialized]public int currentLife;
+    [NonSerialized]public float currentLife;
     public TMP_Text healthamount;
     public KeyCode damagePlayer;
     public Vector3 Checkpoint;
@@ -24,7 +24,7 @@ public class PlayerLife : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (Input.GetKeyDown(damagePlayer))
         {
@@ -40,15 +40,17 @@ public class PlayerLife : MonoBehaviour
         healthamount.text = currentLife.ToString();
     }
 
-    private void DamagePlayer()
+    public void DamagePlayer()
     {
         if(PlayerShield.instance.currentShield > 0)
         {
-           currentLife = ((int)(currentLife - 2.5));
+           currentLife -= 0.25f;
+           PlayerShield.instance.DamageShield();
         }
-        else
+        
+        if(PlayerShield.instance.currentShield <= 0)
         {
-            currentLife-=10;
+            currentLife--;
         }
     }
 
