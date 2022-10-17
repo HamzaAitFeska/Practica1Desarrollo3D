@@ -141,7 +141,7 @@ public class DronEnemy : MonoBehaviour
     void UpdateAlertState()
     {
         
-        transform.Rotate(0, .5f, 0);
+        transform.Rotate(0, 1f, 0);
         if (SeePlayer() && !PlayerInRangeToShoot())
         {
             SetChaseState();
@@ -179,6 +179,21 @@ public class DronEnemy : MonoBehaviour
         if(Dron_Current_Life <= 0)
         {
             SetDieState();
+        }
+
+        if(SeePlayer() && PlayerInRangeToShoot())
+        {
+            SetAttackState();
+        }
+
+        if(SeePlayer() && !PlayerInRangeToShoot())
+        {
+            SetChaseState();
+        }
+
+        if(!SeePlayer() && HearsPlayer())
+        {
+            SetAlertState();
         }
     }
     void SetAttackState()
@@ -318,7 +333,7 @@ public class DronEnemy : MonoBehaviour
 
     public IEnumerator EndHit()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         DronIsHit = false;
     }
 }
