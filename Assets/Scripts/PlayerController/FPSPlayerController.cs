@@ -54,6 +54,7 @@ public class FPSPlayerController : MonoBehaviour
     public float m_JumpSpeed = 10.0f;
     bool m_AngleLocked = false;
     bool m_AimLocked = true;
+    public bool m_TargetHit = false;
     void Start()
     {
         m_Yaw = transform.rotation.y;
@@ -220,6 +221,11 @@ public class FPSPlayerController : MonoBehaviour
         if (l_RaycastHit.collider.CompareTag("DronCollider"))
         {
             l_RaycastHit.collider.GetComponent<HitCollider>().Hit();
+        }
+        if (l_RaycastHit.collider.CompareTag("TargetCollider"))
+        {
+            l_RaycastHit.collider.GetComponent<HitColliderTarget>().Hit();
+            m_TargetHit = true;
         }
         
     }

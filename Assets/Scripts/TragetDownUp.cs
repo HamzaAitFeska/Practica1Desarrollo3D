@@ -9,10 +9,10 @@ public class TragetDownUp : MonoBehaviour
     public Animation m_Animation;
     public AnimationClip m_TargetHitClip;
     public AnimationClip m_TargetUpClip;
-
+    
     void Start()
     {
-        m_IsUp = false;
+        
     }
 
     // Update is called once per frame
@@ -27,31 +27,35 @@ public class TragetDownUp : MonoBehaviour
         {
             StartCoroutine(GoingDown());
         }
+
+        
     }
 
     private IEnumerator GoingUp()
     {
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(5f);
         SetTargetUpAnimation();
         m_IsUp = true;
     }
 
     private IEnumerator GoingDown()
     {
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(5f);
         SetTargetHitAnimation();
         m_IsUp = false;
     }
 
     void SetTargetUpAnimation()
     {
-        m_Animation.CrossFade(m_TargetUpClip.name, 2f);
-        m_Animation.CrossFadeQueued(m_TargetHitClip.name, 2f);
+        m_Animation.CrossFade(m_TargetUpClip.name, 20f);
+        m_Animation.CrossFadeQueued(m_TargetHitClip.name, 20f);
     }
 
     void SetTargetHitAnimation()
     {
-        m_Animation.CrossFade(m_TargetHitClip.name, 1f);
-        m_Animation.CrossFadeQueued(m_TargetUpClip.name, 1f);
+        m_Animation.CrossFade(m_TargetHitClip.name, 20f);
+        m_Animation.CrossFadeQueued(m_TargetUpClip.name, 20f);
     }
+
+    
 }

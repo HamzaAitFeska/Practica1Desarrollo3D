@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Gun\Bullet.cs" />
     <Compile Include="Assets\Scripts\PlayerController\PlayerShield.cs" />
     <Compile Include="Assets\Scripts\DropItems\Item.cs" />
+    <Compile Include="Assets\Scripts\TragetDownUp.cs" />
     <Compile Include="Assets\Scripts\DropItems\AmmoItem.cs" />
     <Compile Include="Assets\Scripts\PlayerController\PlayerAmmo.cs" />
     <Compile Include="Assets\Scripts\HitCollider.cs" />
@@ -75,7 +76,8 @@
     <Compile Include="Assets\Scripts\PlayerController\FPSPlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerController\Lvl1Controller.cs" />
     <Compile Include="Assets\Scripts\PlayerController\GameControllerData.cs" />
-    <Compile Include="Assets\Scripts\TragetDownUp.cs" />
+    <Compile Include="Assets\Scripts\HitColliderTarget.cs" />
+    <Compile Include="Assets\Scripts\TragetDownUpCollider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\TextMesh Pro\Shaders\TMPro.cginc" />
