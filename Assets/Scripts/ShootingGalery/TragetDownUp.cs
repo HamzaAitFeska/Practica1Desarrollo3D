@@ -9,21 +9,22 @@ public class TragetDownUp : MonoBehaviour
     public Animation m_Animation;
     public AnimationClip m_TargetHitClip;
     public AnimationClip m_TargetUpClip;
+    public static TragetDownUp instance;
     
     void Start()
     {
-        
+        instance = this;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!m_IsUp)
+        if (!m_IsUp && ShootingGalery.instance.StartAnims)
         {
             StartCoroutine(GoingUp());
         }
 
-        if (m_IsUp)
+        if (m_IsUp && ShootingGalery.instance.StartAnims)
         {
             StartCoroutine(GoingDown());
         }
@@ -33,14 +34,14 @@ public class TragetDownUp : MonoBehaviour
 
     private IEnumerator GoingUp()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
         SetTargetUpAnimation();
         m_IsUp = true;
     }
 
     private IEnumerator GoingDown()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
         SetTargetHitAnimation();
         m_IsUp = false;
     }

@@ -37,6 +37,8 @@ public class DronEnemy : MonoBehaviour
     public bool m_Shooting;
     public float TimeBetweenShots = 5f;
     public bool DronIsHit;
+    public float m_CurrentRotationOnAlertedState;
+    public float m_RotationSpeed = 75f;
     private void Awake()
     {
         m_NavMasAgent = GetComponent<NavMeshAgent>();
@@ -49,6 +51,7 @@ public class DronEnemy : MonoBehaviour
         Dron_Current_Life = Dron_Life_MAX;
         m_Shooting = false;
         DronIsHit = false;
+        
     }
     private void Update()
     {
@@ -81,9 +84,9 @@ public class DronEnemy : MonoBehaviour
         Vector3 l_EyesPosition = transform.position + Vector3.up * m_EyesPosition;
         Vector3 l_PlayerEyesPosition = l_PlayerPosition + Vector3.up * m_PlayerEyesPosition;
         Debug.DrawLine(l_EyesPosition, l_PlayerEyesPosition, SeePlayer() ? Color.red : Color.blue);
-        Debug.Log(m_State);
-        Debug.Log(Dron_Current_Life);
-
+        //Debug.Log(m_State);
+        //Debug.Log(Dron_Current_Life);
+        
     }
 
    void SetIdleState()
@@ -135,13 +138,15 @@ public class DronEnemy : MonoBehaviour
     {
         m_State = TSTATE.ALERT;
         m_NavMasAgent.destination = transform.position;
+        m_CurrentRotationOnAlertedState = 0;
         
     }
 
     void UpdateAlertState()
     {
-        
-        transform.Rotate(0, 1f, 0);
+        float l_RotationSpeed = m_RotationSpeed * Time.deltaTime;
+        m_CurrentRotationOnAlertedState += l_RotationSpeed;
+        transform.Rotate(0, l_RotationSpeed, 0);
         if (SeePlayer() && !PlayerInRangeToShoot())
         {
             SetChaseState();
@@ -152,14 +157,9 @@ public class DronEnemy : MonoBehaviour
             SetAttackState();
         }
 
-        if (!SeePlayer() && IsAlerted)
+        if (!SeePlayer() && RotationComplete())
         {
             SetPatrolState();
-        }
-
-        if (!SeePlayer())
-        {
-            StartCoroutine(WaitForBeingAlerted());
         }
 
         if (DronIsHit)
@@ -308,17 +308,17 @@ public class DronEnemy : MonoBehaviour
         return Vector3.Distance(l_PlayerPosition, transform.position) <= RangeToShootPlayer;
     }
 
-    private IEnumerator WaitForBeingAlerted()
-    {
-        yield return new WaitForSeconds(6.7f);
-        IsAlerted = true;
-    }
+   
 
     void CreatShootHitParticle(Collider collider, Vector3 position, Vector3 Normal)
     {
         Debug.DrawRay(position, Normal * 5.0f, Color.red, 2.0f);
         //GameObject.Instantiate(PrefabBulletHole, position, Quaternion.LookRotation(Normal));
 
+    }
+    bool RotationComplete()
+    {
+        return m_CurrentRotationOnAlertedState >= 360;
     }
 
     public IEnumerator EndShoot()

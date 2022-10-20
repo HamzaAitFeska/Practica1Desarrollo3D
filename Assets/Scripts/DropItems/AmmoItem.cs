@@ -2,7 +2,7 @@
 
 public class AmmoItem : MonoBehaviour
 {
-    private readonly int Ammodextra = 50;
+    private readonly int Ammodextra = 100;
     void Start()
     {
 
@@ -17,11 +17,11 @@ public class AmmoItem : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (PlayerAmmo.instance.currentmagSize < 100)
+        if (PlayerAmmo.instance.currentmagSize < 145)
         {
-            if ((PlayerAmmo.instance.currentmagSize += Ammodextra) > 100)
+            if ((PlayerAmmo.instance.currentmagSize += Ammodextra) > 145)
             {
-                PlayerAmmo.instance.currentmagSize = 100;
+                PlayerAmmo.instance.currentmagSize = 145;
             }
             else
             {

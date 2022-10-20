@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class FPSPlayerController : MonoBehaviour
@@ -11,7 +12,7 @@ public class FPSPlayerController : MonoBehaviour
     public float m_AirTime;
     public float m_MinPitch;
     public float m_MaxPitch;
-    
+    public float m_TotalPoints;
 
     public static FPSPlayerController instance;
     
@@ -55,6 +56,7 @@ public class FPSPlayerController : MonoBehaviour
     bool m_AngleLocked = false;
     bool m_AimLocked = true;
     public bool m_TargetHit = false;
+    public TMP_Text textScore;
     void Start()
     {
         m_Yaw = transform.rotation.y;
@@ -185,6 +187,7 @@ public class FPSPlayerController : MonoBehaviour
             Shoot();
         }
 
+        textScore.text = m_TotalPoints.ToString();
         
     }
 
@@ -226,6 +229,7 @@ public class FPSPlayerController : MonoBehaviour
         {
             l_RaycastHit.collider.GetComponent<HitColliderTarget>().Hit();
             m_TargetHit = true;
+            m_TotalPoints += 25;
         }
         
     }
