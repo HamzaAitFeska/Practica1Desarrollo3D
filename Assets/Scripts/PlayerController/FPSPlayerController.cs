@@ -265,5 +265,11 @@ public class FPSPlayerController : MonoBehaviour
         m_Animation.CrossFade(m_IdleClip.name, 0.1f);
         m_Animation.CrossFadeQueued(m_RunClip.name, 0.1f);
     }
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("DeathTrapTrigger"))
+        {
+            Debug.Log("DEAD");
+        }
+    }
 }

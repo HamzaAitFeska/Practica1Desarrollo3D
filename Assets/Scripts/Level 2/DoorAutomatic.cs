@@ -11,9 +11,9 @@ public class DoorAutomatic : MonoBehaviour
     bool doorIsOpen = false;
 
 
-    private void OnTriggerEnter(Collider aPlayer)
+    private void OnTriggerEnter(Collider other)
     {
-        if (aPlayer.gameObject.CompareTag("Player") && !doorIsOpen)
+        if (other.gameObject.CompareTag("Player") && !doorIsOpen)
         {
             SetDoorOpeningAnimation();
             doorIsOpen = true;

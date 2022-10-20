@@ -9,6 +9,7 @@ TagManager:
   - DecalCollider
   - Door
   - DeadZone
+  - DeathTrapTrigger
   layers:
   - Default
   - TransparentFX
