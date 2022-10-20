@@ -38,6 +38,7 @@ public class FPSPlayerController : MonoBehaviour
     public float m_NormalMovementFOV=60.0f;
     public float m_RunMovementFOV=75.0f;
     public GameObject PrefabBulletHole;
+    TCObjectPool DecalsPool;
     public bool m_Shooting;
     public bool m_IsReloading;
 
@@ -57,6 +58,8 @@ public class FPSPlayerController : MonoBehaviour
     bool m_AimLocked = true;
     public bool m_TargetHit = false;
     public TMP_Text textScore;
+    Vector3 m_position_player;
+    Quaternion m_StartRotation;
     void Start()
     {
         m_Yaw = transform.rotation.y;
@@ -67,6 +70,9 @@ public class FPSPlayerController : MonoBehaviour
         m_Shooting = false;
         m_IsReloading = false;
         instance = this;
+        m_position_player = transform.position;
+        m_StartRotation = transform.rotation;
+        DecalsPool = new TCObjectPool(5, PrefabBulletHole);
     }
 
 #if UNITY_EDITOR
@@ -241,7 +247,11 @@ public class FPSPlayerController : MonoBehaviour
     void CreatShootHitParticle(Collider collider,Vector3 position,Vector3 Normal)
     {
         //Debug.DrawRay(position, Normal * 5.0f, Color.red, 2.0f);
-        GameObject.Instantiate(PrefabBulletHole, position, Quaternion.LookRotation(Normal));
+        //GameObject.Instantiate(PrefabBulletHole, position, Quaternion.LookRotation(Normal));
+        GameObject l_Decal = DecalsPool.GetNextElemnt();
+        l_Decal.SetActive(true);
+        l_Decal.transform.position = position;
+        l_Decal.transform.rotation = Quaternion.LookRotation(Normal);
 
     }
 
@@ -266,4 +276,18 @@ public class FPSPlayerController : MonoBehaviour
         m_Animation.CrossFadeQueued(m_RunClip.name, 0.1f);
     }
     
+    void Kill()
+    {
+        PlayerLife.instance.currentLife = 0;
+        RestartGame();
+    }
+
+    public void RestartGame()
+    {
+        PlayerLife.instance.currentLife = 0;
+        m_characterController.enabled = false;
+        transform.position = m_position_player;
+        transform.rotation = m_StartRotation;
+        m_characterController.enabled = true;
+    }
 }

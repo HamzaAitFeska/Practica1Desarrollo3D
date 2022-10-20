@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+using UnityEngine.UI;
 public class DronEnemy : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -39,6 +39,11 @@ public class DronEnemy : MonoBehaviour
     public bool DronIsHit;
     public float m_CurrentRotationOnAlertedState;
     public float m_RotationSpeed = 75f;
+    [Header("UI")]
+    public Image m_LifeBarImage;
+    public Transform m_LifeAnchorPosition;
+    public RectTransform m_LifeBarRectTransform;
+
     private void Awake()
     {
         m_NavMasAgent = GetComponent<NavMeshAgent>();
@@ -86,7 +91,7 @@ public class DronEnemy : MonoBehaviour
         Debug.DrawLine(l_EyesPosition, l_PlayerEyesPosition, SeePlayer() ? Color.red : Color.blue);
         //Debug.Log(m_State);
         //Debug.Log(Dron_Current_Life);
-        
+        UpdateLifeBarpOSITION();
     }
 
    void SetIdleState()
@@ -335,5 +340,12 @@ public class DronEnemy : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         DronIsHit = false;
+    }
+
+    void UpdateLifeBarpOSITION()
+    {
+        Vector3 l_Position = FPSPlayerController.instance.m_Camera.WorldToViewportPoint(m_LifeAnchorPosition.position);
+        m_LifeBarRectTransform.anchoredPosition = new Vector3(l_Position.x * 1920.0f, -(1080.0f - l_Position.y * 1080.0f), 0.0f);
+        m_LifeBarRectTransform.gameObject.SetActive(l_Position.z > 0.0f);
     }
 }
