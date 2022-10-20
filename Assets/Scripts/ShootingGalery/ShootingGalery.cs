@@ -78,7 +78,7 @@ public class ShootingGalery : MonoBehaviour
         {
             YouWon.SetActive(false);
             Congratulations.SetActive(false);
-            
+            ScoreANDTime.SetActive(false);
         }
 
     }
@@ -107,7 +107,6 @@ public class ShootingGalery : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            ScoreANDTime.SetActive(false);
             HasLeave = true;
 
         }
