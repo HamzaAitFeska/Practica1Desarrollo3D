@@ -230,6 +230,10 @@ public class FPSPlayerController : MonoBehaviour
             l_RaycastHit.collider.GetComponent<HitColliderTarget>().Hit();
             m_TargetHit = true;
             m_TotalPoints += 25;
+            if(ShootingGalery.instance.time <= 0)
+            {
+                m_TotalPoints -= 25;
+            }
         }
         
     }
