@@ -302,7 +302,7 @@ public class DronEnemy : MonoBehaviour
         Vector3 l_PlayerPosition = FPSPlayerController.instance.transform.position;
         Vector3 l_EyesPosition = transform.position + Vector3.up * m_EyesPosition;
         Vector3 l_PlayerEyesPosition = l_PlayerPosition + Vector3.up * m_PlayerEyesPosition;
-        Vector3 l_Direction = l_PlayerEyesPosition - l_EyesPosition;
+        Vector3 l_Direction = l_PlayerPosition - l_EyesPosition;
         //Instantiate(BulletPrefab, Vector3.MoveTowards(transform.position, l_PlayerPosition, 1.0f), Quaternion.identity);
         Ray l_Ray = new Ray(l_EyesPosition, l_Direction);
         RaycastHit l_RaycastHit;
