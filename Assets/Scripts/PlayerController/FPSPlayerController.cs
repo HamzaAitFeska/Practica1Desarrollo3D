@@ -38,7 +38,7 @@ public class FPSPlayerController : MonoBehaviour
     public float m_NormalMovementFOV=60.0f;
     public float m_RunMovementFOV=75.0f;
     public GameObject PrefabBulletHole;
-    TCObjectPool DecalsPool;
+    TcObjectPool1 DecalsPool;
     public bool m_Shooting;
     public bool m_IsReloading;
 
@@ -72,7 +72,7 @@ public class FPSPlayerController : MonoBehaviour
         instance = this;
         m_position_player = transform.position;
         m_StartRotation = transform.rotation;
-        DecalsPool = new TCObjectPool(5, PrefabBulletHole);
+        DecalsPool = new TcObjectPool1(5, PrefabBulletHole);
     }
 
 #if UNITY_EDITOR

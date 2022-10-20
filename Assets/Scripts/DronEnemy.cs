@@ -56,6 +56,7 @@ public class DronEnemy : MonoBehaviour
         Dron_Current_Life = Dron_Life_MAX;
         m_Shooting = false;
         DronIsHit = false;
+        m_LifeBarImage.fillAmount = Dron_Current_Life / Dron_Life_MAX;
         
     }
     private void Update()
@@ -83,7 +84,7 @@ public class DronEnemy : MonoBehaviour
             case TSTATE.DIE:
                 UpdateDieState();
                 break;
-            
+
         }
         Vector3 l_PlayerPosition = FPSPlayerController.instance.transform.position;
         Vector3 l_EyesPosition = transform.position + Vector3.up * m_EyesPosition;
@@ -91,7 +92,10 @@ public class DronEnemy : MonoBehaviour
         Debug.DrawLine(l_EyesPosition, l_PlayerEyesPosition, SeePlayer() ? Color.red : Color.blue);
         //Debug.Log(m_State);
         //Debug.Log(Dron_Current_Life);
-        UpdateLifeBarpOSITION();
+    }
+    private void LateUpdate()
+    {
+       UpdateLifeBarpOSITION();
     }
 
    void SetIdleState()
@@ -281,6 +285,7 @@ public class DronEnemy : MonoBehaviour
         Dron_Current_Life -= Life;
         DronIsHit = true;
         StartCoroutine(EndHit());
+        m_LifeBarImage.fillAmount = Dron_Current_Life / Dron_Life_MAX;
     }
 
     void MoveTowardsToPlayer()
