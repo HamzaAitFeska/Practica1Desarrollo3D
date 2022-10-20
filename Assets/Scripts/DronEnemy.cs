@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+using UnityEngine.UI;
 public class DronEnemy : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -39,6 +39,12 @@ public class DronEnemy : MonoBehaviour
     public bool DronIsHit;
     public float m_CurrentRotationOnAlertedState;
     public float m_RotationSpeed = 75f;
+    [Header("UI")]
+    public Image m_LifeBarImage;
+    public Transform m_LifeAnchorPosition;
+    public RectTransform m_LifeBarRectTransform;
+    public GameObject lifebar;
+
     private void Awake()
     {
         m_NavMasAgent = GetComponent<NavMeshAgent>();
@@ -51,6 +57,8 @@ public class DronEnemy : MonoBehaviour
         Dron_Current_Life = Dron_Life_MAX;
         m_Shooting = false;
         DronIsHit = false;
+        m_LifeBarImage.fillAmount = Dron_Current_Life / Dron_Life_MAX;
+        lifebar.SetActive(false);
         
     }
     private void Update()
@@ -78,7 +86,7 @@ public class DronEnemy : MonoBehaviour
             case TSTATE.DIE:
                 UpdateDieState();
                 break;
-            
+
         }
         Vector3 l_PlayerPosition = FPSPlayerController.instance.transform.position;
         Vector3 l_EyesPosition = transform.position + Vector3.up * m_EyesPosition;
@@ -86,7 +94,10 @@ public class DronEnemy : MonoBehaviour
         Debug.DrawLine(l_EyesPosition, l_PlayerEyesPosition, SeePlayer() ? Color.red : Color.blue);
         //Debug.Log(m_State);
         //Debug.Log(Dron_Current_Life);
-        
+    }
+    private void LateUpdate()
+    {
+       UpdateLifeBarpOSITION();
     }
 
    void SetIdleState()
@@ -276,6 +287,8 @@ public class DronEnemy : MonoBehaviour
         Dron_Current_Life -= Life;
         DronIsHit = true;
         StartCoroutine(EndHit());
+        m_LifeBarImage.fillAmount = Dron_Current_Life / Dron_Life_MAX;
+        lifebar.SetActive(true);
     }
 
     void MoveTowardsToPlayer()
@@ -308,8 +321,6 @@ public class DronEnemy : MonoBehaviour
         return Vector3.Distance(l_PlayerPosition, transform.position) <= RangeToShootPlayer;
     }
 
-   
-
     void CreatShootHitParticle(Collider collider, Vector3 position, Vector3 Normal)
     {
         Debug.DrawRay(position, Normal * 5.0f, Color.red, 2.0f);
@@ -335,5 +346,12 @@ public class DronEnemy : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         DronIsHit = false;
+    }
+
+    void UpdateLifeBarpOSITION()
+    {
+        Vector3 l_Position = FPSPlayerController.instance.m_Camera.WorldToViewportPoint(m_LifeAnchorPosition.position);
+        m_LifeBarRectTransform.anchoredPosition = new Vector3(l_Position.x * 1920.0f, -(1080.0f - l_Position.y * 1080.0f), 0.0f);
+        m_LifeBarRectTransform.gameObject.SetActive(l_Position.z > 0.0f);
     }
 }
