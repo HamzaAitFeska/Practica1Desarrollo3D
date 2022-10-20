@@ -290,4 +290,14 @@ public class FPSPlayerController : MonoBehaviour
         transform.rotation = m_StartRotation;
         m_characterController.enabled = true;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("DeadZone"))
+        {
+            PlayerLife.instance.currentLife = 0;
+            RestartGame();
+        }
+
+    }
 }

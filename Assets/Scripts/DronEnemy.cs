@@ -43,6 +43,7 @@ public class DronEnemy : MonoBehaviour
     public Image m_LifeBarImage;
     public Transform m_LifeAnchorPosition;
     public RectTransform m_LifeBarRectTransform;
+    public GameObject lifebar;
 
     private void Awake()
     {
@@ -57,6 +58,7 @@ public class DronEnemy : MonoBehaviour
         m_Shooting = false;
         DronIsHit = false;
         m_LifeBarImage.fillAmount = Dron_Current_Life / Dron_Life_MAX;
+        lifebar.SetActive(false);
         
     }
     private void Update()
@@ -286,6 +288,7 @@ public class DronEnemy : MonoBehaviour
         DronIsHit = true;
         StartCoroutine(EndHit());
         m_LifeBarImage.fillAmount = Dron_Current_Life / Dron_Life_MAX;
+        lifebar.SetActive(true);
     }
 
     void MoveTowardsToPlayer()
@@ -317,8 +320,6 @@ public class DronEnemy : MonoBehaviour
         Vector3 l_PlayerPosition = FPSPlayerController.instance.transform.position;
         return Vector3.Distance(l_PlayerPosition, transform.position) <= RangeToShootPlayer;
     }
-
-   
 
     void CreatShootHitParticle(Collider collider, Vector3 position, Vector3 Normal)
     {
