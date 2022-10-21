@@ -5,7 +5,7 @@ using System;
 
 public class StartLevel2 : MonoBehaviour
 {
-    GameController gameController = GameController.GetGameController();
+    
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -15,7 +15,7 @@ public class StartLevel2 : MonoBehaviour
     }
     void StartLevelTwo()
     {
-        gameController.NextLevel();
+        GameController.GetGameController().NextLevel();
         gameObject.SetActive(false);
     }
 }
