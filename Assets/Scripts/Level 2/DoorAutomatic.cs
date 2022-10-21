@@ -13,7 +13,7 @@ public class DoorAutomatic : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && !doorIsOpen)
+        if (other.CompareTag("Player") && !doorIsOpen)
         {
             SetDoorOpeningAnimation();
             doorIsOpen = true;
@@ -21,7 +21,13 @@ public class DoorAutomatic : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (doorIsOpen)
+        /*if (doorIsOpen)
+        {
+            SetDoorClosingAnimation();
+            doorIsOpen = false;
+        }*/
+
+        if(other.CompareTag("Player") && doorIsOpen)
         {
             SetDoorClosingAnimation();
             doorIsOpen = false;
@@ -30,9 +36,11 @@ public class DoorAutomatic : MonoBehaviour
     void SetDoorOpeningAnimation()
     {
         m_Animation.CrossFadeQueued(m_DoorOpeningClip.name);
+        
     }
     void SetDoorClosingAnimation()
     {
         m_Animation.CrossFadeQueued(m_DoorClosingClip.name);
+       
     }
 }
