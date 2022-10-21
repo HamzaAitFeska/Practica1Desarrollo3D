@@ -21,12 +21,6 @@ public class DoorAutomatic : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        /*if (doorIsOpen)
-        {
-            SetDoorClosingAnimation();
-            doorIsOpen = false;
-        }*/
-
         if(other.CompareTag("Player") && doorIsOpen)
         {
             SetDoorClosingAnimation();

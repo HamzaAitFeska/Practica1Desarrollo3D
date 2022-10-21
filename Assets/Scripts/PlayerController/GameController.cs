@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -37,5 +38,9 @@ public class GameController : MonoBehaviour
     public float GetPlayerLife()
     {
         return m_PlayerLife;
+    }
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(2);
     }
 }
