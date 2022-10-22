@@ -182,7 +182,7 @@ public class FPSPlayerController : MonoBehaviour
             m_OnGround = false;
         }
 
-        if(Input.GetMouseButtonDown(0) & CanShhot() & !m_IsReloading & PlayerAmmo.instance.currentAmmo > 0)
+        if(Input.GetMouseButtonDown(0) && CanShhot() && !m_IsReloading && PlayerAmmo.instance.currentAmmo > 0 && PlayerLife.instance.currentLife > 0)
         {
             Shoot();
         }
@@ -224,6 +224,7 @@ public class FPSPlayerController : MonoBehaviour
         if (l_RaycastHit.collider.CompareTag("DronCollider"))
         {
             l_RaycastHit.collider.GetComponent<HitCollider>().Hit();
+            DronEnemy.instacne.DronIsHit = true;
         }
         if (l_RaycastHit.collider.CompareTag("TargetCollider"))
         {

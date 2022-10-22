@@ -17,6 +17,7 @@ public class DronEnemy : MonoBehaviour
         DIE
     }
 
+    public GameObject LifeItem;
     public TSTATE m_State;
     NavMeshAgent m_NavMasAgent;
     public List<Transform> m_PatrolPoints;
@@ -39,6 +40,7 @@ public class DronEnemy : MonoBehaviour
     public bool DronIsHit;
     public float m_CurrentRotationOnAlertedState;
     public float m_RotationSpeed = 75f;
+    public static DronEnemy instacne;
     [Header("UI")]
     public Image m_LifeBarImage;
     public Transform m_LifeAnchorPosition;
@@ -59,6 +61,7 @@ public class DronEnemy : MonoBehaviour
         DronIsHit = false;
         m_LifeBarImage.fillAmount = Dron_Current_Life / Dron_Life_MAX;
         lifebar.SetActive(false);
+        instacne = this;
         
     }
     private void Update()
@@ -92,8 +95,7 @@ public class DronEnemy : MonoBehaviour
         Vector3 l_EyesPosition = transform.position + Vector3.up * m_EyesPosition;
         Vector3 l_PlayerEyesPosition = l_PlayerPosition + Vector3.up * m_PlayerEyesPosition;
         Debug.DrawLine(l_EyesPosition, l_PlayerEyesPosition, SeePlayer() ? Color.red : Color.blue);
-        //Debug.Log(m_State);
-        //Debug.Log(Dron_Current_Life);
+        Debug.Log(DronIsHit);
     }
     private void LateUpdate()
     {
@@ -188,7 +190,9 @@ public class DronEnemy : MonoBehaviour
 
     void UpdateHitState()
     {
-        if(Dron_Current_Life <= 0)
+        lightdron.color = Color.magenta;
+        StartCoroutine(EndHit());
+        if (Dron_Current_Life <= 0)
         {
             SetDieState();
         }
@@ -236,6 +240,11 @@ public class DronEnemy : MonoBehaviour
         {
             SetHitState();
         }
+
+        if(Dron_Current_Life < 0)
+        {
+            SetDieState();
+        }
     }
     void SetDieState()
     {
@@ -246,7 +255,8 @@ public class DronEnemy : MonoBehaviour
 
     void UpdateDieState()
     {
-        Destroy(gameObject,1f);
+        Instantiate(LifeItem, transform.position, LifeItem.transform.rotation);
+        Destroy(gameObject,0.75f);
         lightdron.intensity = 0;
     }
     void SetChaseState()
@@ -300,8 +310,6 @@ public class DronEnemy : MonoBehaviour
     {
         Debug.Log(Life);
         Dron_Current_Life -= Life;
-        DronIsHit = true;
-        StartCoroutine(EndHit());
         m_LifeBarImage.fillAmount = Dron_Current_Life / Dron_Life_MAX;
         lifebar.SetActive(true);
     }
@@ -359,7 +367,7 @@ public class DronEnemy : MonoBehaviour
 
     public IEnumerator EndHit()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
         DronIsHit = false;
     }
 

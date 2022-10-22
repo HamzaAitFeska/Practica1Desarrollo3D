@@ -14,7 +14,6 @@ public class PlayerLife : MonoBehaviour
     
     public KeyCode damagePlayer;
     public Vector3 Checkpoint;
-    public Vector3 StartPosition;
     public Quaternion StartRotation;
     public GameObject Player;
     public bool m_IsCreated;
@@ -36,8 +35,7 @@ public class PlayerLife : MonoBehaviour
         sliderlifebar.value = currentLife / maxLife;
         m_IsCreated = false;
         Overlay.color = new Color(Overlay.color.r, Overlay.color.g, Overlay.color.b, 0f);
-        //FPSPlayerController.instance.transform.position = StartPosition;
-        //FPSPlayerController.instance.transform.rotation = StartRotation;
+        transform.rotation = StartRotation;
         
     }
 
@@ -56,7 +54,9 @@ public class PlayerLife : MonoBehaviour
             GameOver.SetActive(true);
             FPSPlayerController.instance.m_AngleLocked = true;
             Overlay.color = new Color(Overlay.color.r, Overlay.color.g, Overlay.color.b, 0f);
-            FPSPlayerController.instance.m_AimLocked = true;
+            //FPSPlayerController.instance.m_AimLocked = true;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             FPSPlayerController.instance.m_characterController.enabled = false;
             UI.SetActive(false);
             OverlayBlood.SetActive(false);
@@ -124,9 +124,8 @@ public class PlayerLife : MonoBehaviour
     {
         //Destroy(gameObject, 1f);
         yield return new WaitForSeconds(1f);
-        if (!m_IsCreated)
-        {
-            transform.position = StartPosition;
+        
+            transform.position = Checkpoint;
             transform.rotation = StartRotation;
             currentLife = maxLife;
             PlayerShield.instance.currentShield = PlayerShield.instance.maxShield;
@@ -139,7 +138,7 @@ public class PlayerLife : MonoBehaviour
             OverlayBlood.SetActive(true);
             //Instantiate(Player, Checkpoint, Quaternion.identity);
             m_IsCreated = true;
-        }
+        
 
         //Destroy(gameObject, 1f);
 

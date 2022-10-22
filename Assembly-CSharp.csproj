@@ -53,33 +53,46 @@
     <UnityVersion>2020.3.12f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\DropItems\ShieldItem.cs" />
+    <Compile Include="Assets\Resources\JMO Assets\WarFX\Demo\Assets\WFX_Demo_DeleteAfterDelay.cs" />
     <Compile Include="Assets\Scripts\Gun\Gun.cs" />
     <Compile Include="Assets\Scripts\PlayerController\DestroyOnTime.cs" />
     <Compile Include="Assets\Scripts\DropItems\LifeItem.cs" />
+    <Compile Include="Assets\Resources\JMO Assets\WarFX\Demo\Assets\CFX_Demo_RotateCamera.cs" />
     <Compile Include="Assets\Resources\Ultimate 10 Plus Shaders\Scripts\U10PS_MouseRotation.cs" />
+    <Compile Include="Assets\Resources\JMO Assets\WarFX\Demo\Assets\WFX_Demo_RandomDir.cs" />
+    <Compile Include="Assets\Resources\JMO Assets\WarFX\Scripts\CFX_LightIntensityFade.cs" />
+    <Compile Include="Assets\Resources\JMO Assets\WarFX\Demo\Assets\WFX_Demo.cs" />
+    <Compile Include="Assets\Resources\JMO Assets\WarFX\Scripts\WFX_LightFlicker.cs" />
     <Compile Include="Assets\Scripts\PlayerController\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Doors\DoorAutomatic.cs" />
     <Compile Include="Assets\Scripts\Gun\Bullet.cs" />
     <Compile Include="Assets\Scripts\ShootingGalery\HitColliderTarget.cs" />
     <Compile Include="Assets\Scripts\PlayerController\PlayerShield.cs" />
+    <Compile Include="Assets\Resources\JMO Assets\WarFX\Spawn System\CFX_SpawnSystem.cs" />
     <Compile Include="Assets\Scripts\DropItems\Item.cs" />
     <Compile Include="Assets\Scripts\ShootingGalery\TragetDownUp.cs" />
     <Compile Include="Assets\Scripts\DropItems\AmmoItem.cs" />
     <Compile Include="Assets\Resources\Ultimate 10 Plus Shaders\Shaders\Plexus\Plexus.cs" />
+    <Compile Include="Assets\Resources\JMO Assets\WarFX\Demo\Assets\CFX_AutoStopLoopedEffect.cs" />
     <Compile Include="Assets\Scripts\PlayerController\PlayerAmmo.cs" />
     <Compile Include="Assets\Scripts\Doors\DoorLocked.cs" />
     <Compile Include="Assets\Scripts\StartLevel2.cs" />
+    <Compile Include="Assets\Resources\JMO Assets\WarFX\Scripts\WFX_BulletHoleDecal.cs" />
+    <Compile Include="Assets\Resources\JMO Assets\WarFX\Demo\Assets\CFX_Demo_RandomDir.cs" />
     <Compile Include="Assets\Scripts\HitCollider.cs" />
     <Compile Include="Assets\Scripts\PlayerController\GameController.cs" />
+    <Compile Include="Assets\Scripts\GameOver.cs" />
     <Compile Include="Assets\Scripts\PlayerController\PlayerLife.cs" />
     <Compile Include="Assets\Scripts\DronEnemy.cs" />
     <Compile Include="Assets\Scripts\PlayerController\CheckPoint.cs" />
+    <Compile Include="Assets\Resources\JMO Assets\WarFX\Demo\Assets\CFX_Demo_Translate.cs" />
     <Compile Include="Assets\Resources\Ultimate 10 Plus Shaders\Scripts\U10PS_SnowOverTime.cs" />
     <Compile Include="Assets\Scripts\ShootingGalery\ShootingGalery.cs" />
+    <Compile Include="Assets\Resources\JMO Assets\WarFX\Demo\Assets\WFX_Demo_Wall.cs" />
     <Compile Include="Assets\Scripts\ShootingGalery\TragetDownUpCollider.cs" />
     <Compile Include="Assets\Resources\Ultimate 10 Plus Shaders\Scripts\U10PS_DissolveOverTime.cs" />
     <Compile Include="Assets\Resources\Ultimate 10 Plus Shaders\Scripts\U10PS_ExampleReview.cs" />
@@ -87,24 +100,11 @@
     <Compile Include="Assets\Scripts\PlayerController\FPSPlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerController\Lvl1Controller.cs" />
     <Compile Include="Assets\Scripts\TcObjectPool1.cs" />
+    <Compile Include="Assets\Resources\JMO Assets\WarFX\Scripts\CFX_AutoDestructShuriken.cs" />
     <Compile Include="Assets\Scripts\Level 2\VerticalTrap.cs" />
     <Compile Include="Assets\Scripts\Doors\OpenBunkerDoor.cs" />
-    <Compile Include="Assets\Scripts\PlayerController\GameControllerData.cs" />
-    <Compile Include="Assets\Scripts\GameOver.cs" />
-    <Compile Include="Assets\Resources\JMO Assets\WarFX\Demo\Assets\CFX_AutoStopLoopedEffect.cs" />
-    <Compile Include="Assets\Resources\JMO Assets\WarFX\Demo\Assets\WFX_Demo.cs" />
-    <Compile Include="Assets\Resources\JMO Assets\WarFX\Demo\Assets\CFX_Demo_RotateCamera.cs" />
-    <Compile Include="Assets\Resources\JMO Assets\WarFX\Demo\Assets\CFX_Demo_RandomDir.cs" />
-    <Compile Include="Assets\Resources\JMO Assets\WarFX\Demo\Assets\WFX_Demo_Wall.cs" />
     <Compile Include="Assets\Resources\JMO Assets\WarFX\Demo\Assets\WFX_Demo_New.cs" />
-    <Compile Include="Assets\Resources\JMO Assets\WarFX\Demo\Assets\WFX_Demo_RandomDir.cs" />
-    <Compile Include="Assets\Resources\JMO Assets\WarFX\Scripts\CFX_LightIntensityFade.cs" />
-    <Compile Include="Assets\Resources\JMO Assets\WarFX\Demo\Assets\CFX_Demo_Translate.cs" />
-    <Compile Include="Assets\Resources\JMO Assets\WarFX\Demo\Assets\WFX_Demo_DeleteAfterDelay.cs" />
-    <Compile Include="Assets\Resources\JMO Assets\WarFX\Scripts\WFX_LightFlicker.cs" />
-    <Compile Include="Assets\Resources\JMO Assets\WarFX\Scripts\WFX_BulletHoleDecal.cs" />
-    <Compile Include="Assets\Resources\JMO Assets\WarFX\Scripts\CFX_AutoDestructShuriken.cs" />
-    <Compile Include="Assets\Resources\JMO Assets\WarFX\Spawn System\CFX_SpawnSystem.cs" />
+    <Compile Include="Assets\Scripts\PlayerController\GameControllerData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\TextMesh Pro\Shaders\TMPro.cginc" />
