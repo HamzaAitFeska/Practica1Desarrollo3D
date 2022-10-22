@@ -252,8 +252,8 @@ public class FPSPlayerController : MonoBehaviour
 
     void SetShootWeaponAnimation()
     {
-        m_Animation.CrossFade(m_ShotClip.name,0.1f);
-        m_Animation.CrossFadeQueued(m_IdleClip.name, 0.1f);
+        m_Animation.CrossFade(m_ShotClip.name,0.05f);
+        m_Animation.CrossFadeQueued(m_IdleClip.name,0.05f);
     }
     void SetRunWeaponAnimation()
     {
