@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class PlayerShield : MonoBehaviour
 {
     public static PlayerShield instance;
-    private readonly double maxShield = 50;
+    public readonly double maxShield = 50;
     [NonSerialized]public double currentShield;
     public Slider sliderShield;
     

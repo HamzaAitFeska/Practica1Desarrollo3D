@@ -7,8 +7,8 @@ using System;
 public class PlayerAmmo : MonoBehaviour
 {
     // Start is called before the first frame update
-    private readonly int maxAmmo = 50;
-    private readonly int maxMagSize = 145;
+    public readonly int maxAmmo = 50;
+    public readonly int maxMagSize = 145;
     [NonSerialized]public int currentmagSize;
     [NonSerialized]public int currentAmmo;
     public TMP_Text textAmmo;
