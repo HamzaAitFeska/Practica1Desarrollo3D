@@ -53,8 +53,8 @@ public class FPSPlayerController : MonoBehaviour
     public bool m_OnGround = true; //REMOVE PUBLIC AFTER FIXED
 
     public float m_JumpSpeed = 10.0f;
-    bool m_AngleLocked = false;
-    bool m_AimLocked = true;
+    public bool m_AngleLocked = false;
+    public bool m_AimLocked = true;
     public bool m_TargetHit = false;
     
     void Start()
@@ -62,7 +62,7 @@ public class FPSPlayerController : MonoBehaviour
         m_Yaw = transform.rotation.y;
         m_Pitch = m_PitchCotroller.localRotation.x;
         Cursor.lockState = CursorLockMode.Locked;
-        //m_AimLocked = Cursor.lockState = CursorLockMode.Locked;
+        m_AimLocked = Cursor.lockState == CursorLockMode.Locked;
         SetIdleWeaponAnimation();
         m_Shooting = false;
         m_IsReloading = false;
