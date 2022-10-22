@@ -6,7 +6,7 @@ using System;
 public class StartLevel2 : MonoBehaviour
 {
     
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {

@@ -17,12 +17,19 @@ public class PlayerLife : MonoBehaviour
     public GameObject Player;
     public bool m_IsCreated;
     public Slider sliderlifebar;
+    [Header("DamageOverlay")]
+    public Image Overlay;
+    public float duration;
+    public float FadeSpeed;
+
+    private float durationTimer;
     void Start()
     {
         instance = this;
         currentLife = maxLife;
         sliderlifebar.value = currentLife / maxLife;
         m_IsCreated = false;
+        Overlay.color = new Color(Overlay.color.r, Overlay.color.g, Overlay.color.b, 0f);
     }
 
     // Update is called once per frame
@@ -49,6 +56,20 @@ public class PlayerLife : MonoBehaviour
         {
             sliderlifebar.fillRect.gameObject.SetActive(true);
         }
+
+        if(Overlay.color.a > 0)
+        {
+
+            if (currentLife < 40)
+                return;
+            durationTimer += Time.deltaTime;
+            if(durationTimer > duration)
+            {
+                float tempAlpha = Overlay.color.a;
+                tempAlpha -= Time.deltaTime * FadeSpeed;
+                Overlay.color = new Color(Overlay.color.r, Overlay.color.g, Overlay.color.b, tempAlpha);
+            }
+        }
     }
 
     public void DamagePlayer()
@@ -63,6 +84,18 @@ public class PlayerLife : MonoBehaviour
         {
             currentLife--;
         }
+
+        durationTimer = 0;
+        if(currentLife < 40)
+        {
+            Overlay.color = new Color(Overlay.color.r, Overlay.color.g, Overlay.color.b, 1f);
+        }
+        else
+        {
+            Overlay.color = new Color(Overlay.color.r, Overlay.color.g, Overlay.color.b, 0.5f);
+
+        }
+        
     }
 
     private void Death()

@@ -861,7 +861,6 @@ MonoBehaviour:
   m_OnGround: 1
   m_JumpSpeed: 10
   m_TargetHit: 0
-  textScore: {fileID: 0}
   m_MaxShootDistance: 50
   m_ShootingLayerMask:
     serializedVersion: 2
@@ -896,11 +895,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bbbca22234fa10438fdb4df3aa4e3bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthamount: {fileID: 0}
   damagePlayer: 273
   Checkpoint: {x: 0, y: 0, z: 0}
-  Player: {fileID: 6624471516188273474, guid: 8d8175b5709daa84fb0185463c36d1ba, type: 3}
+  Player: {fileID: 5838380394315582286}
   m_IsCreated: 0
+  sliderlifebar: {fileID: 0}
+  Overlay: {fileID: 0}
+  duration: 0
+  FadeSpeed: 0
 --- !u!114 &5838380394315582283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -946,7 +948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd5b8735b4a0bb243b179e0ececcf096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Shieldamount: {fileID: 0}
+  sliderShield: {fileID: 0}
 --- !u!65 &5838380394315582278
 BoxCollider:
   m_ObjectHideFlags: 0

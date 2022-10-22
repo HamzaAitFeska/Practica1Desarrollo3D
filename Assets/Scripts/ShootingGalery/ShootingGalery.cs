@@ -20,7 +20,8 @@ public class ShootingGalery : MonoBehaviour
     public TMP_Text timetext;
     bool HasApperead;
     bool HasLeave;
-    
+    public TMP_Text textScore;
+
     void Start()
     {
         instance = this;
@@ -81,6 +82,7 @@ public class ShootingGalery : MonoBehaviour
             ScoreANDTime.SetActive(false);
         }
 
+        textScore.text = FPSPlayerController.instance.m_TotalPoints.ToString();
     }
 
     private void OnTriggerEnter(Collider other)

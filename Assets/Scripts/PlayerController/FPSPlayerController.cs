@@ -56,7 +56,7 @@ public class FPSPlayerController : MonoBehaviour
     bool m_AngleLocked = false;
     bool m_AimLocked = true;
     public bool m_TargetHit = false;
-    public TMP_Text textScore;
+    
     void Start()
     {
         m_Yaw = transform.rotation.y;
@@ -187,7 +187,7 @@ public class FPSPlayerController : MonoBehaviour
             Shoot();
         }
 
-        textScore.text = m_TotalPoints.ToString();
+        
         
     }
 
