@@ -216,9 +216,20 @@ public class DronEnemy : MonoBehaviour
 
     void UpdateAttackState()
     {
+        lightdron.color = Color.red;
         if (CanShhot())
         {
            ShotDron();
+        }
+
+        if (!SeePlayer())
+        {
+            SetAlertState();
+        }
+
+        if(SeePlayer() & !PlayerInRangeToShoot())
+        {
+            SetChaseState();
         }
 
         if (DronIsHit)

@@ -36,8 +36,8 @@ public class PlayerLife : MonoBehaviour
         sliderlifebar.value = currentLife / maxLife;
         m_IsCreated = false;
         Overlay.color = new Color(Overlay.color.r, Overlay.color.g, Overlay.color.b, 0f);
-        transform.position = StartPosition;
-        transform.rotation = StartRotation;
+        //FPSPlayerController.instance.transform.position = StartPosition;
+        //FPSPlayerController.instance.transform.rotation = StartRotation;
         
     }
 
