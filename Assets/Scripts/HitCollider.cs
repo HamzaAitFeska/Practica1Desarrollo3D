@@ -7,8 +7,15 @@ public class HitCollider : MonoBehaviour
     public void Hit()
     {
         //m_DrownEnemy.Hit(m_Life);
-        DronEnemy.instacne.Hit(m_Life);
-        Debug.Log(m_Life);
+        if (DronEnemy.instacne.DronIsHit)
+        {
+            DronEnemy.instacne.Hit(0);
+        }
+        else
+        {
+            DronEnemy.instacne.Hit(m_Life);
+        }
+        //Debug.Log(m_Life);
     }
 }
    

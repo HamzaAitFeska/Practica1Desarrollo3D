@@ -109,7 +109,7 @@ public class PlayerLife : MonoBehaviour
         }
         else
         {
-            Overlay.color = new Color(Overlay.color.r, Overlay.color.g, Overlay.color.b, 0.5f);
+            Overlay.color = new Color(255, 255, 255, 0.5f);
 
         }
         

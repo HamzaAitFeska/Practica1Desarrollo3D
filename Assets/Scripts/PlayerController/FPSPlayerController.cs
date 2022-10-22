@@ -224,7 +224,7 @@ public class FPSPlayerController : MonoBehaviour
         if (l_RaycastHit.collider.CompareTag("DronCollider"))
         {
             l_RaycastHit.collider.GetComponent<HitCollider>().Hit();
-            DronEnemy.instacne.DronIsHit = true;
+            
         }
         if (l_RaycastHit.collider.CompareTag("TargetCollider"))
         {

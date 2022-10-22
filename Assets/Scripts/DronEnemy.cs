@@ -17,6 +17,7 @@ public class DronEnemy : MonoBehaviour
         DIE
     }
 
+    public GameObject Dron;
     public GameObject LifeItem;
     public TSTATE m_State;
     NavMeshAgent m_NavMasAgent;
@@ -41,6 +42,7 @@ public class DronEnemy : MonoBehaviour
     public float m_CurrentRotationOnAlertedState;
     public float m_RotationSpeed = 75f;
     public static DronEnemy instacne;
+    bool m_IsCreated = false;
     [Header("UI")]
     public Image m_LifeBarImage;
     public Transform m_LifeAnchorPosition;
@@ -95,7 +97,8 @@ public class DronEnemy : MonoBehaviour
         Vector3 l_EyesPosition = transform.position + Vector3.up * m_EyesPosition;
         Vector3 l_PlayerEyesPosition = l_PlayerPosition + Vector3.up * m_PlayerEyesPosition;
         Debug.DrawLine(l_EyesPosition, l_PlayerEyesPosition, SeePlayer() ? Color.red : Color.blue);
-        Debug.Log(DronIsHit);
+        Debug.Log(Dron_Current_Life);
+        
     }
     private void LateUpdate()
     {
@@ -126,9 +129,14 @@ public class DronEnemy : MonoBehaviour
             MoveNextPatrolPoint();
         }
 
-        if (HearsPlayer() && !IsAlerted)
+        if (HearsPlayer() )//&& !IsAlerted)
         {
             SetAlertState();
+        }
+
+        if (DronIsBeingHit())
+        {
+            SetHitState();
         }
     }
 
@@ -176,7 +184,12 @@ public class DronEnemy : MonoBehaviour
             SetPatrolState();
         }
 
-        if (DronIsHit)
+        if (DronIsBeingHit() && HearsPlayer())
+        {
+            SetHitState();
+        }
+
+        if (DronIsBeingHit())
         {
             SetHitState();
         }
@@ -191,7 +204,6 @@ public class DronEnemy : MonoBehaviour
     void UpdateHitState()
     {
         lightdron.color = Color.magenta;
-        StartCoroutine(EndHit());
         if (Dron_Current_Life <= 0)
         {
             SetDieState();
@@ -207,10 +219,11 @@ public class DronEnemy : MonoBehaviour
             SetChaseState();
         }
 
-        if(!SeePlayer() && HearsPlayer())
+        if(!SeePlayer() && !DronIsBeingHit())
         {
-            SetAlertState();
+          SetAlertState();
         }
+
     }
     void SetAttackState()
     {
@@ -236,27 +249,30 @@ public class DronEnemy : MonoBehaviour
             SetChaseState();
         }
 
-        if (DronIsHit)
+        if (DronIsBeingHit() && SeePlayer())
         {
             SetHitState();
         }
 
-        if(Dron_Current_Life < 0)
-        {
-            SetDieState();
-        }
+        
     }
     void SetDieState()
     {
         m_State = TSTATE.DIE;
         m_NavMasAgent.destination = transform.position;
         lightdron.color = Color.red;
+        m_IsCreated = false;
     }
 
     void UpdateDieState()
     {
-        Instantiate(LifeItem, transform.position, LifeItem.transform.rotation);
-        Destroy(gameObject,0.75f);
+        if (!m_IsCreated)
+        {
+            Instantiate(LifeItem, Dron.transform.position, LifeItem.transform.rotation);
+        }
+        m_IsCreated = true;
+        Dron.SetActive(false);
+        //lifebar.SetActive(false);
         lightdron.intensity = 0;
     }
     void SetChaseState()
@@ -274,7 +290,12 @@ public class DronEnemy : MonoBehaviour
             SetAttackState();
         }
 
-        if (DronIsHit)
+        if (!SeePlayer())
+        {
+            SetAlertState();
+        }
+
+        if (DronIsBeingHit())
         {
             SetHitState();
         }
@@ -310,6 +331,8 @@ public class DronEnemy : MonoBehaviour
     {
         Debug.Log(Life);
         Dron_Current_Life -= Life;
+        DronIsHit = true;
+        StartCoroutine(EndHit());
         m_LifeBarImage.fillAmount = Dron_Current_Life / Dron_Life_MAX;
         lifebar.SetActive(true);
     }
@@ -355,6 +378,11 @@ public class DronEnemy : MonoBehaviour
         return m_CurrentRotationOnAlertedState >= 360;
     }
 
+    bool DronIsBeingHit()
+    {
+        return DronIsHit;
+    }
+
     public IEnumerator EndShoot()
     {
         yield return new WaitForSeconds(TimeBetweenShots);
@@ -367,7 +395,7 @@ public class DronEnemy : MonoBehaviour
 
     public IEnumerator EndHit()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(5f);
         DronIsHit = false;
     }
 
