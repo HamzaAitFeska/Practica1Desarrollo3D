@@ -44,7 +44,7 @@ public class DronEnemy : MonoBehaviour
     public Transform m_LifeAnchorPosition;
     public RectTransform m_LifeBarRectTransform;
     public GameObject lifebar;
-
+    public Light lightdron;
     private void Awake()
     {
         m_NavMasAgent = GetComponent<NavMeshAgent>();
@@ -113,6 +113,7 @@ public class DronEnemy : MonoBehaviour
     {
         m_State = TSTATE.PATROL;
         m_NavMasAgent.destination = m_PatrolPoints[CurrentPatrolID].position;
+        lightdron.color = Color.blue;
     }
 
     void UpdatePatrolState()
@@ -150,7 +151,7 @@ public class DronEnemy : MonoBehaviour
         m_State = TSTATE.ALERT;
         m_NavMasAgent.destination = transform.position;
         m_CurrentRotationOnAlertedState = 0;
-        
+        lightdron.color = Color.yellow;
     }
 
     void UpdateAlertState()
@@ -229,15 +230,18 @@ public class DronEnemy : MonoBehaviour
     {
         m_State = TSTATE.DIE;
         m_NavMasAgent.destination = transform.position;
+        lightdron.color = Color.red;
     }
 
     void UpdateDieState()
     {
         Destroy(gameObject,1f);
+        lightdron.intensity = 0;
     }
     void SetChaseState()
     {
         m_State = TSTATE.CHASE;
+        lightdron.color = Color.red;
     }
 
     void UpdateChaseState()
@@ -253,7 +257,7 @@ public class DronEnemy : MonoBehaviour
         {
             SetHitState();
         }
-       
+        
     }
 
     bool HearsPlayer()

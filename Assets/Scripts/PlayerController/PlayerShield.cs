@@ -3,20 +3,21 @@ using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine.UI;
 
 public class PlayerShield : MonoBehaviour
 {
     public static PlayerShield instance;
     private readonly double maxShield = 50;
     [NonSerialized]public double currentShield;
-    public TMP_Text Shieldamount;
+    public Slider sliderShield;
     
 
     private void Start()
     {
         instance = this;
         currentShield = maxShield;
-        Shieldamount.text = currentShield.ToString();
+        sliderShield.value = (float)(currentShield / maxShield);
     }
 
     private void Update()
@@ -25,9 +26,19 @@ public class PlayerShield : MonoBehaviour
         {
             currentShield = 0;
         }
-        
+
         //percent = (currentShield / maxShield) * 100;
-        Shieldamount.text = currentShield.ToString();
+        sliderShield.value = (float)(currentShield / maxShield);
+        if(sliderShield.value <= 0)
+        {
+            sliderShield.fillRect.gameObject.SetActive(false);
+        }
+
+        if (sliderShield.value > 0)
+        {
+            sliderShield.fillRect.gameObject.SetActive(true);
+        }
+
     }
 
     public void DamageShield()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 public class PlayerLife : MonoBehaviour
 {
@@ -10,16 +11,17 @@ public class PlayerLife : MonoBehaviour
     public static PlayerLife instance;
     private readonly int maxLife = 100;
     [NonSerialized]public float currentLife;
-    public TMP_Text healthamount;
+    
     public KeyCode damagePlayer;
     public Vector3 Checkpoint;
     public GameObject Player;
     public bool m_IsCreated;
+    public Slider sliderlifebar;
     void Start()
     {
         instance = this;
         currentLife = maxLife;
-        healthamount.text = currentLife.ToString();
+        sliderlifebar.value = currentLife / maxLife;
         m_IsCreated = false;
     }
 
@@ -37,7 +39,16 @@ public class PlayerLife : MonoBehaviour
             Death();
         }
 
-        healthamount.text = currentLife.ToString();
+        sliderlifebar.value = currentLife / maxLife;
+        if (sliderlifebar.value <= 0)
+        {
+            sliderlifebar.fillRect.gameObject.SetActive(false);
+        }
+
+        if (sliderlifebar.value > 0)
+        {
+            sliderlifebar.fillRect.gameObject.SetActive(true);
+        }
     }
 
     public void DamagePlayer()

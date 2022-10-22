@@ -267,9 +267,16 @@ public class FPSPlayerController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("DeathTrapTrigger"))
+        if (other.CompareTag("DeathTrapTrigger"))
         {
             Debug.Log("DEAD");
+            PlayerLife.instance.currentLife = 0;
+        }
+
+        if (other.CompareTag("DeadZone"))
+        {
+            Debug.Log("DEAD");
+            PlayerLife.instance.currentLife = 0;
         }
     }
 }

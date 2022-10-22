@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: b52ae002e57823e46bd57c9e12556071
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - House Minimalist
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 0391378bae38a954286028a640ebe65b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -47,7 +47,7 @@ public class ShootingGalery : MonoBehaviour
         }
         if (StartAnims)
         {
-            time -= 1.5f * Time.deltaTime;
+            time -= 2f * Time.deltaTime;
         }
 
         time = (float)System.Math.Round(time, 2);
