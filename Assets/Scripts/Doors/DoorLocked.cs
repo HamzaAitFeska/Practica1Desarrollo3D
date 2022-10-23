@@ -18,25 +18,12 @@ public class DoorLocked : MonoBehaviour
         {
             SetDoorOpeningAnimation();
             doorOpened = true; ;
+            AudioController.instance.PlayOneShot(AudioController.instance.doorLockedOpening);
         }
     }
     void SetDoorOpeningAnimation()
     {
         m_Animation.CrossFadeQueued(m_DoorOpeningClip.name);
-    }
-
-    void SetDoorClosingAnimation()
-    {
-        m_Animation.CrossFade(m_DoorClosingClip.name,1f);
-        m_Animation.CrossFadeQueued(m_DoorOpeningClip.name, 1f);
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player") && doorOpened)
-        {
-            SetDoorClosingAnimation();
-        }
     }
 
 }

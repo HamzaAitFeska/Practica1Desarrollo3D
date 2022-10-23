@@ -32,7 +32,7 @@ public class LifeItem : MonoBehaviour
             {
                 PlayerLife.instance.currentLife += Lifeextra;
             }
-
+            AudioController.instance.PlayOneShot(AudioController.instance.itemHealth);
             PlayerLife.instance.Overlay.color = new Color(0, 255, 0, 0.85f);
             PlayerLife.instance.duration = 0;
             gameObject.SetActive(false);

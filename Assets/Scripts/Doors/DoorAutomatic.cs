@@ -17,6 +17,7 @@ public class DoorAutomatic : MonoBehaviour
         {
             SetDoorOpeningAnimation();
             doorIsOpen = true;
+            AudioController.instance.PlayOneShot(AudioController.instance.doorAutomaticOpening);
         }
     }
     private void OnTriggerExit(Collider other)
