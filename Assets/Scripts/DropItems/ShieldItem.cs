@@ -29,7 +29,7 @@ public class ShieldItem : MonoBehaviour
             {
                 PlayerShield.instance.currentShield += Shieldextra;
             }
-
+            AudioController.instance.PlayOneShot(AudioController.instance.itemShield);
             Destroy(gameObject);
         }
     }
