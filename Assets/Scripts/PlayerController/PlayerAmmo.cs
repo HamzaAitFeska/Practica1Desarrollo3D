@@ -57,6 +57,7 @@ public class PlayerAmmo : MonoBehaviour
     {
         FPSPlayerController.instance.m_Animation.CrossFade(FPSPlayerController.instance.m_ReloadClip.name,0.1f);
         FPSPlayerController.instance.m_Animation.CrossFadeQueued(FPSPlayerController.instance.m_IdleClip.name, 0.1f);
+        AudioController.instance.PlayOneShot(AudioController.instance.weaponReload);
     }
 
     private IEnumerator ReloadSquence()

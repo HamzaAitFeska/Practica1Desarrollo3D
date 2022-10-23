@@ -167,10 +167,10 @@ public class FPSPlayerController : MonoBehaviour
         m_VerticalSpeed = m_VerticalSpeed + Physics.gravity.y * Time.deltaTime;
         l_Movement.y = m_VerticalSpeed * Time.deltaTime;
 
-        CollisionFlags l_CollisionFlags = m_characterController.Move(l_Movement); //POSIBLE ERROR HERE ON GROUND CONDITION
+        CollisionFlags l_CollisionFlags = m_characterController.Move(l_Movement);
         if ((l_CollisionFlags & CollisionFlags.Above) != 0 && m_VerticalSpeed > 0.0f)
             m_VerticalSpeed = 0.0f;
-        if ((l_CollisionFlags & CollisionFlags.Below) != 0) //POSIBLE ERROR HERE ON GROUND CONDITION
+        if ((l_CollisionFlags & CollisionFlags.Below) != 0) 
         {
             m_VerticalSpeed = 0.0f;
             m_OnGround = true;
@@ -186,9 +186,10 @@ public class FPSPlayerController : MonoBehaviour
         {
             Shoot();
         }
-
-        
-        
+        else if(Input.GetMouseButtonDown(0) && CanShhot() && !m_IsReloading && PlayerAmmo.instance.currentAmmo == 0 && PlayerLife.instance.currentLife > 0)
+        {
+            AudioController.instance.PlayOneShot(AudioController.instance.weaponEmpty);
+        }
     }
 
     public IEnumerator EndShoot()
@@ -236,7 +237,7 @@ public class FPSPlayerController : MonoBehaviour
                 m_TotalPoints -= 25;
             }
         }
-        
+        AudioController.instance.PlayOneShot(AudioController.instance.weaponShoot);
     }
 
     void CreatShootHitParticle(Collider collider,Vector3 position,Vector3 Normal)

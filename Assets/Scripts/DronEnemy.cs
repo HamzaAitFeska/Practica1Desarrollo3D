@@ -97,7 +97,7 @@ public class DronEnemy : MonoBehaviour
         Vector3 l_EyesPosition = transform.position + Vector3.up * m_EyesPosition;
         Vector3 l_PlayerEyesPosition = l_PlayerPosition + Vector3.up * m_PlayerEyesPosition;
         Debug.DrawLine(l_EyesPosition, l_PlayerEyesPosition, SeePlayer() ? Color.red : Color.blue);
-        Debug.Log(Dron_Current_Life);
+        //Debug.Log(Dron_Current_Life);
         
     }
     private void LateUpdate()
