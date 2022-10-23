@@ -26,6 +26,7 @@ public class DoorAutomatic : MonoBehaviour
         {
             SetDoorClosingAnimation();
             doorIsOpen = false;
+            AudioController.instance.PlayOneShot(AudioController.instance.doorAutomaticClosing);
         }
     }
     void SetDoorOpeningAnimation()
