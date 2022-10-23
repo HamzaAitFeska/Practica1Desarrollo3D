@@ -4,18 +4,12 @@ public class ShieldItem : MonoBehaviour
 {
     private readonly int Shieldextra = 50;
     public GameObject Player;
+    public Animation m_Animation;
+    public AnimationClip m_ShieldItemIddleClip;
     void Start()
     {
-
+        SetShieldItemIddleAnimation();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    
     private void OnTriggerEnter(Collider other)
     {
         if (PlayerShield.instance.currentShield < 50)
@@ -32,5 +26,9 @@ public class ShieldItem : MonoBehaviour
             AudioController.instance.PlayOneShot(AudioController.instance.itemShield);
             Destroy(gameObject);
         }
+    }
+    void SetShieldItemIddleAnimation()
+    {
+        m_Animation.CrossFadeQueued(m_ShieldItemIddleClip.name);
     }
 }

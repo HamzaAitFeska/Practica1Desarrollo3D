@@ -5,19 +5,13 @@ public class LifeItem : MonoBehaviour
 {
     // Start is called before the first frame update
     private readonly int Lifeextra = 100;
-    
+    public Animation m_Animation;
+    public AnimationClip m_HealthItemIddleClip;
     void Start()
     {
-        
+        SetHealthItemIddleAnimation();
     }
-
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -35,8 +29,11 @@ public class LifeItem : MonoBehaviour
             AudioController.instance.PlayOneShot(AudioController.instance.itemHealth);
             PlayerLife.instance.Overlay.color = new Color(0, 255, 0, 0.85f);
             PlayerLife.instance.duration = 0;
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
-        
+    }
+    void SetHealthItemIddleAnimation()
+    {
+        m_Animation.CrossFadeQueued(m_HealthItemIddleClip.name);
     }
 }

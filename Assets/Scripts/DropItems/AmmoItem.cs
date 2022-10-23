@@ -3,18 +3,12 @@
 public class AmmoItem : MonoBehaviour
 {
     private readonly int Ammodextra = 100;
+    public Animation m_Animation;
+    public AnimationClip m_AmmoItemIddleClip;
     void Start()
     {
-
+        SetAmmoItemIddleAnimation();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    
     private void OnTriggerEnter(Collider other)
     {
         if (PlayerAmmo.instance.currentmagSize < 145)
@@ -32,5 +26,9 @@ public class AmmoItem : MonoBehaviour
             AudioController.instance.PlayOneShot(AudioController.instance.itemAmmo);
             Destroy(gameObject);
         }
+    }
+    void SetAmmoItemIddleAnimation()
+    {
+        m_Animation.CrossFadeQueued(m_AmmoItemIddleClip.name);
     }
 }
