@@ -40,9 +40,9 @@ public class DronEnemy : MonoBehaviour
     public float TimeBetweenShots = 5f;
     public bool DronIsHit;
     public float m_CurrentRotationOnAlertedState;
-    public float m_RotationSpeed = 75f;
+    public float m_RotationSpeed = 150f;
     public static DronEnemy instacne;
-    bool m_IsCreated = false;
+    //bool m_IsCreated = false;
     [Header("UI")]
     public Image m_LifeBarImage;
     public Transform m_LifeAnchorPosition;
@@ -60,7 +60,6 @@ public class DronEnemy : MonoBehaviour
         IsAlerted = false;
         Dron_Current_Life = Dron_Life_MAX;
         m_Shooting = false;
-        DronIsHit = false;
         m_LifeBarImage.fillAmount = Dron_Current_Life / Dron_Life_MAX;
         lifebar.SetActive(false);
         instacne = this;
@@ -134,10 +133,6 @@ public class DronEnemy : MonoBehaviour
             SetAlertState();
         }
 
-        if (DronIsBeingHit())
-        {
-            SetHitState();
-        }
     }
 
     bool PatrolTargetPosArrived()
@@ -184,46 +179,22 @@ public class DronEnemy : MonoBehaviour
             SetPatrolState();
         }
 
-        if (DronIsBeingHit() && HearsPlayer())
-        {
-            SetHitState();
-        }
-
-        if (DronIsBeingHit())
-        {
-            SetHitState();
-        }
 
     }
     void SetHitState()
     {
         m_State = TSTATE.HIT;
         m_NavMasAgent.destination = transform.position;
-    }
-
-    void UpdateHitState()
-    {
         lightdron.color = Color.magenta;
+
         if (Dron_Current_Life <= 0)
         {
             SetDieState();
         }
+    }
 
-        if(SeePlayer() && PlayerInRangeToShoot())
-        {
-            SetAttackState();
-        }
-
-        if(SeePlayer() && !PlayerInRangeToShoot())
-        {
-            SetChaseState();
-        }
-
-        if(!SeePlayer() && !DronIsBeingHit())
-        {
-          SetAlertState();
-        }
-
+    void UpdateHitState()
+    {
     }
     void SetAttackState()
     {
@@ -249,10 +220,6 @@ public class DronEnemy : MonoBehaviour
             SetChaseState();
         }
 
-        if (DronIsBeingHit() && SeePlayer())
-        {
-            SetHitState();
-        }
 
         
     }
@@ -261,19 +228,15 @@ public class DronEnemy : MonoBehaviour
         m_State = TSTATE.DIE;
         m_NavMasAgent.destination = transform.position;
         lightdron.color = Color.red;
-        m_IsCreated = false;
+        Instantiate(LifeItem, transform.position, LifeItem.transform.rotation);
+        Dron.SetActive(false);
+        //lifebar.SetActive(false);
+        lightdron.intensity = 0;
     }
 
     void UpdateDieState()
     {
-        if (!m_IsCreated)
-        {
-            Instantiate(LifeItem, Dron.transform.position, LifeItem.transform.rotation);
-        }
-        m_IsCreated = true;
-        Dron.SetActive(false);
-        //lifebar.SetActive(false);
-        lightdron.intensity = 0;
+        lifebar.SetActive(false);
     }
     void SetChaseState()
     {
@@ -295,10 +258,6 @@ public class DronEnemy : MonoBehaviour
             SetAlertState();
         }
 
-        if (DronIsBeingHit())
-        {
-            SetHitState();
-        }
         
     }
 
@@ -332,6 +291,7 @@ public class DronEnemy : MonoBehaviour
         Debug.Log(Life);
         Dron_Current_Life -= Life;
         DronIsHit = true;
+        SetHitState();
         StartCoroutine(EndHit());
         m_LifeBarImage.fillAmount = Dron_Current_Life / Dron_Life_MAX;
         lifebar.SetActive(true);
@@ -378,11 +338,12 @@ public class DronEnemy : MonoBehaviour
         return m_CurrentRotationOnAlertedState >= 360;
     }
 
+    /*
     bool DronIsBeingHit()
     {
         return DronIsHit;
     }
-
+    */
     public IEnumerator EndShoot()
     {
         yield return new WaitForSeconds(TimeBetweenShots);
@@ -395,8 +356,9 @@ public class DronEnemy : MonoBehaviour
 
     public IEnumerator EndHit()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
         DronIsHit = false;
+        if (m_State != TSTATE.DIE) SetAlertState();
     }
 
     void UpdateLifeBarpOSITION()

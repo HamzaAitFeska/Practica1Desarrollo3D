@@ -1,32 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!135 &8468086097205049213
-SphereCollider:
+--- !u!65 &8468086099155071934
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8468086097205080542}
+  m_GameObject: {fileID: 8468086097205080532}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.15781274
-  m_Center: {x: 0.18426195, y: 0.049629673, z: 0.0016600788}
---- !u!114 &8468086097205049212
+  m_Size: {x: 0.06, y: 0.73, z: 0.75}
+  m_Center: {x: 0, y: -0.06, z: -0.15}
+--- !u!114 &8468086099155071935
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8468086097205080542}
+  m_GameObject: {fileID: 8468086097205080532}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4f318044d5ac2a41b7510ab675a4781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Life: 0.3
-  m_DrownEnemy: {fileID: 8468086099096127134}
+  m_Life: 0
+  m_DroneEnemy: {fileID: 8468086099096127134}
 --- !u!65 &8468086097205049215
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -52,8 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f318044d5ac2a41b7510ab675a4781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Life: 0.8
-  m_DrownEnemy: {fileID: 8468086099096127134}
+  m_Life: 5
+  m_DroneEnemy: {fileID: 8468086099096127134}
 --- !u!135 &8468086097205049203
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -80,7 +80,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Life: 0.3
-  m_DrownEnemy: {fileID: 8468086099096127134}
+  m_DroneEnemy: {fileID: 8468086099096127134}
+--- !u!135 &8468086097205049213
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8468086097205080542}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.15781274
+  m_Center: {x: 0.18426195, y: 0.049629673, z: 0.0016600788}
+--- !u!114 &8468086097205049212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8468086097205080542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4f318044d5ac2a41b7510ab675a4781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Life: 0.3
+  m_DroneEnemy: {fileID: 8468086099096127134}
 --- !u!1 &8468086097261325641
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,12 +508,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -597,13 +624,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64409f37e0483e446995e4bdcbd8986e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dron: {fileID: 8468086097205080532}
+  LifeItem: {fileID: 8064769819899881882, guid: c9b1fea2d50831c4f89fffbbd0ef7a6d, type: 3}
   m_State: 0
   m_PatrolPoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  PlayerinRange: 15
+  PlayerinRange: 5
   m_ShightMax: 15
   m_VisualConeAngle: 60
   m_ShightLayerMask:
@@ -630,33 +659,6 @@ MonoBehaviour:
   m_LifeBarRectTransform: {fileID: 8468086097461823993}
   lifebar: {fileID: 8468086097563457178}
   lightdron: {fileID: 8468086097872747494}
---- !u!65 &8468086099155071934
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8468086097205080532}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.06, y: 0.73, z: 0.75}
-  m_Center: {x: 0, y: -0.06, z: -0.15}
---- !u!114 &8468086099155071935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8468086097205080532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4f318044d5ac2a41b7510ab675a4781, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Life: 0
-  m_DrownEnemy: {fileID: 8468086099096127134}
 --- !u!1001 &8468086097205049206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -730,16 +732,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f14b6f7503476eb4e9b2afc1cc05e719, type: 3}
---- !u!1 &8468086097205080540 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100010, guid: f14b6f7503476eb4e9b2afc1cc05e719, type: 3}
-  m_PrefabInstance: {fileID: 8468086097205049206}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8468086097205080542 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100008, guid: f14b6f7503476eb4e9b2afc1cc05e719, type: 3}
-  m_PrefabInstance: {fileID: 8468086097205049206}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8468086097205080534 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: f14b6f7503476eb4e9b2afc1cc05e719, type: 3}
@@ -753,5 +745,15 @@ Transform:
 --- !u!1 &8468086097205080532 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100002, guid: f14b6f7503476eb4e9b2afc1cc05e719, type: 3}
+  m_PrefabInstance: {fileID: 8468086097205049206}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8468086097205080540 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100010, guid: f14b6f7503476eb4e9b2afc1cc05e719, type: 3}
+  m_PrefabInstance: {fileID: 8468086097205049206}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8468086097205080542 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100008, guid: f14b6f7503476eb4e9b2afc1cc05e719, type: 3}
   m_PrefabInstance: {fileID: 8468086097205049206}
   m_PrefabAsset: {fileID: 0}
