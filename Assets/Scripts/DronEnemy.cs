@@ -19,6 +19,7 @@ public class DronEnemy : MonoBehaviour
 
     public GameObject Dron;
     public GameObject LifeItem;
+    public GameObject ItemPos;
     public TSTATE m_State;
     NavMeshAgent m_NavMasAgent;
     public List<Transform> m_PatrolPoints;
@@ -228,7 +229,7 @@ public class DronEnemy : MonoBehaviour
         m_State = TSTATE.DIE;
         m_NavMasAgent.destination = transform.position;
         lightdron.color = Color.red;
-        Instantiate(LifeItem, transform.position, LifeItem.transform.rotation);
+        Instantiate(LifeItem, ItemPos.transform.position, LifeItem.transform.rotation);
         Dron.SetActive(false);
         //lifebar.SetActive(false);
         lightdron.intensity = 0;
