@@ -478,7 +478,7 @@ MonoBehaviour:
   footstepMetal4: {fileID: 0}
   uiWarning: {fileID: 0}
   uiClick: {fileID: 0}
-  KeyPickup: {fileID: 0}
+  KeyPickup: {fileID: 8855863017872709185}
 --- !u!1 &3681539056277764252
 GameObject:
   m_ObjectHideFlags: 0
