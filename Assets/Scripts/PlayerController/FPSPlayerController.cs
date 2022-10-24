@@ -190,7 +190,7 @@ public class FPSPlayerController : MonoBehaviour
         {
             Shoot();
         }
-        else if(Input.GetMouseButtonDown(0) && !CanShhot())
+        else if(Input.GetMouseButtonDown(0) && PlayerAmmo.instance.currentAmmo == 0 && !m_IsReloading)
         {
             AudioController.instance.PlayOneShot(AudioController.instance.weaponEmpty);
         }
