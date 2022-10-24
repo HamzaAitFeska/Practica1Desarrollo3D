@@ -102,6 +102,7 @@ public class PlayerLife : MonoBehaviour
         if(PlayerShield.instance.currentShield <= 0)
         {
             currentLife -= 10f;
+            AudioController.instance.PlayOneShot(AudioController.instance.playerHurt);
         }
 
         durationTimer = 0;
@@ -138,9 +139,10 @@ public class PlayerLife : MonoBehaviour
             UI.SetActive(true);
             GameOver.SetActive(false);
             OverlayBlood.SetActive(true);
-            //Instantiate(Player, Checkpoint, Quaternion.identity);
-            m_IsCreated = true;
-        
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        //Instantiate(Player, Checkpoint, Quaternion.identity);
+        m_IsCreated = true;
 
         //Destroy(gameObject, 1f);
 

@@ -209,6 +209,7 @@ public class FPSPlayerController : MonoBehaviour
     public LayerMask m_ShootingLayerMask;
     void Shoot()
     {
+        AudioController.instance.PlayOneShot(AudioController.instance.weaponShoot);
         Ray l_Ray = m_Camera.ViewportPointToRay(new Vector3(0.5f, 0.5f));
         RaycastHit l_RaycastHit;
         if(Physics.Raycast(l_Ray, out l_RaycastHit, m_MaxShootDistance, m_ShootingLayerMask))
@@ -241,7 +242,6 @@ public class FPSPlayerController : MonoBehaviour
                 m_TotalPoints -= 25;
             }
         }
-        AudioController.instance.PlayOneShot(AudioController.instance.weaponShoot);
     }
 
     void CreatShootHitParticle(Collider collider,Vector3 position,Vector3 Normal)
