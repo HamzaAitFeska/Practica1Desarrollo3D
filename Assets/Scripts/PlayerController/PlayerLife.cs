@@ -60,6 +60,7 @@ public class PlayerLife : MonoBehaviour
             FPSPlayerController.instance.m_characterController.enabled = false;
             UI.SetActive(false);
             OverlayBlood.SetActive(false);
+            AudioController.instance.PlayOneShot(AudioController.instance.playerDeath);
             //Death();
         }
 
@@ -95,6 +96,7 @@ public class PlayerLife : MonoBehaviour
         {
            currentLife -= 2.5f;
            PlayerShield.instance.DamageShield();
+           AudioController.instance.PlayOneShot(AudioController.instance.playerHurt);
         }
         
         if(PlayerShield.instance.currentShield <= 0)

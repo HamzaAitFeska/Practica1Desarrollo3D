@@ -275,13 +275,11 @@ public class FPSPlayerController : MonoBehaviour
     {
         if (other.CompareTag("DeathTrapTrigger"))
         {
-            Debug.Log("DEAD");
             PlayerLife.instance.currentLife = 0;
         }
 
         if (other.CompareTag("DeadZone"))
         {
-            Debug.Log("DEAD");
             PlayerLife.instance.currentLife = 0;
         }
     }
