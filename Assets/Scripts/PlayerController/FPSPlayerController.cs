@@ -40,6 +40,7 @@ public class FPSPlayerController : MonoBehaviour
     public GameObject PrefabBulletHole;
     public bool m_Shooting;
     public bool m_IsReloading;
+    public bool m_IsRunning;
 
     public Animation m_Animation;
     public AnimationClip m_IdleClip;
@@ -66,6 +67,7 @@ public class FPSPlayerController : MonoBehaviour
         SetIdleWeaponAnimation();
         m_Shooting = false;
         m_IsReloading = false;
+        m_IsRunning = false;
         instance = this;
     }
 
@@ -115,11 +117,13 @@ public class FPSPlayerController : MonoBehaviour
             l_Speed = m_PlayerSpeed * m_FastSpeedMultiplier;
             l_FOV = m_RunMovementFOV;
             SetRunWeaponAnimation();
+            m_IsRunning = true;
             //l_FOV = m_RunMovementFOV;
         }
         if (Input.GetKeyUp(m_RunKeyCode))
         {
-            SetIdleWeaponWithRunAnimation();          
+            SetIdleWeaponWithRunAnimation();
+            m_IsRunning = false;
         }
 
         if(l_Direction != Vector3.zero)
@@ -182,11 +186,11 @@ public class FPSPlayerController : MonoBehaviour
             m_OnGround = false;
         }
 
-        if(Input.GetMouseButtonDown(0) && CanShhot() && !m_IsReloading && PlayerAmmo.instance.currentAmmo > 0 && PlayerLife.instance.currentLife > 0)
+        if(Input.GetMouseButtonDown(0) && CanShhot())
         {
             Shoot();
         }
-        else if(Input.GetMouseButtonDown(0) && CanShhot() && !m_IsReloading && PlayerAmmo.instance.currentAmmo == 0 && PlayerLife.instance.currentLife > 0)
+        else if(Input.GetMouseButtonDown(0) && CanShhot())
         {
             AudioController.instance.PlayOneShot(AudioController.instance.weaponEmpty);
         }
@@ -199,7 +203,7 @@ public class FPSPlayerController : MonoBehaviour
     }
     bool CanShhot()
     {
-        return !m_Shooting;
+        return !m_Shooting && !m_IsReloading && PlayerAmmo.instance.currentAmmo > 0 && PlayerLife.instance.currentLife > 0 && !m_IsRunning;
     }
     public float m_MaxShootDistance = 50.0f;
     public LayerMask m_ShootingLayerMask;

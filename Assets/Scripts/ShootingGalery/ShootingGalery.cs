@@ -82,6 +82,11 @@ public class ShootingGalery : MonoBehaviour
             ScoreANDTime.SetActive(false);
         }
 
+        if(FPSPlayerController.instance.m_TotalPoints >= 500)
+        {
+            time = 0;
+        }
+
         textScore.text = FPSPlayerController.instance.m_TotalPoints.ToString();
     }
 

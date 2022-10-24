@@ -10,6 +10,7 @@ public class StartLevel2 : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            //LevelLoder.instance.StartCoroutine(LevelLoder.instance.StartAnim());
             StartLevelTwo();
         }
     }
