@@ -11,6 +11,7 @@ public class KeBehaviour : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            AudioController.instance.PlayOneShot(AudioController.instance.KeyPickup);
             DoorLocked.instance.playerHasKey = true;
             Key.SetActive(false);
         }

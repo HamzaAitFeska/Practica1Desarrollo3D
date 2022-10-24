@@ -15,7 +15,7 @@ public class PlayerLife : MonoBehaviour
     public KeyCode damagePlayer;
     public Vector3 Checkpoint;
     public Quaternion StartRotation;
-    public GameObject Player;
+    //public GameObject Player;
     public bool m_IsCreated;
     public Slider sliderlifebar;
     [Header("GameOver")]
@@ -44,8 +44,8 @@ public class PlayerLife : MonoBehaviour
     {
         if (Input.GetKeyDown(damagePlayer))
         {
-            //DamagePlayer();
-            currentLife = 0;
+            DamagePlayer();
+            //currentLife = 0;
         }
 
         if(currentLife <= 0)
@@ -93,13 +93,13 @@ public class PlayerLife : MonoBehaviour
     {
         if(PlayerShield.instance.currentShield > 0)
         {
-           currentLife -= 0.25f;
+           currentLife -= 2.5f;
            PlayerShield.instance.DamageShield();
         }
         
         if(PlayerShield.instance.currentShield <= 0)
         {
-            currentLife--;
+            currentLife -= 10f;
         }
 
         durationTimer = 0;
