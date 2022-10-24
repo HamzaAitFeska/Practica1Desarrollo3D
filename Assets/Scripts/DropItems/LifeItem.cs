@@ -15,22 +15,26 @@ public class LifeItem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (PlayerLife.instance.currentLife < 100)
+        if (other.CompareTag("Player"))
         {
-            PlayerLife.instance.currentLife += Lifeextra;
-            if ((PlayerLife.instance.currentLife += Lifeextra) >= 100)
-            {
-                PlayerLife.instance.currentLife = 100;
-            }
-            else
+            if (PlayerLife.instance.currentLife < 100)
             {
                 PlayerLife.instance.currentLife += Lifeextra;
+                if ((PlayerLife.instance.currentLife += Lifeextra) >= 100)
+                {
+                    PlayerLife.instance.currentLife = 100;
+                }
+                else
+                {
+                    PlayerLife.instance.currentLife += Lifeextra;
+                }
+                AudioController.instance.PlayOneShot(AudioController.instance.itemHealth);
+                PlayerLife.instance.Overlay.color = new Color(0, 255, 0, 0.85f);
+                PlayerLife.instance.duration = 0;
+                Destroy(gameObject);
             }
-            AudioController.instance.PlayOneShot(AudioController.instance.itemHealth);
-            PlayerLife.instance.Overlay.color = new Color(0, 255, 0, 0.85f);
-            PlayerLife.instance.duration = 0;
-            Destroy(gameObject);
         }
+         
     }
     void SetHealthItemIddleAnimation()
     {

@@ -12,20 +12,24 @@ public class ShieldItem : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (PlayerShield.instance.currentShield < 50)
+        if (other.CompareTag("Player"))
         {
-            gameObject.GetComponent<Collider>().enabled = false;
-            if ((PlayerShield.instance.currentShield += Shieldextra) > 50)
+            if (PlayerShield.instance.currentShield < 50)
             {
-                PlayerShield.instance.currentShield = 50;
+                gameObject.GetComponent<Collider>().enabled = false;
+                if ((PlayerShield.instance.currentShield += Shieldextra) > 50)
+                {
+                    PlayerShield.instance.currentShield = 50;
+                }
+                else
+                {
+                    PlayerShield.instance.currentShield += Shieldextra;
+                }
+                AudioController.instance.PlayOneShot(AudioController.instance.itemShield);
+                Destroy(gameObject);
             }
-            else
-            {
-                PlayerShield.instance.currentShield += Shieldextra;
-            }
-            AudioController.instance.PlayOneShot(AudioController.instance.itemShield);
-            Destroy(gameObject);
         }
+        
     }
     void SetShieldItemIddleAnimation()
     {

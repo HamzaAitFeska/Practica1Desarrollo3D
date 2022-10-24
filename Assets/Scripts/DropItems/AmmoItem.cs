@@ -11,21 +11,25 @@ public class AmmoItem : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (PlayerAmmo.instance.currentmagSize < 145)
+        if (other.CompareTag("Player"))
         {
-            if ((PlayerAmmo.instance.currentmagSize += Ammodextra) > 145)
+            if (PlayerAmmo.instance.currentmagSize < 145)
             {
-                PlayerAmmo.instance.currentmagSize = 145;
+                if ((PlayerAmmo.instance.currentmagSize += Ammodextra) > 145)
+                {
+                    PlayerAmmo.instance.currentmagSize = 145;
+                }
+                else
+                {
+                    PlayerAmmo.instance.currentmagSize += Ammodextra;
+                }
+                //PlayerAmmo.instance.currentmagSize += Ammodextra;
+                //Destroy(collision.gameObject);
+                AudioController.instance.PlayOneShot(AudioController.instance.itemAmmo);
+                Destroy(gameObject);
             }
-            else
-            {
-                PlayerAmmo.instance.currentmagSize += Ammodextra;
-            }
-            //PlayerAmmo.instance.currentmagSize += Ammodextra;
-            //Destroy(collision.gameObject);
-            AudioController.instance.PlayOneShot(AudioController.instance.itemAmmo);
-            Destroy(gameObject);
         }
+        
     }
     void SetAmmoItemIddleAnimation()
     {
