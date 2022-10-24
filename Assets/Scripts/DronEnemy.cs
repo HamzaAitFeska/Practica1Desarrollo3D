@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+
 public class DronEnemy : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -17,8 +18,9 @@ public class DronEnemy : MonoBehaviour
         DIE
     }
 
+    private int RandomOption;
     public GameObject Dron;
-    public GameObject LifeItem;
+    public GameObject [] RandomItem;
     public GameObject ItemPos;
     public TSTATE m_State;
     NavMeshAgent m_NavMasAgent;
@@ -50,6 +52,7 @@ public class DronEnemy : MonoBehaviour
     public RectTransform m_LifeBarRectTransform;
     public GameObject lifebar;
     public Light lightdron;
+    public Light Seelight;
     private void Awake()
     {
         m_NavMasAgent = GetComponent<NavMeshAgent>();
@@ -229,10 +232,12 @@ public class DronEnemy : MonoBehaviour
         m_State = TSTATE.DIE;
         m_NavMasAgent.destination = transform.position;
         lightdron.color = Color.red;
-        Instantiate(LifeItem, ItemPos.transform.position, LifeItem.transform.rotation);
+        RandomOption = Random.Range(0, RandomItem.Length);
+        Instantiate(RandomItem[RandomOption], ItemPos.transform.position, RandomItem[RandomOption].transform.rotation);
         Dron.SetActive(false);
         //lifebar.SetActive(false);
         lightdron.intensity = 0;
+        Seelight.intensity = 0;
     }
 
     void UpdateDieState()
