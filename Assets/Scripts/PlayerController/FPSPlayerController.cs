@@ -49,7 +49,7 @@ public class FPSPlayerController : MonoBehaviour
     public AnimationClip m_RunClip;
 
     public bool m_PlayerIsMoving = false;
-
+    public TcObjectPool1 poolDecals;
     float m_VerticalSpeed = 0.0f;
     public bool m_OnGround = true; //REMOVE PUBLIC AFTER FIXED
 
@@ -57,6 +57,7 @@ public class FPSPlayerController : MonoBehaviour
     public bool m_AngleLocked = false;
     public bool m_AimLocked = true;
     public bool m_TargetHit = false;
+    public int DecalsElements = 15;
     
     void Start()
     {
@@ -69,6 +70,7 @@ public class FPSPlayerController : MonoBehaviour
         m_IsReloading = false;
         m_IsRunning = false;
         instance = this;
+        poolDecals = new TcObjectPool1(DecalsElements, PrefabBulletHole);
     }
 
 #if UNITY_EDITOR
@@ -246,8 +248,14 @@ public class FPSPlayerController : MonoBehaviour
 
     void CreatShootHitParticle(Collider collider,Vector3 position,Vector3 Normal)
     {
+
         //Debug.DrawRay(position, Normal * 5.0f, Color.red, 2.0f);
-        GameObject.Instantiate(PrefabBulletHole, position, Quaternion.LookRotation(Normal));
+        GameObject l_Decal = poolDecals.GetNextElemnt();
+        l_Decal.SetActive(true);
+        l_Decal.transform.position = position;
+        l_Decal.transform.rotation = Quaternion.LookRotation(Normal);
+        //GameObject.Instantiate(poolDecals.GetNextElemnt(), position, Quaternion.LookRotation(Normal));
+        
 
     }
 
