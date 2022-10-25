@@ -53,7 +53,7 @@
     <UnityVersion>2020.3.12f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\DropItems\ShieldItem.cs" />
@@ -72,7 +72,7 @@
     <Compile Include="Assets\Scripts\Gun\Bullet.cs" />
     <Compile Include="Assets\Scripts\ShootingGalery\HitColliderTarget.cs" />
     <Compile Include="Assets\Scripts\PlayerController\PlayerShield.cs" />
-    <Compile Include="Assets\Scripts\KeBehaviour.cs" />
+    <Compile Include="Assets\Scripts\DropItems\KeBehaviour.cs" />
     <Compile Include="Assets\Resources\JMO Assets\WarFX\Spawn System\CFX_SpawnSystem.cs" />
     <Compile Include="Assets\Scripts\Doors\DoorElevator.cs" />
     <Compile Include="Assets\Scripts\DropItems\Item.cs" />
@@ -111,6 +111,7 @@
     <Compile Include="Assets\Scripts\Doors\OpenBunkerDoor.cs" />
     <Compile Include="Assets\Resources\JMO Assets\WarFX\Demo\Assets\WFX_Demo_New.cs" />
     <Compile Include="Assets\Scripts\PlayerController\GameControllerData.cs" />
+    <Compile Include="Assets\Scripts\DropItems\WinObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\TextMesh Pro\Shaders\TMPro.cginc" />
