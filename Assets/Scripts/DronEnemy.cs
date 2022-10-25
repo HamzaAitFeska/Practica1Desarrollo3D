@@ -53,6 +53,12 @@ public class DronEnemy : MonoBehaviour
     public GameObject lifebar;
     public Light lightdron;
     public Light Seelight;
+    [Header("UI")]
+    public Animation m_Animation;
+    public AnimationClip m_IdleClip;
+    public AnimationClip m_ShotClip;
+    public AnimationClip m_HitdClip;
+    public AnimationClip m_DieClip;
     private void Awake()
     {
         m_NavMasAgent = GetComponent<NavMeshAgent>();
@@ -67,6 +73,7 @@ public class DronEnemy : MonoBehaviour
         m_LifeBarImage.fillAmount = Dron_Current_Life / Dron_Life_MAX;
         lifebar.SetActive(false);
         instacne = this;
+        SetIdleDronAnimation();
         
     }
     private void Update()
@@ -100,7 +107,7 @@ public class DronEnemy : MonoBehaviour
         Vector3 l_EyesPosition = transform.position + Vector3.up * m_EyesPosition;
         Vector3 l_PlayerEyesPosition = l_PlayerPosition + Vector3.up * m_PlayerEyesPosition;
         Debug.DrawLine(l_EyesPosition, l_PlayerEyesPosition, SeePlayer() ? Color.red : Color.blue);
-        //Debug.Log(Dron_Current_Life);
+        Debug.Log(m_State);
         
     }
     private void LateUpdate()
@@ -136,7 +143,7 @@ public class DronEnemy : MonoBehaviour
         {
             SetAlertState();
         }
-
+        SetIdleDronAnimation();
     }
 
     bool PatrolTargetPosArrived()
@@ -199,6 +206,7 @@ public class DronEnemy : MonoBehaviour
 
     void UpdateHitState()
     {
+        SetHidDronAnimation();
     }
     void SetAttackState()
     {
@@ -229,15 +237,10 @@ public class DronEnemy : MonoBehaviour
     }
     void SetDieState()
     {
+        SetDieDronAnimation();
         m_State = TSTATE.DIE;
         m_NavMasAgent.destination = transform.position;
-        lightdron.color = Color.red;
-        RandomOption = Random.Range(0, RandomItem.Length);
-        Instantiate(RandomItem[RandomOption], ItemPos.transform.position, RandomItem[RandomOption].transform.rotation);
-        Dron.SetActive(false);
-        //lifebar.SetActive(false);
-        lightdron.intensity = 0;
-        Seelight.intensity = 0;
+        StartCoroutine(Die());
     }
 
     void UpdateDieState()
@@ -323,6 +326,7 @@ public class DronEnemy : MonoBehaviour
             CreatShootHitParticle(l_RaycastHit.collider, l_RaycastHit.point, l_RaycastHit.normal);
             PlayerLife.instance.DamagePlayer();
         }
+        SetShootAnimation();
         m_Shooting = true;
         StartCoroutine(EndShoot());
     }
@@ -352,7 +356,7 @@ public class DronEnemy : MonoBehaviour
     */
     public IEnumerator EndShoot()
     {
-        yield return new WaitForSeconds(TimeBetweenShots);
+        yield return new WaitForSeconds(m_ShotClip.length);
         m_Shooting = false;
     }
     bool CanShhot()
@@ -362,9 +366,22 @@ public class DronEnemy : MonoBehaviour
 
     public IEnumerator EndHit()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(m_HitdClip.length);
         DronIsHit = false;
         if (m_State != TSTATE.DIE) SetAlertState();
+    }
+
+    public IEnumerator Die()
+    {
+        yield return new WaitForSeconds(m_DieClip.length);
+        lightdron.color = Color.red;
+        RandomOption = Random.Range(0, RandomItem.Length);
+        Instantiate(RandomItem[RandomOption], ItemPos.transform.position, RandomItem[RandomOption].transform.rotation);
+        Dron.SetActive(false);
+        //lifebar.SetActive(false);
+        lightdron.intensity = 0;
+        Seelight.intensity = 0;
+
     }
 
     void UpdateLifeBarpOSITION()
@@ -372,5 +389,28 @@ public class DronEnemy : MonoBehaviour
         Vector3 l_Position = FPSPlayerController.instance.m_Camera.WorldToViewportPoint(m_LifeAnchorPosition.position);
         m_LifeBarRectTransform.anchoredPosition = new Vector3(l_Position.x * 1920.0f, -(1080.0f - l_Position.y * 1080.0f), 0.0f);
         m_LifeBarRectTransform.gameObject.SetActive(l_Position.z > 0.0f);
+    }
+
+    void SetIdleDronAnimation()
+    {
+        m_Animation.CrossFade(m_IdleClip.name);
+    }
+
+    void SetHidDronAnimation()
+    {
+        m_Animation.CrossFade(m_HitdClip.name, 0.05f);
+        m_Animation.CrossFadeQueued(m_IdleClip.name, 0.05f);
+    }
+
+    void SetDieDronAnimation()
+    {
+        m_Animation.CrossFade(m_DieClip.name, 0.05f);
+        m_Animation.CrossFadeQueued(m_IdleClip.name, 0.05f);
+    }
+
+    void SetShootAnimation()
+    {
+        m_Animation.CrossFade(m_ShotClip.name, 0.05f);
+        m_Animation.CrossFadeQueued(m_IdleClip.name, 0.05f);
     }
 }
