@@ -3505,7 +3505,7 @@ GameObject:
   - component: {fileID: 167113410}
   m_Layer: 9
   m_Name: ChangeSceneTrigger
-  m_TagString: Untagged
+  m_TagString: GameEventTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19194,8 +19194,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1030126122}
   m_LocalRotation: {x: -0, y: -0.02724306, z: -0, w: 0.99962884}
-  m_LocalPosition: {x: 11.5, y: 1.19, z: 139.1}
-  m_LocalScale: {x: 6, y: 1.5, z: 30.33}
+  m_LocalPosition: {x: 11.45, y: 7.84, z: 140}
+  m_LocalScale: {x: 6, y: 15.259687, z: 35.243458}
   m_Children: []
   m_Father: {fileID: 792842093}
   m_RootOrder: 1
@@ -20214,7 +20214,7 @@ GameObject:
   - component: {fileID: 1121023655}
   m_Layer: 9
   m_Name: CheckPoint1
-  m_TagString: Untagged
+  m_TagString: GameEventTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20227,8 +20227,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121023653}
   m_LocalRotation: {x: -0, y: 0.3151479, z: -0, w: 0.9490426}
-  m_LocalPosition: {x: -23.207, y: -0.47, z: 62.62}
-  m_LocalScale: {x: 6, y: 1.5, z: 30.33}
+  m_LocalPosition: {x: -26.72, y: 9.52, z: 57.91}
+  m_LocalScale: {x: 6, y: 18.881481, z: 45.731575}
   m_Children: []
   m_Father: {fileID: 792842093}
   m_RootOrder: 0
@@ -26259,7 +26259,7 @@ GameObject:
   - component: {fileID: 1436495204}
   m_Layer: 9
   m_Name: DoorBunkerTrigger
-  m_TagString: Untagged
+  m_TagString: GameEventTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39515,6 +39515,10 @@ PrefabInstance:
       propertyPath: textmagSize
       value: 
       objectReference: {fileID: 1199224826}
+    - target: {fileID: 2184905985369214331, guid: 8d8175b5709daa84fb0185463c36d1ba, type: 3}
+      propertyPath: m_ShootingLayerMask.m_Bits
+      value: 247
+      objectReference: {fileID: 0}
     - target: {fileID: 2184905985369214332, guid: 8d8175b5709daa84fb0185463c36d1ba, type: 3}
       propertyPath: m_RootOrder
       value: 3
