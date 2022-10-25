@@ -15346,7 +15346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f318044d5ac2a41b7510ab675a4781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Life: 0.3
+  m_Life: 1.5
   m_DroneEnemy: {fileID: 8842055552816325567}
 --- !u!1 &8842055552816325697
 GameObject:
@@ -50350,5 +50350,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f318044d5ac2a41b7510ab675a4781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Life: 0.3
+  m_Life: 1.5
   m_DroneEnemy: {fileID: 8842055552816325567}
