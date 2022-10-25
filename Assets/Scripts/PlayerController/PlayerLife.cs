@@ -16,6 +16,7 @@ public class PlayerLife : MonoBehaviour
     public Vector3 Checkpoint;
     public Quaternion StartRotation;
     public bool m_IsDead;
+    public bool m_PlayedOnce;
     public bool m_IsCreated;
     public Slider sliderlifebar;
     [Header("GameOver")]
@@ -37,6 +38,7 @@ public class PlayerLife : MonoBehaviour
         Overlay.color = new Color(Overlay.color.r, Overlay.color.g, Overlay.color.b, 0f);
         transform.rotation = StartRotation;
         m_IsDead = false;
+        m_PlayedOnce = false;
     }
 
     // Update is called once per frame
@@ -88,9 +90,15 @@ public class PlayerLife : MonoBehaviour
             }
         }
 
-        if(m_IsDead)
+       
+    }
+
+    private void LateUpdate()
+    {
+        if (m_IsDead && !m_PlayedOnce)
         {
-          AudioController.instance.PlayOneShot(AudioController.instance.playerDeath);
+            AudioController.instance.PlayOneShot(AudioController.instance.playerDeath);
+            m_PlayedOnce = true;
         }
     }
 
@@ -147,6 +155,7 @@ public class PlayerLife : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         m_IsCreated = true;
         m_IsDead = false;
+        m_PlayedOnce = false;
         //Destroy(gameObject, 1f);
 
     }
