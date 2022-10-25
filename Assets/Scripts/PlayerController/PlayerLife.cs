@@ -46,8 +46,8 @@ public class PlayerLife : MonoBehaviour
     {
         if (Input.GetKeyDown(damagePlayer))
         {
-            DamagePlayer();
-            //currentLife = 0;
+            //DamagePlayer();
+            currentLife = 0;
         }
 
         if(currentLife <= 0)
@@ -144,7 +144,6 @@ public class PlayerLife : MonoBehaviour
         transform.rotation = CheckpointRotation;
         //transform.rotation = Quaternion.Euler(0.0f, m_Yaw, 0.0f);
         //m_PitchCotroller.localRotation = Quaternion.Euler(m_Pitch, 0.0f, 0.0f);
-
         currentLife = maxLife;
         PlayerShield.instance.currentShield = PlayerShield.instance.maxShield;
         PlayerAmmo.instance.currentAmmo = PlayerAmmo.instance.maxAmmo;
