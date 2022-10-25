@@ -15457,7 +15457,7 @@ MonoBehaviour:
   TimeBetweenShots: 5
   DronIsHit: 0
   m_CurrentRotationOnAlertedState: 0
-  m_RotationSpeed: 10
+  m_RotationSpeed: 50
   m_LifeBarImage: {fileID: 8842055553681589794}
   m_LifeAnchorPosition: {fileID: 8842055554406059908}
   m_LifeBarRectTransform: {fileID: 8842055553413085865}
