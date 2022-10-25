@@ -13,8 +13,8 @@ public class PlayerLife : MonoBehaviour
     [NonSerialized]public float currentLife;
     
     public KeyCode damagePlayer;
-    public Vector3 Checkpoint;
-    public Quaternion StartRotation;
+    public Vector3 CheckpointPosition;
+    public Quaternion CheckpointRotation;
     public bool m_IsDead;
     public bool m_PlayedOnce;
     public bool m_IsCreated;
@@ -36,7 +36,7 @@ public class PlayerLife : MonoBehaviour
         sliderlifebar.value = currentLife / maxLife;
         m_IsCreated = false;
         Overlay.color = new Color(Overlay.color.r, Overlay.color.g, Overlay.color.b, 0f);
-        transform.rotation = StartRotation;
+        transform.rotation = CheckpointRotation;
         m_IsDead = false;
         m_PlayedOnce = false;
     }
@@ -140,8 +140,11 @@ public class PlayerLife : MonoBehaviour
         //Destroy(gameObject, 1f);
         yield return new WaitForSeconds(1f);
         
-        transform.position = Checkpoint;
-        transform.rotation = StartRotation;
+        transform.position = CheckpointPosition;
+        transform.rotation = CheckpointRotation;
+        //transform.rotation = Quaternion.Euler(0.0f, m_Yaw, 0.0f);
+        //m_PitchCotroller.localRotation = Quaternion.Euler(m_Pitch, 0.0f, 0.0f);
+
         currentLife = maxLife;
         PlayerShield.instance.currentShield = PlayerShield.instance.maxShield;
         PlayerAmmo.instance.currentAmmo = PlayerAmmo.instance.maxAmmo;

@@ -8,7 +8,8 @@ public class CheckPoint : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerLife.instance.Checkpoint = transform.position;
+            PlayerLife.instance.CheckpointPosition = transform.position;
+            //PlayerLife.instance.CheckpointRotation = Quaternion.Euler(0f, other.GetComponent, 0f);
             AudioController.instance.PlayOneShot(AudioController.instance.uiWarning);
             Destroy(gameObject);
         }
