@@ -74,7 +74,8 @@ public class DronEnemy : MonoBehaviour
         lifebar.SetActive(false);
         instacne = this;
         SetIdleDronAnimation();
-        
+        DroneAudio.instance.Play(DroneAudio.instance.droneIdle);
+
     }
     private void Update()
     {
@@ -212,6 +213,7 @@ public class DronEnemy : MonoBehaviour
     {
         m_State = TSTATE.ATTACK;
         m_NavMasAgent.destination = transform.position;
+        DroneAudio.instance.PlayOneShot(DroneAudio.instance.droneAlert);
     }
 
     void UpdateAttackState()
@@ -327,6 +329,7 @@ public class DronEnemy : MonoBehaviour
             PlayerLife.instance.DamagePlayer();
         }
         SetShootAnimation();
+        DroneAudio.instance.PlayOneShot(DroneAudio.instance.droneShooting);
         m_Shooting = true;
         StartCoroutine(EndShoot());
     }
@@ -373,6 +376,8 @@ public class DronEnemy : MonoBehaviour
 
     public IEnumerator Die()
     {
+        DroneAudio.instance.Stop(DroneAudio.instance.droneIdle);
+        DroneAudio.instance.PlayOneShot(DroneAudio.instance.droneDestroyed);
         yield return new WaitForSeconds(m_DieClip.length);
         lightdron.color = Color.red;
         RandomOption = Random.Range(0, RandomItem.Length);
