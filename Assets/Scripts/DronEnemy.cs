@@ -234,8 +234,11 @@ public class DronEnemy : MonoBehaviour
             SetChaseState();
         }
 
-
-        
+        if(PlayerLife.instance.currentLife <= 0)
+        {
+            SetPatrolState();
+        }
+                
     }
     void SetDieState()
     {
@@ -275,7 +278,7 @@ public class DronEnemy : MonoBehaviour
     bool HearsPlayer()
     {
         Vector3 l_PlayerPosition = FPSPlayerController.instance.transform.position;
-        return Vector3.Distance(l_PlayerPosition, transform.position) <= PlayerinRange; //&& FPSPlayerController.instance.m_PlayerIsMoving;
+        return Vector3.Distance(l_PlayerPosition, transform.position) <= PlayerinRange && PlayerLife.instance.currentLife > 0; //&& FPSPlayerController.instance.m_PlayerIsMoving;
     }       
     
     bool SeePlayer()
