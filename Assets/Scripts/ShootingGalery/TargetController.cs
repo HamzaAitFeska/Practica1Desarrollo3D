@@ -26,15 +26,14 @@ public class TargetController : MonoBehaviour
         if (FPSPlayerController.instance.m_TargetHit)
         {
             TargetHasBeenHit();
-            
         }
     }
     void TargetHasBeenHit()
     {
         HitColliderTarget.instance.Hit();
-        TargetManager.instance.targetInProgress = false;
         m_TargetIsUp = false;
         HitColliderTarget.instance.HideTarget();
+        TargetManager.instance.targetInProgress = false;
     }
     void ActivateThisTarget()
     {

@@ -18,12 +18,16 @@ public class TargetManager : MonoBehaviour
 
     void Update()
     {
-        if (ShootingGalery.instance.RoundHasStarted && !targetInProgress)
+        if (ShootingGalery.instance.RoundHasStarted && !targetInProgress && targetId < 11)
         {
             ResetTarget();
             ActivateTarget();
         }
-        Debug.Log(FPSPlayerController.instance.m_TargetHit);
+        else if (targetId >= 10)
+        {
+            targetId = 0;
+        }
+        Debug.Log(targetId);
     }
     void ResetTarget()
     {
@@ -64,10 +68,6 @@ public class TargetManager : MonoBehaviour
                 break;
             case 10:
                 target10.SetActive(true);
-                break;
-            case 11:
-                targetId = 0;
-                targetInProgress = false;
                 break;
         }
     }
