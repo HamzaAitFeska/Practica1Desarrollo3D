@@ -71,6 +71,7 @@ public class FPSPlayerController : MonoBehaviour
         m_IsRunning = false;
         instance = this;
         poolDecals = new TcObjectPool1(DecalsElements, PrefabBulletHole);
+        AudioController.instance.Stop(AudioController.instance.TopGmusic);
     }
 
 #if UNITY_EDITOR

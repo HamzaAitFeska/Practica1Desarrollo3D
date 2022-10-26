@@ -7,7 +7,7 @@ using UnityEngine.Audio;
 public class AudioController : MonoBehaviour
 {
     public AudioMixer ambient, effects;
-    public AudioSource weaponShoot, weaponReload, weaponEmpty, itemHealth, itemAmmo, itemShield, doorElevatorOpening, doorAutomaticOpening, doorAutomaticClosing, doorLockedOpening, trapActive, footstepDirt1, footstepDirt2, footstepDirt3, footstepDirt4, footstepMetal1, footstepMetal2, footstepMetal3, footstepMetal4, uiWarning, uiClick, KeyPickup, playerHurt, playerDeath;
+    public AudioSource weaponShoot, weaponReload, weaponEmpty, itemHealth, itemAmmo, itemShield, doorElevatorOpening, doorAutomaticOpening, doorAutomaticClosing, doorLockedOpening, trapActive, footstepDirt1, footstepDirt2, footstepDirt3, footstepDirt4, footstepMetal1, footstepMetal2, footstepMetal3, footstepMetal4, uiWarning, uiClick, KeyPickup, playerHurt, playerDeath,TopGmusic;
 
     public static AudioController instance;
 

@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
     {
         GameController.DestroySingleton();
         Cursor.lockState = CursorLockMode.None;
+        AudioController.instance.Play(AudioController.instance.TopGmusic);
     }
     public void OnstartClicked()
     {
