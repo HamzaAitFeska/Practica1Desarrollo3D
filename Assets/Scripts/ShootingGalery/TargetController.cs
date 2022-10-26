@@ -25,22 +25,24 @@ public class TargetController : MonoBehaviour
         }
         if (FPSPlayerController.instance.m_TargetHit)
         {
-            SetTargetDownAnimation();
+            //SetTargetDownAnimation();
             TargetHasBeenHit();
-            
         }
     }
     private IEnumerator DeactivateTarget()
     {
         yield return new WaitForSeconds(1f);
+        TargetManager.instance.targetInProgress = false;
         HitColliderTarget.instance.HideTarget();
+
     }
     void TargetHasBeenHit()
     {
-        HitColliderTarget.instance.Hit();
+        HitColliderTarget.instance.GivePoints();
         m_TargetIsUp = false;
-        DeactivateTarget();
+        //DeactivateTarget();
         TargetManager.instance.targetInProgress = false;
+        HitColliderTarget.instance.HideTarget();
     }
     void ActivateThisTarget()
     {

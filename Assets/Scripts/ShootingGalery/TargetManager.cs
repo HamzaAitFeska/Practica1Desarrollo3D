@@ -21,11 +21,7 @@ public class TargetManager : MonoBehaviour
         if (ShootingGalery.instance.RoundHasStarted && !targetInProgress && targetId < 11)
         {
             ResetTarget();
-            ActivateTarget();
-        }
-        else if (targetId >= 10)
-        {
-            targetId = 0;
+            SelectNextTarget();
         }
         Debug.Log(targetId);
     }
@@ -33,26 +29,15 @@ public class TargetManager : MonoBehaviour
     {
         FPSPlayerController.instance.m_TargetHit = false;
         targetInProgress = true;
-        targetId++;
     }
-    void PlayerHasLeftTheArea()
+    
+    void SelectNextTarget()
     {
-        targetId = 0;
-        targetInProgress = false;
-
-        target1.SetActive(false);
-        target2.SetActive(false);
-        target3.SetActive(false);
-        target4.SetActive(false);
-        target5.SetActive(false);
-        target6.SetActive(false);
-        target7.SetActive(false);
-        target8.SetActive(false);
-        target9.SetActive(false);
-        target10.SetActive(false);
-    }
-    void ActivateTarget()
-    {
+        if (targetId >= 10)
+        {
+            targetId = 1;
+        }
+        else targetId++;
         switch (targetId)
         {
             case 1:
@@ -86,5 +71,21 @@ public class TargetManager : MonoBehaviour
                 target10.SetActive(true);
                 break;
         }
+    }
+    void PlayerHasLeftTheArea()
+    {
+        targetId = 0;
+        targetInProgress = false;
+
+        target1.SetActive(false);
+        target2.SetActive(false);
+        target3.SetActive(false);
+        target4.SetActive(false);
+        target5.SetActive(false);
+        target6.SetActive(false);
+        target7.SetActive(false);
+        target8.SetActive(false);
+        target9.SetActive(false);
+        target10.SetActive(false);
     }
 }

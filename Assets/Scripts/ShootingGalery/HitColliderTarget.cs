@@ -12,7 +12,7 @@ public class HitColliderTarget : MonoBehaviour
         instance = this;
         totalPoints = 0;
     }
-    public void Hit()
+    public void GivePoints()
     {
         totalPoints += m_Points;
         //Debug.Log(totalPoints);
