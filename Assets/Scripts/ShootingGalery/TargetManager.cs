@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TargetManager : MonoBehaviour
 {
-    public GameObject target1, target2, target3, target4, target5;
+    public GameObject target1, target2, target3, target4, target5, target6, target7, target8, target9, target10;
     public bool targetInProgress;
     int targetId;
 
@@ -51,6 +51,21 @@ public class TargetManager : MonoBehaviour
                 target5.SetActive(true);
                 break;
             case 6:
+                target6.SetActive(true);
+                break;
+            case 7:
+                target7.SetActive(true);
+                break;
+            case 8:
+                target8.SetActive(true);
+                break;
+            case 9:
+                target9.SetActive(true);
+                break;
+            case 10:
+                target10.SetActive(true);
+                break;
+            case 11:
                 targetId = 0;
                 targetInProgress = false;
                 break;
