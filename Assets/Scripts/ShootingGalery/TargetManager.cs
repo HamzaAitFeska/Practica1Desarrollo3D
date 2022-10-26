@@ -20,10 +20,9 @@ public class TargetManager : MonoBehaviour
     {
         if (ShootingGalery.instance.RoundHasStarted && !targetInProgress && targetId < 11)
         {
-            //ResetTarget();
             SelectNextTarget();
         }
-        //Debug.Log(targetId);
+        
     }
     void ResetTarget()
     {

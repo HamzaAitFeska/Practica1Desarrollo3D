@@ -7,7 +7,6 @@ public class DoorLocked : MonoBehaviour
     public GameObject m_LockedDoor;
     public Animation m_Animation;
     public AnimationClip m_DoorOpeningClip;
-    //public AnimationClip m_DoorClosingClip;
     public bool playerHasKey = false;
     bool doorOpened = false;
     public static DoorLocked instance;

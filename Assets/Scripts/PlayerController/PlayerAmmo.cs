@@ -13,6 +13,7 @@ public class PlayerAmmo : MonoBehaviour
     [NonSerialized]public int currentAmmo;
     public TMP_Text textAmmo;
     public TMP_Text textmagSize;
+    public bool CantReload;
     public static PlayerAmmo instance;
     
     void Start()
@@ -22,7 +23,7 @@ public class PlayerAmmo : MonoBehaviour
         textAmmo.text = currentAmmo.ToString();
         textmagSize.text = currentmagSize.ToString();
         instance = this;
-        
+        CantReload = false;
     }
 
     // Update is called once per frame
@@ -30,13 +31,18 @@ public class PlayerAmmo : MonoBehaviour
     {
         textAmmo.text = currentAmmo.ToString();
         textmagSize.text = currentmagSize.ToString();
-        if (Input.GetKeyDown(KeyCode.R) && currentAmmo != maxAmmo)
+        if (Input.GetKeyDown(KeyCode.R) && currentAmmo != maxAmmo && !CantReload)
         {
             FPSPlayerController.instance.m_IsReloading = true;
             SetReloadAnimation();
             StartCoroutine(ReloadSquence());
         }
 
+        if(currentmagSize <= 0)
+        {
+            currentmagSize = 0;
+            CantReload = true;
+        }
     }
 
     public void LoseAmmo()
@@ -62,7 +68,7 @@ public class PlayerAmmo : MonoBehaviour
 
     private IEnumerator ReloadSquence()
     {
-        yield return new WaitForSeconds(2.333f);
+        yield return new WaitForSeconds((FPSPlayerController.instance.m_ReloadClip.length));
         ResetAmmo();
     }
 }

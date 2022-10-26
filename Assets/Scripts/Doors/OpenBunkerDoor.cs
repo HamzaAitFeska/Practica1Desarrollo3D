@@ -16,6 +16,7 @@ public class OpenBunkerDoor : MonoBehaviour
         {
             SetDoorOpeningAnimation();
             doorIsOpen = true;
+            AudioController.instance.PlayOneShot(AudioController.instance.doorLockedOpening);
         }
     }
 

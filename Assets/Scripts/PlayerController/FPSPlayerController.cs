@@ -142,11 +142,6 @@ public class FPSPlayerController : MonoBehaviour
 
         
         m_Camera.fieldOfView = Mathf.Lerp(m_Camera.fieldOfView, l_FOV, FOV_Speed);
-        //m_CameraWeapon.fieldOfView = Mathf.Lerp(m_CameraWeapon.fieldOfView, l_FOV, FOV_Speed);
-
-
-        //m_Camera.fieldOfView = l_FOV;
-
         l_Direction.Normalize();
 
         Vector3 l_Movement = l_Direction * l_Speed * Time.deltaTime;
@@ -169,7 +164,7 @@ public class FPSPlayerController : MonoBehaviour
         m_PitchCotroller.localRotation = Quaternion.Euler(m_Pitch, 0.0f, 0.0f);
 
         
-        //m_characterController.Move(l_Movement);
+        
 
         m_VerticalSpeed = m_VerticalSpeed + Physics.gravity.y * Time.deltaTime;
         l_Movement.y = m_VerticalSpeed * Time.deltaTime;
@@ -237,21 +232,18 @@ public class FPSPlayerController : MonoBehaviour
         }
         if (l_RaycastHit.collider.CompareTag("TargetCollider"))
         {
-            //l_RaycastHit.collider.GetComponent<HitColliderTarget>().Hit();
             m_TargetHit = true;
-            m_TotalPoints += 25;
+            m_TotalPoints += 200;
             if(ShootingGalery.instance.time <= 0)
             {
-                m_TotalPoints -= 25;
+                m_TotalPoints -= 200;
             }
 
         }
     }
 
     void CreatShootHitParticle(Collider collider,Vector3 position,Vector3 Normal)
-    {
-
-        //Debug.DrawRay(position, Normal * 5.0f, Color.red, 2.0f);
+    {            
         GameObject l_Decal = poolDecals.GetNextElemnt();
         l_Decal.SetActive(true);
         l_Decal.transform.position = position;
@@ -265,8 +257,10 @@ public class FPSPlayerController : MonoBehaviour
             l_Decal.SetActive(false);
         }
 
-        //GameObject.Instantiate(poolDecals.GetNextElemnt(), position, Quaternion.LookRotation(Normal));
-
+        if (collider.CompareTag("TargetCollider"))
+        {
+            l_Decal.SetActive(false);
+        }
 
     }
 

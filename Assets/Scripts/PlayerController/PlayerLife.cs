@@ -44,12 +44,6 @@ public class PlayerLife : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(damagePlayer))
-        {
-            //DamagePlayer();
-            currentLife = 0;
-        }
-
         if(currentLife <= 0)
         {
             currentLife = 0;
@@ -137,13 +131,11 @@ public class PlayerLife : MonoBehaviour
 
     private IEnumerator Respawn()
     {
-        //Destroy(gameObject, 1f);
+        
         yield return new WaitForSeconds(1f);
         
         transform.position = CheckpointPosition;
-        transform.rotation = CheckpointRotation;
-        //transform.rotation = Quaternion.Euler(0.0f, m_Yaw, 0.0f);
-        //m_PitchCotroller.localRotation = Quaternion.Euler(m_Pitch, 0.0f, 0.0f);
+        FPSPlayerController.instance.m_PitchCotroller.rotation = CheckpointRotation;
         currentLife = maxLife;
         PlayerShield.instance.currentShield = PlayerShield.instance.maxShield;
         PlayerAmmo.instance.currentAmmo = PlayerAmmo.instance.maxAmmo;
@@ -158,7 +150,7 @@ public class PlayerLife : MonoBehaviour
         m_IsCreated = true;
         m_IsDead = false;
         m_PlayedOnce = false;
-        //Destroy(gameObject, 1f);
+       
 
     }
 }

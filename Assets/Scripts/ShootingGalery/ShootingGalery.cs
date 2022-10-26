@@ -61,8 +61,7 @@ public class ShootingGalery : MonoBehaviour
         {
             time = 0;
             RoundHasStarted = false;
-            //animation1.Stop();
-            //animation2.Stop();
+           
 
         }
 

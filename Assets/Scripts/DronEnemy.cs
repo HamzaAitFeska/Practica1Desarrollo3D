@@ -104,12 +104,7 @@ public class DronEnemy : MonoBehaviour
                 break;
 
         }
-        Vector3 l_PlayerPosition = FPSPlayerController.instance.transform.position;
-        Vector3 l_EyesPosition = transform.position + Vector3.up * m_EyesPosition;
-        Vector3 l_PlayerEyesPosition = l_PlayerPosition + Vector3.up * m_PlayerEyesPosition;
-        Debug.DrawLine(l_EyesPosition, l_PlayerEyesPosition, SeePlayer() ? Color.red : Color.blue);
-        Debug.Log(m_State);
-        
+                
     }
     private void LateUpdate()
     {
@@ -140,7 +135,7 @@ public class DronEnemy : MonoBehaviour
             MoveNextPatrolPoint();
         }
 
-        if (HearsPlayer() )//&& !IsAlerted)
+        if (HearsPlayer() )
         {
             SetAlertState();
         }
@@ -150,7 +145,7 @@ public class DronEnemy : MonoBehaviour
     bool PatrolTargetPosArrived()
     {
         return !m_NavMasAgent.hasPath && !m_NavMasAgent.pathPending && m_NavMasAgent.pathStatus == NavMeshPathStatus.PathComplete;
-        //return false;
+        
     }
 
     void MoveNextPatrolPoint()
@@ -260,7 +255,6 @@ public class DronEnemy : MonoBehaviour
 
     void UpdateChaseState()
     {
-        Vector3 l_PlayerPosition = FPSPlayerController.instance.transform.position;
         MoveTowardsToPlayer();
         if(PlayerInRangeToShoot())
         {
@@ -323,7 +317,6 @@ public class DronEnemy : MonoBehaviour
         Vector3 l_EyesPosition = transform.position + Vector3.up * m_EyesPosition;
         Vector3 l_PlayerEyesPosition = l_PlayerPosition + Vector3.up * m_PlayerEyesPosition;
         Vector3 l_Direction = l_PlayerPosition - l_EyesPosition;
-        //Instantiate(BulletPrefab, Vector3.MoveTowards(transform.position, l_PlayerPosition, 1.0f), Quaternion.identity);
         Ray l_Ray = new Ray(l_EyesPosition, l_Direction);
         RaycastHit l_RaycastHit;
         if (Physics.Raycast(l_Ray, out l_RaycastHit, m_MaxShootDistance, m_ShootingLayerMask))
@@ -346,7 +339,7 @@ public class DronEnemy : MonoBehaviour
     void CreatShootHitParticle(Collider collider, Vector3 position, Vector3 Normal)
     {
         Debug.DrawRay(position, Normal * 5.0f, Color.red, 2.0f);
-        //GameObject.Instantiate(PrefabBulletHole, position, Quaternion.LookRotation(Normal));
+        
 
     }
     bool RotationComplete()
@@ -354,12 +347,7 @@ public class DronEnemy : MonoBehaviour
         return m_CurrentRotationOnAlertedState >= 360;
     }
 
-    /*
-    bool DronIsBeingHit()
-    {
-        return DronIsHit;
-    }
-    */
+    
     public IEnumerator EndShoot()
     {
         yield return new WaitForSeconds(m_ShotClip.length);
@@ -386,7 +374,6 @@ public class DronEnemy : MonoBehaviour
         RandomOption = Random.Range(0, RandomItem.Length);
         Instantiate(RandomItem[RandomOption], ItemPos.transform.position, RandomItem[RandomOption].transform.rotation);
         Dron.SetActive(false);
-        //lifebar.SetActive(false);
         lightdron.intensity = 0;
         Seelight.intensity = 0;
 

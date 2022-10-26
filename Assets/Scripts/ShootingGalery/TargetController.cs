@@ -36,7 +36,6 @@ public class TargetController : MonoBehaviour
         HitColliderTarget.instance.GivePoints();
         m_TargetIsUp = false;
         TargetManager.instance.targetInProgress = false;
-        //HitColliderTarget.instance.HideTarget();
         m_Animation.Stop();
         targetToHide.SetActive(false);
     }
@@ -56,7 +55,6 @@ public class TargetController : MonoBehaviour
     
     void SetTargetUpAnimation()
     {
-        //m_Animation.CrossFade(m_TargetUpClip.name);
         m_Animation.CrossFadeQueued(m_TargetUpClip.name);
     }
 
@@ -66,7 +64,6 @@ public class TargetController : MonoBehaviour
     }
     void SetTargetDownAnimation()
     {
-        //m_Animation.CrossFade(m_TargetUpClip.name);
         m_Animation.CrossFadeQueued(m_TargetDownClip.name);
     }
 }

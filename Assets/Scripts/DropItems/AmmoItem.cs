@@ -23,8 +23,6 @@ public class AmmoItem : MonoBehaviour
                 {
                     PlayerAmmo.instance.currentmagSize += Ammodextra;
                 }
-                //PlayerAmmo.instance.currentmagSize += Ammodextra;
-                //Destroy(collision.gameObject);
                 AudioController.instance.PlayOneShot(AudioController.instance.itemAmmo);
                 Destroy(gameObject);
             }

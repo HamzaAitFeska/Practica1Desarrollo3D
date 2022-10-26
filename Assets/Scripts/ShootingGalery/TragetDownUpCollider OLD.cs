@@ -13,7 +13,7 @@ public class TragetDownUpCollider : MonoBehaviour
     }
     private void Update()
     {
-        //Debug.Log(IsColliding);
+        
     }
     
     private void OnTriggerEnter(Collider other)

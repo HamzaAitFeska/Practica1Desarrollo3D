@@ -27,7 +27,7 @@ public class PlayerShield : MonoBehaviour
             currentShield = 0;
         }
 
-        //percent = (currentShield / maxShield) * 100;
+        
         sliderShield.value = (float)(currentShield / maxShield);
         if(sliderShield.value <= 0)
         {
