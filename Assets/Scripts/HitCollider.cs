@@ -6,12 +6,11 @@ public class HitCollider : MonoBehaviour
     public DronEnemy m_DroneEnemy;
     public void Hit()
     {
-        
         if (!m_DroneEnemy.DronIsHit)
         {
            m_DroneEnemy.Hit(m_Life);
         }
-        
+       
     }
 }
    

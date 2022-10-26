@@ -90,7 +90,7 @@
     <Compile Include="Assets\Resources\JMO Assets\WarFX\Scripts\WFX_BulletHoleDecal.cs" />
     <Compile Include="Assets\Resources\JMO Assets\WarFX\Demo\Assets\CFX_Demo_RandomDir.cs" />
     <Compile Include="Assets\Scripts\HitCollider.cs" />
-    <Compile Include="Assets\LevelLoder.cs" />
+    <Compile Include="Assets\Scripts\LevelLoder.cs" />
     <Compile Include="Assets\Scripts\PlayerController\GameController.cs" />
     <Compile Include="Assets\Scripts\GameOver.cs" />
     <Compile Include="Assets\Scripts\PlayerController\PlayerLife.cs" />
