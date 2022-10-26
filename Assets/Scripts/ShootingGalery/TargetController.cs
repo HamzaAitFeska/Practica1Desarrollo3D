@@ -25,14 +25,21 @@ public class TargetController : MonoBehaviour
         }
         if (FPSPlayerController.instance.m_TargetHit)
         {
+            SetTargetDownAnimation();
             TargetHasBeenHit();
+            
         }
+    }
+    private IEnumerator DeactivateTarget()
+    {
+        yield return new WaitForSeconds(1f);
+        HitColliderTarget.instance.HideTarget();
     }
     void TargetHasBeenHit()
     {
         HitColliderTarget.instance.Hit();
         m_TargetIsUp = false;
-        HitColliderTarget.instance.HideTarget();
+        DeactivateTarget();
         TargetManager.instance.targetInProgress = false;
     }
     void ActivateThisTarget()
@@ -48,6 +55,7 @@ public class TargetController : MonoBehaviour
         
         m_TargetIsUp = true;
     }
+    
     void SetTargetUpAnimation()
     {
         //m_Animation.CrossFade(m_TargetUpClip.name);
@@ -57,5 +65,10 @@ public class TargetController : MonoBehaviour
     void SetTargetMovingAnimation()
     {
         m_Animation.CrossFadeQueued(m_TargetMovingClip.name);
+    }
+    void SetTargetDownAnimation()
+    {
+        //m_Animation.CrossFade(m_TargetUpClip.name);
+        m_Animation.CrossFadeQueued(m_TargetDownClip.name);
     }
 }

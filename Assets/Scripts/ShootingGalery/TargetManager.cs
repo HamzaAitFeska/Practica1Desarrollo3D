@@ -35,6 +35,22 @@ public class TargetManager : MonoBehaviour
         targetInProgress = true;
         targetId++;
     }
+    void PlayerHasLeftTheArea()
+    {
+        targetId = 0;
+        targetInProgress = false;
+
+        target1.SetActive(false);
+        target2.SetActive(false);
+        target3.SetActive(false);
+        target4.SetActive(false);
+        target5.SetActive(false);
+        target6.SetActive(false);
+        target7.SetActive(false);
+        target8.SetActive(false);
+        target9.SetActive(false);
+        target10.SetActive(false);
+    }
     void ActivateTarget()
     {
         switch (targetId)

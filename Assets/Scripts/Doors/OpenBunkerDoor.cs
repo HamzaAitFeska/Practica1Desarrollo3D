@@ -12,7 +12,7 @@ public class OpenBunkerDoor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && FPSPlayerController.instance.m_TotalPoints >= 500 && !doorIsOpen)
+        if (other.CompareTag("Player") && FPSPlayerController.instance.m_TotalPoints >= ShootingGalery.instance.ScoreObjective && !doorIsOpen)
         {
             SetDoorOpeningAnimation();
             doorIsOpen = true;

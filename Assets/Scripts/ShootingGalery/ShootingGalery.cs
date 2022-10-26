@@ -9,6 +9,7 @@ public class ShootingGalery : MonoBehaviour
     public GameObject StartGalery;
     public GameObject ScoreANDTime;
     public GameObject YouWon;
+    public int ScoreObjective;
     public GameObject Congratulations;
     public GameObject YouLose;
     public GameObject TryAgain;
@@ -18,6 +19,7 @@ public class ShootingGalery : MonoBehaviour
     public static ShootingGalery instance;
     public float time;
     public TMP_Text timetext;
+    bool playerIsInTrigger;
     bool HasApperead;
     bool HasLeave;
     public TMP_Text textScore;
@@ -27,24 +29,28 @@ public class ShootingGalery : MonoBehaviour
         instance = this;
         HasApperead = false;
         HasLeave = false;
+        playerIsInTrigger = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Return))
+        if (playerIsInTrigger)
         {
-            StartGalery.SetActive(false);
-            ScoreANDTime.SetActive(true);
-            //animation1.Play();
-            //animation2.Play();
-            RoundHasStarted = true;
-            HasApperead = true;
-            time = 45;
-            YouLose.SetActive(false);
-            TryAgain.SetActive(false);
-            HasLeave = false;
-            FPSPlayerController.instance.m_TotalPoints = 0;
+            if (Input.GetKey(KeyCode.Return))
+            {
+                StartGalery.SetActive(false);
+                ScoreANDTime.SetActive(true);
+                //animation1.Play();
+                //animation2.Play();
+                RoundHasStarted = true;
+                HasApperead = true;
+                time = 45;
+                YouLose.SetActive(false);
+                TryAgain.SetActive(false);
+                HasLeave = false;
+                FPSPlayerController.instance.m_TotalPoints = 0;
+            }
         }
         if (RoundHasStarted)
         {
@@ -63,26 +69,26 @@ public class ShootingGalery : MonoBehaviour
 
         }
 
-        if(!RoundHasStarted && FPSPlayerController.instance.m_TotalPoints >= 500 && !HasLeave)
+        if(!RoundHasStarted && FPSPlayerController.instance.m_TotalPoints >= ScoreObjective && !HasLeave)
         {
             YouWon.SetActive(true);
             Congratulations.SetActive(true);
         }
 
-        if (time <= 0 && FPSPlayerController.instance.m_TotalPoints < 500)
+        if (time <= 0 && FPSPlayerController.instance.m_TotalPoints < ScoreObjective)
         {
             YouLose.SetActive(true);
             TryAgain.SetActive(true);
         }
 
-        if (!RoundHasStarted && FPSPlayerController.instance.m_TotalPoints >= 500 && HasLeave)
+        if (!RoundHasStarted && FPSPlayerController.instance.m_TotalPoints >= ScoreObjective && HasLeave)
         {
             YouWon.SetActive(false);
             Congratulations.SetActive(false);
             ScoreANDTime.SetActive(false);
         }
 
-        if(FPSPlayerController.instance.m_TotalPoints >= 500)
+        if(FPSPlayerController.instance.m_TotalPoints >= ScoreObjective)
         {
             time = 0;
         }
@@ -95,8 +101,7 @@ public class ShootingGalery : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             StartGalery.SetActive(true);
-            
-            
+            playerIsInTrigger = true;
         }
     }
 
@@ -105,8 +110,6 @@ public class ShootingGalery : MonoBehaviour
         if (other.CompareTag("Player") && HasApperead)
         {
             StartGalery.SetActive(false);
-
-
         }
     }
 
@@ -115,7 +118,8 @@ public class ShootingGalery : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             HasLeave = true;
-
+            playerIsInTrigger = false;
+            StartGalery.SetActive(false);
         }
     }
 
