@@ -248,19 +248,15 @@ public class FPSPlayerController : MonoBehaviour
 
     void CreatShootHitParticle(Collider collider,Vector3 position,Vector3 Normal)
     {
+
+        //Debug.DrawRay(position, Normal * 5.0f, Color.red, 2.0f);
         GameObject l_Decal = poolDecals.GetNextElemnt();
         l_Decal.SetActive(true);
         l_Decal.transform.position = position;
         l_Decal.transform.rotation = Quaternion.LookRotation(Normal);
-        if (collider.CompareTag("DronCollider"))
-        {
-            l_Decal.SetActive(false);
-        }
-        if (collider.CompareTag("Doors"))
-        {
-            l_Decal.SetActive(false);
-        }
+        //GameObject.Instantiate(poolDecals.GetNextElemnt(), position, Quaternion.LookRotation(Normal));
         
+
     }
 
     void SetIdleWeaponAnimation()

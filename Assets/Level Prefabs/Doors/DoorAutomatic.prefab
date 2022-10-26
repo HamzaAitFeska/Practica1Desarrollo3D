@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1413325783632255031}
   m_Layer: 0
   m_Name: DoorAutomatic
-  m_TagString: Doors
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,7 +66,7 @@ GameObject:
   - component: {fileID: 6703818904954678639}
   m_Layer: 0
   m_Name: Quad (438)
-  m_TagString: Doors
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 6703818905591827001}
   m_Layer: 0
   m_Name: Quad (724)
-  m_TagString: Doors
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 6703818905613730710}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Doors
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 6703818906188963488}
   m_Layer: 0
   m_Name: Quad (723)
-  m_TagString: Doors
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -413,7 +413,7 @@ GameObject:
   - component: {fileID: 6703818906673857750}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Doors
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -446,7 +446,7 @@ GameObject:
   - component: {fileID: 6703818906680102975}
   m_Layer: 0
   m_Name: Quad (934)
-  m_TagString: Doors
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

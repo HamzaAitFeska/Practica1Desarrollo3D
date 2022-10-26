@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5678573899302185492}
   - component: {fileID: 5678573899302185706}
   - component: {fileID: 5678573899302185707}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5980,7 +5980,7 @@ GameObject:
   - component: {fileID: 5678573900331778122}
   - component: {fileID: 5678573900331778120}
   - component: {fileID: 5678573900331778121}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10866,7 +10866,7 @@ GameObject:
   - component: {fileID: 5678573900534002610}
   - component: {fileID: 5678573900534002608}
   - component: {fileID: 5678573900534002609}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DroneMuzzleFlash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35775,7 +35775,7 @@ GameObject:
   - component: {fileID: 5678573901338297767}
   - component: {fileID: 5678573901338297765}
   - component: {fileID: 5678573901338297766}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
