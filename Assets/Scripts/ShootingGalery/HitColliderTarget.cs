@@ -15,10 +15,15 @@ public class HitColliderTarget : MonoBehaviour
     public void Hit()
     {
         totalPoints += m_Points;
-        Debug.Log(totalPoints);
+        //Debug.Log(totalPoints);
+    }
+    public void HideTarget()
+    {
+        gameObject.SetActive(false);
     }
 
-    
+
+
 
 }
    

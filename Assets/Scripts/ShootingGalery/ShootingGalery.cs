@@ -12,9 +12,9 @@ public class ShootingGalery : MonoBehaviour
     public GameObject Congratulations;
     public GameObject YouLose;
     public GameObject TryAgain;
-    public Animation animation1;
-    public Animation animation2;
-    public bool StartAnims;
+    //public Animation animation1;
+    //public Animation animation2;
+    public bool RoundHasStarted;
     public static ShootingGalery instance;
     public float time;
     public TMP_Text timetext;
@@ -36,9 +36,9 @@ public class ShootingGalery : MonoBehaviour
         {
             StartGalery.SetActive(false);
             ScoreANDTime.SetActive(true);
-            animation1.Play();
-            animation2.Play();
-            StartAnims = true;
+            //animation1.Play();
+            //animation2.Play();
+            RoundHasStarted = true;
             HasApperead = true;
             time = 45;
             YouLose.SetActive(false);
@@ -46,7 +46,7 @@ public class ShootingGalery : MonoBehaviour
             HasLeave = false;
             FPSPlayerController.instance.m_TotalPoints = 0;
         }
-        if (StartAnims)
+        if (RoundHasStarted)
         {
             time -= 2f * Time.deltaTime;
         }
@@ -57,13 +57,13 @@ public class ShootingGalery : MonoBehaviour
         if(time <= 0)
         {
             time = 0;
-            StartAnims = false;
-            animation1.Stop();
-            animation2.Stop();
+            RoundHasStarted = false;
+            //animation1.Stop();
+            //animation2.Stop();
 
         }
 
-        if(!StartAnims && FPSPlayerController.instance.m_TotalPoints >= 500 && !HasLeave)
+        if(!RoundHasStarted && FPSPlayerController.instance.m_TotalPoints >= 500 && !HasLeave)
         {
             YouWon.SetActive(true);
             Congratulations.SetActive(true);
@@ -75,7 +75,7 @@ public class ShootingGalery : MonoBehaviour
             TryAgain.SetActive(true);
         }
 
-        if (!StartAnims && FPSPlayerController.instance.m_TotalPoints >= 500 && HasLeave)
+        if (!RoundHasStarted && FPSPlayerController.instance.m_TotalPoints >= 500 && HasLeave)
         {
             YouWon.SetActive(false);
             Congratulations.SetActive(false);

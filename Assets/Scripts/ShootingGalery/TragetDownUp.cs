@@ -5,26 +5,27 @@ using UnityEngine;
 public class TragetDownUp : MonoBehaviour
 {
     // Start is called before the first frame update
-    public bool m_IsUp;
+    public bool m_TargetIsUp;
     public Animation m_Animation;
-    public AnimationClip m_TargetHitClip;
+    public AnimationClip m_TargetDownClip;
     public AnimationClip m_TargetUpClip;
     public static TragetDownUp instance;
     
     void Start()
     {
+        m_TargetIsUp = false;
         instance = this;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!m_IsUp && ShootingGalery.instance.StartAnims)
+        if (!m_TargetIsUp && ShootingGalery.instance.RoundHasStarted)
         {
             StartCoroutine(GoingUp());
         }
 
-        if (m_IsUp && ShootingGalery.instance.StartAnims)
+        if (m_TargetIsUp && ShootingGalery.instance.RoundHasStarted)
         {
             StartCoroutine(GoingDown());
         }
@@ -36,25 +37,25 @@ public class TragetDownUp : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         SetTargetUpAnimation();
-        m_IsUp = true;
+        m_TargetIsUp = true;
     }
 
     private IEnumerator GoingDown()
     {
         yield return new WaitForSeconds(2f);
-        SetTargetHitAnimation();
-        m_IsUp = false;
+        SetTargetDownAnimation();
+        m_TargetIsUp = false;
     }
 
     void SetTargetUpAnimation()
     {
-        m_Animation.CrossFade(m_TargetUpClip.name, 20f);
-        m_Animation.CrossFadeQueued(m_TargetHitClip.name, 20f);
+        m_Animation.CrossFade(m_TargetUpClip.name);
+        m_Animation.CrossFadeQueued(m_TargetDownClip.name);
     }
 
-    void SetTargetHitAnimation()
+    void SetTargetDownAnimation()
     {
-        m_Animation.CrossFade(m_TargetHitClip.name, 20f);
+        m_Animation.CrossFade(m_TargetDownClip.name, 20f);
         m_Animation.CrossFadeQueued(m_TargetUpClip.name, 20f);
     }
 
