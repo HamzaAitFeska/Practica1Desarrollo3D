@@ -13,8 +13,6 @@ public class ShootingGalery : MonoBehaviour
     public GameObject Congratulations;
     public GameObject YouLose;
     public GameObject TryAgain;
-    //public Animation animation1;
-    //public Animation animation2;
     public bool RoundHasStarted;
     public static ShootingGalery instance;
     public float time;
@@ -41,8 +39,7 @@ public class ShootingGalery : MonoBehaviour
             {
                 StartGalery.SetActive(false);
                 ScoreANDTime.SetActive(true);
-                //animation1.Play();
-                //animation2.Play();
+                YouWon.SetActive(false);
                 RoundHasStarted = true;
                 HasApperead = true;
                 time = 45;
@@ -73,12 +70,14 @@ public class ShootingGalery : MonoBehaviour
         {
             YouWon.SetActive(true);
             Congratulations.SetActive(true);
+            TargetManager.instance.PlayerHasLeftTheArea();
         }
 
         if (time <= 0 && FPSPlayerController.instance.m_TotalPoints < ScoreObjective)
         {
             YouLose.SetActive(true);
             TryAgain.SetActive(true);
+            TargetManager.instance.PlayerHasLeftTheArea();
         }
 
         if (!RoundHasStarted && FPSPlayerController.instance.m_TotalPoints >= ScoreObjective && HasLeave)
@@ -92,6 +91,7 @@ public class ShootingGalery : MonoBehaviour
         {
             time = 0;
         }
+
 
         textScore.text = FPSPlayerController.instance.m_TotalPoints.ToString();
     }

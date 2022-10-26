@@ -20,10 +20,10 @@ public class TargetManager : MonoBehaviour
     {
         if (ShootingGalery.instance.RoundHasStarted && !targetInProgress && targetId < 11)
         {
-            ResetTarget();
+            //ResetTarget();
             SelectNextTarget();
         }
-        Debug.Log(targetId);
+        //Debug.Log(targetId);
     }
     void ResetTarget()
     {
@@ -33,6 +33,8 @@ public class TargetManager : MonoBehaviour
     
     void SelectNextTarget()
     {
+        FPSPlayerController.instance.m_TargetHit = false;
+        targetInProgress = true;
         if (targetId >= 10)
         {
             targetId = 1;
@@ -72,7 +74,7 @@ public class TargetManager : MonoBehaviour
                 break;
         }
     }
-    void PlayerHasLeftTheArea()
+    public void PlayerHasLeftTheArea()
     {
         targetId = 0;
         targetInProgress = false;

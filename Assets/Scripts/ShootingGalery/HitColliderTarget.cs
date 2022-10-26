@@ -17,10 +17,11 @@ public class HitColliderTarget : MonoBehaviour
         totalPoints += m_Points;
         //Debug.Log(totalPoints);
     }
-    public void HideTarget()
+    /*public void HideTarget()
     {
+        Debug.Log("hide");
         gameObject.SetActive(false);
-    }
+    }*/
 
 
 

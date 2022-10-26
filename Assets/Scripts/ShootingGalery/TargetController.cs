@@ -11,6 +11,7 @@ public class TargetController : MonoBehaviour
     public AnimationClip m_TargetUpClip;
     public AnimationClip m_TargetMovingClip;
     public static TargetController instance;
+    public GameObject targetToHide;
 
     void Start()
     {
@@ -23,26 +24,21 @@ public class TargetController : MonoBehaviour
         {
             ActivateThisTarget();
         }
-        if (FPSPlayerController.instance.m_TargetHit)
+        else if (FPSPlayerController.instance.m_TargetHit)
         {
-            //SetTargetDownAnimation();
+            SetTargetDownAnimation();
             TargetHasBeenHit();
         }
     }
-    private IEnumerator DeactivateTarget()
-    {
-        yield return new WaitForSeconds(1f);
-        TargetManager.instance.targetInProgress = false;
-        HitColliderTarget.instance.HideTarget();
-
-    }
     void TargetHasBeenHit()
     {
+        FPSPlayerController.instance.m_TargetHit = false;
         HitColliderTarget.instance.GivePoints();
         m_TargetIsUp = false;
-        //DeactivateTarget();
         TargetManager.instance.targetInProgress = false;
-        HitColliderTarget.instance.HideTarget();
+        //HitColliderTarget.instance.HideTarget();
+        m_Animation.Stop();
+        targetToHide.SetActive(false);
     }
     void ActivateThisTarget()
     {
