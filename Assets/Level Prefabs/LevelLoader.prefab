@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5093331718226146712}
   - component: {fileID: 5093331718226146715}
   - component: {fileID: 5093331718226146714}
-  - component: {fileID: 687008392650840835}
+  - component: {fileID: 5093331718226146717}
   m_Layer: 5
   m_Name: Crossfade
   m_TagString: Untagged
@@ -101,25 +101,23 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!95 &687008392650840835
-Animator:
-  serializedVersion: 3
+--- !u!111 &5093331718226146717
+Animation:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5093331718226146716}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 489577e42fbc4f345be92f71e31e5407, type: 2}
+  - {fileID: 7400000, guid: 13b5d44994c128348bc15454bdf2725a, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &5093331718518418212
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5093331718522037976
 Transform:
   m_ObjectHideFlags: 0
@@ -252,4 +250,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c656c6c71c0964689b0e9aa460009b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transition: {fileID: 687008392650840835}
+  m_animation: {fileID: 5093331718226146717}
+  start: {fileID: 7400000, guid: 13b5d44994c128348bc15454bdf2725a, type: 2}
+  end: {fileID: 7400000, guid: 489577e42fbc4f345be92f71e31e5407, type: 2}

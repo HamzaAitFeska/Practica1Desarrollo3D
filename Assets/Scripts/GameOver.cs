@@ -20,6 +20,6 @@ public class GameOver : MonoBehaviour
 
     public void GameOverr()
     {
-        LevelLoder.instance.LoadNextlevel(0);
+        SceneManager.LoadScene(0);
     }
 }

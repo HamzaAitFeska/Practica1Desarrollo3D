@@ -41,6 +41,6 @@ public class GameController : MonoBehaviour
     }
     public void NextLevel()
     {
-        LevelLoder.instance.LoadNextlevel(0);
+        SceneManager.LoadScene(2);
     }
 }
