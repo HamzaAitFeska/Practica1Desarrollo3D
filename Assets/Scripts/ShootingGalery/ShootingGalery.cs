@@ -40,6 +40,7 @@ public class ShootingGalery : MonoBehaviour
                 StartGalery.SetActive(false);
                 ScoreANDTime.SetActive(true);
                 YouWon.SetActive(false);
+                Congratulations.SetActive(false);
                 RoundHasStarted = true;
                 HasApperead = true;
                 time = 45;

@@ -158,8 +158,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.6209, y: -8.5257}
-  m_SizeDelta: {x: 535.5173, y: 167.4375}
+  m_AnchoredPosition: {x: 9.6209, y: -46.982113}
+  m_SizeDelta: {x: 535.5173, y: 244.3503}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &306165
 MonoBehaviour:
@@ -4629,7 +4629,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.6209, y: -10}
+  m_AnchoredPosition: {x: 9.6209, y: 22}
   m_SizeDelta: {x: 535.5173, y: 133.9616}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &204670370
@@ -14538,7 +14538,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.473022, y: -4}
+  m_AnchoredPosition: {x: 8.473022, y: 45}
   m_SizeDelta: {x: 246.9045, y: 56.981}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &674153476
@@ -19284,7 +19284,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "                CONGRATULATIONS\n\n     YOU HAVE UNLOCKED THE DOOR\n"
+  m_text: "                CONGRATULATIONS\n\n     YOU HAVE UNLOCKED THE DOOR\n\n        
+    PRESS ENTER TO TRY AGAIN\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c6d366d359821af4f9cf877bd179a679, type: 2}
   m_sharedMaterial: {fileID: 7199200504456612029, guid: c6d366d359821af4f9cf877bd179a679, type: 2}
