@@ -6,15 +6,11 @@ using UnityEngine.SceneManagement;
 public class LevelLoder : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Animation m_animation;
-    public AnimationClip start;
-    public AnimationClip end;
-    bool StartFinished;
-    public static LevelLoder instance; 
+    public static LevelLoder instance;
+    public Animator transition;
     void Start()
     {
-        StartFinished = false;
-        instance = this;
+       instance = this;
     }
 
     // Update is called once per frame
@@ -23,23 +19,17 @@ public class LevelLoder : MonoBehaviour
         
     }
 
-    public void LoadNextlevel()
+    public void LoadNextlevel(int indexlevel)
     {
-        StartCoroutine(Loadlevel(SceneManager.GetActiveScene().buildIndex + 1));
+        StartCoroutine(Loadlevel(indexlevel));
     }
 
-    public IEnumerator StartAnim()
-    {
-        m_animation.Play(start.name);
-        yield return new WaitForSeconds(start.length);
-        StartFinished = true;
-        
-    }
+    
 
     public IEnumerator Loadlevel(int indexlevel)
     {
-        m_animation.Play(end.name);
-        yield return new WaitForSeconds(end.length);
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(indexlevel);
     }
 }

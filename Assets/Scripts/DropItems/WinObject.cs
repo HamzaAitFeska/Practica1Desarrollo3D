@@ -31,12 +31,12 @@ public class WinObject : MonoBehaviour
 
     public void TryAgain()
     {
-        SceneManager.LoadScene(1);
+        LevelLoder.instance.LoadNextlevel(1);
     }
 
     public void MainMenu()
     {
-        SceneManager.LoadScene(0);
+        LevelLoder.instance.LoadNextlevel(0);
     }
 
    public void Quit()

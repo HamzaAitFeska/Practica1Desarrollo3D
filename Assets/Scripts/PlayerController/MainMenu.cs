@@ -10,6 +10,6 @@ public class MainMenu : MonoBehaviour
     }
     public void OnstartClicked()
     {
-        SceneManager.LoadScene(1);
+        LevelLoder.instance.LoadNextlevel(1);
     }
 }
