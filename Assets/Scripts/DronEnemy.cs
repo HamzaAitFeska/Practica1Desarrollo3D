@@ -17,7 +17,7 @@ public class DronEnemy : MonoBehaviour
         HIT,
         DIE
     }
-
+    public AudioSource droneIdle, droneAlert, droneShooting, droneDestroyed;
     private int RandomOption;
     public GameObject Dron;
     public GameObject [] RandomItem;
@@ -74,7 +74,7 @@ public class DronEnemy : MonoBehaviour
         lifebar.SetActive(false);
         instacne = this;
         SetIdleDronAnimation();
-        DroneAudio.instance.Play(DroneAudio.instance.droneIdle);
+        droneIdle.Play();
 
     }
     private void Update()
@@ -213,7 +213,7 @@ public class DronEnemy : MonoBehaviour
     {
         m_State = TSTATE.ATTACK;
         m_NavMasAgent.destination = transform.position;
-        DroneAudio.instance.PlayOneShot(DroneAudio.instance.droneAlert);
+        droneAlert.Play();
     }
 
     void UpdateAttackState()
@@ -332,7 +332,7 @@ public class DronEnemy : MonoBehaviour
             PlayerLife.instance.DamagePlayer();
         }
         SetShootAnimation();
-        DroneAudio.instance.PlayOneShot(DroneAudio.instance.droneShooting);
+        droneShooting.Play();
         m_Shooting = true;
         StartCoroutine(EndShoot());
     }
@@ -379,8 +379,8 @@ public class DronEnemy : MonoBehaviour
 
     public IEnumerator Die()
     {
-        DroneAudio.instance.Stop(DroneAudio.instance.droneIdle);
-        DroneAudio.instance.PlayOneShot(DroneAudio.instance.droneDestroyed);
+        droneIdle.Stop();
+        droneDestroyed.Play();
         yield return new WaitForSeconds(m_DieClip.length);
         lightdron.color = Color.red;
         RandomOption = Random.Range(0, RandomItem.Length);
