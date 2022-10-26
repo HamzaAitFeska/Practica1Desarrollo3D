@@ -255,8 +255,17 @@ public class FPSPlayerController : MonoBehaviour
         l_Decal.SetActive(true);
         l_Decal.transform.position = position;
         l_Decal.transform.rotation = Quaternion.LookRotation(Normal);
+        if (collider.CompareTag("DronCollider"))
+        {
+            l_Decal.SetActive(false);
+        }
+        if (collider.CompareTag("Doors"))
+        {
+            l_Decal.SetActive(false);
+        }
+
         //GameObject.Instantiate(poolDecals.GetNextElemnt(), position, Quaternion.LookRotation(Normal));
-        
+
 
     }
 

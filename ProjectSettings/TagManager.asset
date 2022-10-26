@@ -11,6 +11,7 @@ TagManager:
   - DeadZone
   - DeathTrapTrigger
   - GameEventTrigger
+  - Doors
   layers:
   - Default
   - TransparentFX
