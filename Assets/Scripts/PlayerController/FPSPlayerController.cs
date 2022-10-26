@@ -233,10 +233,10 @@ public class FPSPlayerController : MonoBehaviour
         if (l_RaycastHit.collider.CompareTag("TargetCollider"))
         {
             m_TargetHit = true;
-            m_TotalPoints += 200;
+            m_TotalPoints += 25;
             if(ShootingGalery.instance.time <= 0)
             {
-                m_TotalPoints -= 200;
+                m_TotalPoints -= 25;
             }
 
         }
